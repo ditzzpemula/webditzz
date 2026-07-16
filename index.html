@@ -1,289 +1,103 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tebak Bendera Premium • by ditzzz</title>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
-        
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-            color: white;
-            min-height: 100vh;
-        }
-        .container { max-width: 640px; margin: 20px auto; padding: 15px; }
-        
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            text-align: center;
-            background: linear-gradient(90deg, #c084fc, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 28px;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-        }
-        
-        .flag-container {
-            text-align: center;
-            background: rgba(255,255,255,0.95);
-            padding: 25px;
-            border-radius: 24px;
-            margin: 25px 0;
-            min-height: 240px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .flag {
-            width: 300px;
-            height: 200px;
-            border-radius: 18px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 10px solid #fff;
-            object-fit: cover;
-        }
-        
-        .options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 30px 0;
-        }
-        
-        .option-btn {
-            padding: 20px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            background: rgba(255,255,255,0.12);
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 18px;
-            color: white;
-            transition: all 0.3s;
-        }
-        
-        .option-btn:hover { transform: translateY(-5px); background: rgba(255,255,255,0.25); }
-        .option-btn.correct { background:#22c55e !important; border-color:#86efac; }
-        .option-btn.wrong { background:#ef4444 !important; }
-        
-        .room-code {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: 12px;
-            background: rgba(0,0,0,0.4);
-            padding: 20px;
-            border-radius: 16px;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .btn {
-            width: 100%;
-            padding: 16px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 9999px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .btn-primary { background: linear-gradient(90deg, #6366f1, #a855f7); color: white; }
-        .feedback { text-align:center; font-size:1.5rem; min-height:70px; margin:15px 0; font-weight:600; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Biasa... atau?</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+    }
+    #main-video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+    }
+    #scare-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      display: none;
+      z-index: 999;
+    }
+    #scare-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: red;
+      font-size: 5rem;
+      text-shadow: 0 0 30px red;
+      display: none;
+      z-index: 1000;
+      animation: flash 0.2s infinite;
+    }
+    @keyframes flash {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <!-- MENU -->
-    <div id="menu">
-        <h1>Tebak Bendera</h1>
-        <p style="text-align:center; margin:10px 0 30px;">Premium • by ditzzz</p>
-        <div class="card">
-            <button class="btn btn-primary" onclick="createRoom()">Buat Room</button>
-            <button class="btn" style="background:#475569;" onclick="showJoin()">Gabung Room</button>
-        </div>
-    </div>
 
-    <!-- CREATE ROOM -->
-    <div id="create-room" class="card" style="display:none">
-        <h2 style="text-align:center">Kode Room</h2>
-        <div id="code-display" class="room-code">------</div>
-        <button class="btn btn-primary" onclick="copyCode()">📋 Salin Kode</button>
-        <button class="btn" style="background:#eab308;color:#1e2937" onclick="startHost()">Mulai Game</button>
-    </div>
+  <!-- Video Utama (video.mp4) -->
+  <video id="main-video" autoplay controls>
+    <source src="video.mp4" type="video/mp4">
+    Browser tidak mendukung video.
+  </video>
 
-    <!-- JOIN ROOM -->
-    <div id="join-room" class="card" style="display:none">
-        <h2>Gabung Room</h2>
-        <input id="join-code" maxlength="6" placeholder="6 digit kode" style="width:100%;padding:18px;font-size:1.3rem;text-align:center;border-radius:16px;margin:20px 0">
-        <button class="btn btn-primary" onclick="joinRoom()">Gabung</button>
-    </div>
+  <!-- Jump Scare -->
+  <div id="scare-container">
+    <video id="scare-video" autoplay loop muted>
+      <source src="scare.mp4" type="video/mp4"> <!-- Ganti nama file jump scare di sini -->
+    </video>
+    <div class="overlay">AHHHH!!!</div>
+  </div>
 
-    <!-- GAME -->
-    <div id="game" class="card" style="display:none">
-        <div style="display:flex;justify-content:space-between;margin-bottom:15px">
-            <div>P1: <span id="s1">0</span></div>
-            <div>Ronde <span id="rnd">1</span>/20</div>
-            <div>P2: <span id="s2">0</span></div>
-        </div>
-        
-        <div class="flag-container">
-            <img id="flag" class="flag" src="https://flagcdn.com/w320/id.png" alt="Bendera">
-        </div>
-        
-        <div id="fb" class="feedback"></div>
-        <div id="opts" class="options"></div>
-        
-        <button id="nextb" class="btn btn-primary" onclick="nextQ()" style="display:none">Lanjut →</button>
-    </div>
-</div>
+  <script>
+    const mainVideo = document.getElementById('main-video');
+    const scareContainer = document.getElementById('scare-container');
+    const scareVideo = document.getElementById('scare-video');
+    const overlay = document.querySelector('.overlay');
 
-<script>
-const firebaseConfig = {
-    apiKey: "AIzaSyDummyKey",
-    authDomain: "demo.firebaseapp.com",
-    databaseURL: "https://demo-default-rtdb.firebaseio.com",
-    projectId: "demo",
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+    function triggerJumpScare() {
+      const randomTime = Math.random() * 18000 + 7000; // 7 - 25 detik
 
-let roomCode = "", player = 1, roomRef = null, question = null;
-let score = {1:0, 2:0}, round = 1;
+      setTimeout(() => {
+        if (!mainVideo.paused) {
+          mainVideo.pause();
 
-const countries = [
-    {code:"id",name:"Indonesia"},{code:"my",name:"Malaysia"},{code:"sg",name:"Singapura"},
-    {code:"th",name:"Thailand"},{code:"vn",name:"Vietnam"},{code:"ph",name:"Filipina"},
-    {code:"jp",name:"Jepang"},{code:"kr",name:"Korea Selatan"},{code:"cn",name:"China"},
-    {code:"in",name:"India"},{code:"us",name:"Amerika Serikat"},{code:"gb",name:"Inggris"},
-    {code:"fr",name:"Prancis"},{code:"de",name:"Jerman"},{code:"it",name:"Italia"},
-    {code:"es",name:"Spanyol"},{code:"br",name:"Brasil"},{code:"ru",name:"Rusia"},
-    {code:"au",name:"Australia"},{code:"ca",name:"Kanada"},{code:"za",name:"Afrika Selatan"}
-];
+          scareContainer.style.display = 'block';
+          scareVideo.play();
+          overlay.style.display = 'block';
 
-function getFlag(code) {
-    return `https://flagcdn.com/w320/${code}.png`;
-}
-
-function createRoom() {
-    document.getElementById('menu').style.display = 'none';
-    document.getElementById('create-room').style.display = 'block';
-    roomCode = Math.floor(100000 + Math.random()*900000).toString();
-    document.getElementById('code-display').textContent = roomCode;
-}
-
-function copyCode() {
-    navigator.clipboard.writeText(roomCode);
-    alert('✅ Kode berhasil disalin!');
-}
-
-async function startHost() {
-    document.getElementById('create-room').style.display = 'none';
-    document.getElementById('game').style.display = 'block';
-    roomRef = db.ref('tb/' + roomCode);
-    await roomRef.set({code:roomCode, round:1, p1:0, p2:0});
-    player = 1;
-    startListening();
-    nextQuestion();
-}
-
-function showJoin() {
-    document.getElementById('menu').style.display = 'none';
-    document.getElementById('join-room').style.display = 'block';
-}
-
-async function joinRoom() {
-    const code = document.getElementById('join-code').value.trim();
-    if (code.length !== 6) return alert("Kode harus 6 digit!");
-    roomCode = code;
-    document.getElementById('join-room').style.display = 'none';
-    document.getElementById('game').style.display = 'block';
-    roomRef = db.ref('tb/' + roomCode);
-    player = 2;
-    startListening();
-    nextQuestion();
-}
-
-function startListening() {
-    roomRef.on('value', (s) => {
-        const d = s.val() || {};
-        document.getElementById('s1').textContent = d.p1 || 0;
-        document.getElementById('s2').textContent = d.p2 || 0;
-        document.getElementById('rnd').textContent = d.round || 1;
-    });
-}
-
-function nextQuestion() {
-    const idx = Math.floor(Math.random() * countries.length);
-    const correct = countries[idx];
-    let others = countries.filter((_,i) => i !== idx).sort(() => Math.random()-0.5).slice(0,3);
-    question = {correct, options: [correct, ...others].sort(() => Math.random()-0.5)};
-    
-    const flagImg = document.getElementById('flag');
-    flagImg.src = getFlag(question.correct.code);
-    flagImg.onerror = () => { flagImg.src = "https://flagcdn.com/w320/id.png"; }; // fallback
-    
-    renderOptions();
-}
-
-function renderOptions() {
-    const container = document.getElementById('opts');
-    container.innerHTML = '';
-    question.options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.textContent = opt.name;
-        btn.onclick = () => choose(opt, btn);
-        container.appendChild(btn);
-    });
-}
-
-function choose(selected, btn) {
-    const isRight = selected.code === question.correct.code;
-    document.querySelectorAll('.option-btn').forEach(b => {
-        b.disabled = true;
-        if (b.textContent === question.correct.name) b.classList.add('correct');
-    });
-    
-    const fb = document.getElementById('fb');
-    if (isRight) {
-        score[player]++;
-        roomRef.update({[`p${player}`]: score[player]});
-        confetti({particleCount:180, spread:80});
-        fb.innerHTML = "🎉 BENAR!";
-        fb.style.color = "#22c55e";
-    } else {
-        fb.innerHTML = `❌ ${question.correct.name}`;
-        fb.style.color = "#ef4444";
+          // Kembali otomatis setelah 3 detik
+          setTimeout(() => {
+            scareContainer.style.display = 'none';
+            overlay.style.display = 'none';
+            scareVideo.pause();
+            mainVideo.play();
+          }, 3000);
+        }
+      }, randomTime);
     }
-    document.getElementById('nextb').style.display = 'block';
-}
 
-function nextQ() {
-    round++;
-    if (round > 20) {
-        alert("Game Selesai! Refresh halaman untuk main lagi.");
-        return;
-    }
-    roomRef.update({round: round});
-    document.getElementById('fb').innerHTML = '';
-    document.getElementById('nextb').style.display = 'none';
-    nextQuestion();
-}
-</script>
+    // Mulai
+    mainVideo.addEventListener('play', triggerJumpScare);
+
+    // Klik untuk trigger manual
+    document.addEventListener('click', () => {
+      if (scareContainer.style.display === 'none') triggerJumpScare();
+    });
+  </script>
 </body>
 </html>
