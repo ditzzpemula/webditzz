@@ -1,159 +1,244 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Anonymous Message</title>
+<title>Anime Anonymous Message</title>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Poppins,Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#4f7cff,#7b2cff);
+
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(
+rgba(0,0,0,.55),
+rgba(0,0,0,.7)
+),
+url("anime-bg.jpg");
+
+background-size:cover;
+background-position:center;
+
+color:white;
+
 }
+
 
 .container{
-    width:90%;
-    max-width:420px;
-    background:white;
-    padding:25px;
-    border-radius:25px;
-    text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,.2);
+
+width:350px;
+padding:25px;
+
+background:
+rgba(255,255,255,.12);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.2);
+
+border-radius:25px;
+
+box-shadow:
+0 0 30px #8b5cf6;
+
+animation:up 1s;
+
 }
+
+
+@keyframes up{
+
+from{
+transform:translateY(50px);
+opacity:0;
+}
+
+to{
+transform:translateY(0);
+opacity:1;
+}
+
+}
+
+
 
 .logo{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    background:#4f7cff;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:35px;
-    margin:auto;
+
+text-align:center;
+font-size:35px;
+
 }
+
 
 h1{
-    margin-top:15px;
-    font-size:28px;
+
+text-align:center;
+margin:10px 0;
+
 }
+
 
 p{
-    color:#777;
-    margin:10px 0 20px;
+
+text-align:center;
+opacity:.8;
+
 }
+
 
 textarea{
-    width:100%;
-    height:140px;
-    padding:15px;
-    border-radius:15px;
-    border:2px solid #ddd;
-    resize:none;
-    font-size:15px;
-    outline:none;
+
+margin-top:20px;
+
+width:100%;
+height:130px;
+
+padding:15px;
+
+border-radius:15px;
+
+border:none;
+
+outline:none;
+
+resize:none;
+
+background:#ffffffdd;
+
 }
 
-textarea:focus{
-    border-color:#4f7cff;
-}
 
 button{
-    width:100%;
-    margin-top:15px;
-    padding:15px;
-    border:0;
-    border-radius:15px;
-    background:#4f7cff;
-    color:white;
-    font-size:17px;
-    cursor:pointer;
+
+margin-top:15px;
+
+width:100%;
+
+padding:13px;
+
+border:none;
+
+border-radius:15px;
+
+background:linear-gradient(
+45deg,
+#7c3aed,
+#2563eb
+);
+
+color:white;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
 }
+
 
 button:hover{
-    opacity:.8;
+
+transform:scale(1.05);
+
+box-shadow:0 0 20px #60a5fa;
+
 }
 
-#status{
-    margin-top:15px;
-    font-weight:bold;
-}
 
 .footer{
-    margin-top:25px;
-    font-size:13px;
-    color:#999;
+
+text-align:center;
+
+margin-top:20px;
+
+font-size:12px;
+
+opacity:.7;
+
 }
+
+
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-<div class="logo">💌</div>
 
-<h1>Pesan Anonim</h1>
+<div class="logo">🌸</div>
 
-<p>Kirim pesan rahasia tanpa nama</p>
+<h1>Anime NGL</h1>
 
-<textarea id="pesan" placeholder="Tulis pesan kamu..."></textarea>
+<p>Kirim pesan rahasia secara anonim</p>
 
-<button onclick="kirim()">Kirim Pesan</button>
 
-<div id="status"></div>
+<textarea id="pesan" placeholder="Tulis pesan untuk saya..."></textarea>
+
+
+<button onclick="kirim()">
+💌 Kirim Pesan
+</button>
+
 
 <div class="footer">
-Website by &lt;/&gt; Fahri
+Website by &lt;/&gt;Fahri
 </div>
 
+
 </div>
+
 
 
 <script type="module">
 
-import { initializeApp } 
-from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
-import { 
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
 getFirestore,
 collection,
-addDoc,
-serverTimestamp
+addDoc
 }
-from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 
 const firebaseConfig = {
 
-apiKey: "AIzaSyBje7Dcysh2t1-8fDTQxU8HKdvBT9yEzwc",
+apiKey:"API_KEY_KAMU",
 
-authDomain: "webpesan.firebaseapp.com",
+authDomain:"PROJECT.firebaseapp.com",
 
-projectId: "webpesan",
-
-storageBucket: "webpesan.firebasestorage.app",
-
-messagingSenderId: "922291542171",
-
-appId: "1:922291542171:web:2696e58f88efdca41b0e3e",
-
-measurementId: "G-4DNE9CN96T"
+projectId:"PROJECT_ID"
 
 };
+
 
 
 const app = initializeApp(firebaseConfig);
@@ -162,34 +247,38 @@ const db = getFirestore(app);
 
 
 
-window.kirim = async function(){
+window.kirim = async()=>{
 
-let pesan = document.getElementById("pesan").value.trim();
 
-let status = document.getElementById("status");
+let pesan =
+document.getElementById("pesan").value;
 
 
 if(pesan==""){
-status.innerHTML="⚠️ Isi pesan dulu";
-status.style.color="red";
+
+alert("Tulis pesan dulu!");
+
 return;
+
 }
 
 
-try{
 
-await addDoc(collection(db,"pesan"),{
+await addDoc(
+collection(db,"pesan"),
+{
 
-isi:pesan,
+text:pesan,
 
-waktu:serverTimestamp()
+time:new Date()
 
-});
+}
+
+);
 
 
-status.innerHTML="✅ Pesan berhasil dikirim";
 
-status.style.color="green";
+alert("Pesan berhasil dikirim 💖");
 
 
 document.getElementById("pesan").value="";
@@ -197,17 +286,6 @@ document.getElementById("pesan").value="";
 
 }
 
-catch(error){
-
-console.log(error);
-
-status.innerHTML="❌ Gagal mengirim pesan";
-
-status.style.color="red";
-
-}
-
-}
 
 </script>
 
