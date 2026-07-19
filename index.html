@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Anonymous Message</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4f7cff,#7b2cff);
+}
+
+.container{
+    width:90%;
+    max-width:420px;
+    background:white;
+    padding:25px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#4f7cff;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    margin:auto;
+}
+
+h1{
+    margin-top:15px;
+    font-size:28px;
+}
+
+p{
+    color:#777;
+    margin:10px 0 20px;
+}
+
+textarea{
+    width:100%;
+    height:140px;
+    padding:15px;
+    border-radius:15px;
+    border:2px solid #ddd;
+    resize:none;
+    font-size:15px;
+    outline:none;
+}
+
+textarea:focus{
+    border-color:#4f7cff;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border:0;
+    border-radius:15px;
+    background:#4f7cff;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.8;
+}
+
+#status{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.footer{
+    margin-top:25px;
+    font-size:13px;
+    color:#999;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">💌</div>
+
+<h1>Pesan Anonim</h1>
+
+<p>Kirim pesan rahasia tanpa nama</p>
+
+<textarea id="pesan" placeholder="Tulis pesan kamu..."></textarea>
+
+<button onclick="kirim()">Kirim Pesan</button>
+
+<div id="status"></div>
+
+<div class="footer">
+Website by &lt;/&gt; Fahri
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import { 
+getFirestore,
+collection,
+addDoc,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyBje7Dcysh2t1-8fDTQxU8HKdvBT9yEzwc",
+
+authDomain: "webpesan.firebaseapp.com",
+
+projectId: "webpesan",
+
+storageBucket: "webpesan.firebasestorage.app",
+
+messagingSenderId: "922291542171",
+
+appId: "1:922291542171:web:2696e58f88efdca41b0e3e",
+
+measurementId: "G-4DNE9CN96T"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+
+window.kirim = async function(){
+
+let pesan = document.getElementById("pesan").value.trim();
+
+let status = document.getElementById("status");
+
+
+if(pesan==""){
+status.innerHTML="⚠️ Isi pesan dulu";
+status.style.color="red";
+return;
+}
+
+
+try{
+
+await addDoc(collection(db,"pesan"),{
+
+isi:pesan,
+
+waktu:serverTimestamp()
+
+});
+
+
+status.innerHTML="✅ Pesan berhasil dikirim";
+
+status.style.color="green";
+
+
+document.getElementById("pesan").value="";
+
+
+}
+
+catch(error){
+
+console.log(error);
+
+status.innerHTML="❌ Gagal mengirim pesan";
+
+status.style.color="red";
+
+}
+
+}
+
+</script>
+
+
+</body>
+</html>
