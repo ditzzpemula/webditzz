@@ -1,112 +1,458 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fahri NGL</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .title { font-family: 'Space Grotesk', sans-serif; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fahri NGL</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap');
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+body{
+
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+overflow:hidden;
+font-family:'Inter',sans-serif;
+
+}
+
+
+
+/* BACKGROUND VIDEO */
+
+.video-bg{
+
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+
+}
+
+
+.overlay{
+
+position:fixed;
+inset:0;
+
+background:
+linear-gradient(
+135deg,
+rgba(0,50,150,.85),
+rgba(255,255,255,.35)
+);
+
+z-index:-1;
+
+}
+
+
+
+.title{
+
+font-family:'Space Grotesk',sans-serif;
+
+}
+
+
+
+.card{
+
+backdrop-filter:blur(15px);
+animation:show .8s ease;
+
+}
+
+
+
+@keyframes show{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+
+
+.glow{
+
+box-shadow:
+
+0 0 20px #38bdf8,
+0 0 40px #2563eb;
+
+}
+
+
+
+</style>
+
+
 </head>
-<body class="bg-zinc-950 text-white min-h-screen flex items-center justify-center p-4">
-    <div class="max-w-md w-full bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl border border-zinc-800">
-        
-        <!-- Header -->
-        <div class="bg-black p-8 text-center border-b border-zinc-800">
-            <div class="flex justify-center mb-4">
-                <div class="w-20 h-20 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-3xl flex items-center justify-center text-5xl shadow-lg">
-                    👀
-                </div>
-            </div>
-            <h1 class="title text-5xl font-bold tracking-tighter">Fahri NGL</h1>
-            <p class="text-zinc-400 mt-2 text-lg">Kirim pesan rahasia</p>
-        </div>
 
-        <!-- Content -->
-        <div class="p-8">
-            <textarea id="message" rows="8"
-                      class="w-full bg-zinc-800 border border-zinc-700 focus:border-purple-500 rounded-3xl p-6 outline-none text-lg resize-none placeholder-zinc-500"
-                      placeholder="Tulis pesanmu di sini..."></textarea>
 
-            <button onclick="sendToTelegram()" 
-                    class="mt-8 w-full py-7 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl font-semibold text-xl flex items-center justify-center gap-3 hover:brightness-110 transition-all">
-                <i class="fa-solid fa-paper-plane"></i>
-                KIRIM PESAN
-            </button>
-        </div>
+<body>
 
-        <!-- Footer -->
-        <div class="bg-black p-4 text-center text-xs text-zinc-500 border-t border-zinc-800">
-            Web by Fahri
-        </div>
-    </div>
 
-    <div id="toast" class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 border border-zinc-700 px-6 py-4 rounded-2xl shadow-2xl">
-        <span id="toast-text" class="text-sm font-medium"></span>
-    </div>
+<video autoplay muted loop class="video-bg">
 
-    <script>
-        // GANTI DUA BARIS INI
-        const BOT_TOKEN = "8814593028:AAFKzqYy-A3Q8qCI0hOC-64nyA7Jj7FGyzg";
-        const CHAT_ID = "8813003697";
+<source src="bg.mp4" type="video/mp4">
 
-        async function sendToTelegram() {
-            const messageText = document.getElementById('message').value.trim();
-            
-            if (!messageText) {
-                showToast('Tulis pesan dulu!', true);
-                return;
-            }
+</video>
 
-            if (BOT_TOKEN.includes("MASUKKAN")) {
-                showToast('Token bot belum diisi!', true);
-                return;
-            }
 
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-            
-            try {
-                const res = await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: `📨 *Pesan Anonim Baru*\n\n${messageText}`,
-                        parse_mode: "Markdown"
-                    })
-                });
+<div class="overlay"></div>
 
-                if (res.ok) {
-                    showToast('✅ Pesan berhasil terkirim!', false);
-                    document.getElementById('message').value = '';
-                } else {
-                    showToast('❌ Gagal mengirim', true);
-                }
-            } catch (err) {
-                showToast('❌ Tidak bisa terhubung', true);
-            }
-        }
 
-        function showToast(text, error = false) {
-            const toast = document.getElementById('toast');
-            const toastText = document.getElementById('toast-text');
-            toastText.textContent = text;
-            toast.style.borderColor = error ? '#f87171' : '#4ade80';
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 2800);
-        }
 
-        // Enter key support
-        document.getElementById('message').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendToTelegram();
-            }
-        });
-    </script>
+
+<div class="max-w-md w-full bg-black/70 rounded-3xl overflow-hidden border border-cyan-400/50 shadow-2xl card">
+
+
+
+<!-- HEADER -->
+
+
+<div class="p-8 text-center border-b border-cyan-400/30">
+
+
+<div class="flex justify-center mb-5">
+
+<div class="
+w-24
+h-24
+rounded-full
+bg-gradient-to-br
+from-blue-500
+via-cyan-400
+to-white
+flex
+items-center
+justify-center
+text-5xl
+glow">
+
+❄️
+
+</div>
+
+</div>
+
+
+
+<h1 class="title text-5xl font-bold text-white">
+
+Fahri NGL
+
+</h1>
+
+
+<p class="text-cyan-200 mt-3">
+
+✨ Kirim pesan rahasia ✨
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- FORM -->
+
+
+<div class="p-8">
+
+
+<textarea
+
+id="message"
+
+rows="8"
+
+class="
+w-full
+bg-white/10
+border
+border-cyan-400/40
+focus:border-cyan-300
+rounded-3xl
+p-6
+text-white
+outline-none
+placeholder-white/50
+resize-none
+"
+
+placeholder="Tulis pesanmu di sini...">
+
+</textarea>
+
+
+
+
+<button
+
+onclick="sendToTelegram()"
+
+class="
+mt-6
+w-full
+py-6
+rounded-3xl
+font-bold
+text-xl
+bg-gradient-to-r
+from-blue-600
+via-cyan-500
+to-white
+text-blue-900
+hover:scale-105
+transition">
+
+
+<i class="fa-solid fa-paper-plane"></i>
+
+ KIRIM PESAN
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- FOOTER -->
+
+
+<div class="
+p-4
+text-center
+text-xs
+text-cyan-200
+border-t
+border-cyan-400/30">
+
+Web by Fahri
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- NOTIF -->
+
+<div id="toast"
+
+class="
+hidden
+fixed
+bottom-8
+left-1/2
+-translate-x-1/2
+bg-black/80
+border
+border-cyan-400
+px-6
+py-4
+rounded-2xl
+text-white">
+
+<span id="toast-text"></span>
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+
+const BOT_TOKEN = "8814593028:AAFKzqYy-A3Q8qCI0hOC-64nyA7Jj7FGyzg";
+
+const CHAT_ID = "8813003697";
+
+
+
+
+async function sendToTelegram(){
+
+
+const message = document
+.getElementById("message")
+.value
+.trim();
+
+
+
+if(!message){
+
+showToast("Tulis pesan dulu!",true);
+
+return;
+
+}
+
+
+
+try{
+
+
+let res = await fetch(
+
+`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+chat_id:CHAT_ID,
+
+text:
+
+"📩 Pesan Baru\n\n"+message
+
+})
+
+}
+
+);
+
+
+
+if(res.ok){
+
+showToast("✅ Pesan berhasil terkirim");
+
+document.getElementById("message").value="";
+
+}
+
+else{
+
+showToast("❌ Gagal mengirim",true);
+
+}
+
+
+}
+
+catch{
+
+showToast("❌ Koneksi gagal",true);
+
+}
+
+
+}
+
+
+
+
+
+function showToast(text,error=false){
+
+
+let toast=document.getElementById("toast");
+
+let txt=document.getElementById("toast-text");
+
+
+txt.innerHTML=text;
+
+
+toast.classList.remove("hidden");
+
+
+setTimeout(()=>{
+
+toast.classList.add("hidden");
+
+},2500);
+
+
+}
+
+
+
+
+document
+.getElementById("message")
+.addEventListener("keydown",e=>{
+
+
+if(e.key==="Enter" && !e.shiftKey){
+
+e.preventDefault();
+
+sendToTelegram();
+
+}
+
+
+});
+
+
+</script>
+
+
 </body>
 </html>
