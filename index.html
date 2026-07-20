@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FAHRI NGL</title>
+<title>Fahri NGL</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
 
 *{
@@ -25,19 +27,17 @@ box-sizing:border-box;
 
 body{
 
-min-height:100vh;
+height:100vh;
 display:flex;
-align-items:center;
 justify-content:center;
-padding:20px;
+align-items:center;
 overflow:hidden;
-font-family:'Inter',sans-serif;
+font-family:Poppins,sans-serif;
 
 }
 
 
-
-/* BACKGROUND VIDEO */
+/* VIDEO */
 
 .video-bg{
 
@@ -46,9 +46,10 @@ inset:0;
 width:100%;
 height:100%;
 object-fit:cover;
-z-index:-2;
+z-index:-3;
 
 }
+
 
 
 .overlay{
@@ -59,30 +60,75 @@ inset:0;
 background:
 linear-gradient(
 135deg,
-rgba(0,50,150,.85),
-rgba(255,255,255,.35)
+rgba(0,55,150,.85),
+rgba(255,255,255,.2)
 );
 
-z-index:-1;
+z-index:-2;
 
 }
 
 
 
-.title{
 
-font-family:'Space Grotesk',sans-serif;
+/* LIGHT EFFECT */
+
+.light{
+
+position:fixed;
+width:400px;
+height:400px;
+background:#38bdf8;
+filter:blur(150px);
+opacity:.4;
+animation:move 8s infinite alternate;
 
 }
 
+
+
+@keyframes move{
+
+from{
+transform:translate(-100px,-100px);
+}
+
+to{
+transform:translate(150px,120px);
+}
+
+}
+
+
+
+
+
+/* CARD */
 
 
 .card{
 
-backdrop-filter:blur(15px);
-animation:show .8s ease;
+width:100%;
+max-width:430px;
+
+background:
+rgba(255,255,255,.12);
+
+border:
+1px solid
+rgba(255,255,255,.35);
+
+backdrop-filter:
+blur(20px);
+
+box-shadow:
+0 25px 70px rgba(0,0,0,.5);
+
+animation:
+show .8s ease;
 
 }
+
 
 
 
@@ -91,14 +137,14 @@ animation:show .8s ease;
 from{
 
 opacity:0;
-transform:translateY(40px);
+transform:translateY(50px) scale(.9);
 
 }
 
 to{
 
 opacity:1;
-transform:translateY(0);
+transform:translateY(0) scale(1);
 
 }
 
@@ -106,12 +152,226 @@ transform:translateY(0);
 
 
 
-.glow{
+
+
+/* LOGO */
+
+
+.logo{
+
+animation:
+rotate 6s linear infinite;
+
+}
+
+
+
+@keyframes rotate{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+
+
+.gradient-text{
+
+background:
+linear-gradient(
+90deg,
+#fff,
+#38bdf8
+);
+
+-webkit-background-clip:text;
+color:transparent;
+
+}
+
+
+
+
+
+
+/* INPUT */
+
+
+textarea{
+
+transition:.3s;
+
+}
+
+
+
+textarea:focus{
 
 box-shadow:
+0 0 25px #38bdf8;
 
-0 0 20px #38bdf8,
-0 0 40px #2563eb;
+}
+
+
+
+
+
+
+
+/* BUTTON */
+
+
+.send{
+
+position:relative;
+overflow:hidden;
+
+background:
+rgba(56,189,248,.25);
+
+border:
+1px solid
+rgba(255,255,255,.5);
+
+backdrop-filter:blur(15px);
+
+}
+
+
+
+.send:hover{
+
+transform:scale(1.05);
+
+box-shadow:
+0 0 30px #38bdf8;
+
+}
+
+
+
+.wave{
+
+position:absolute;
+
+width:250%;
+height:250%;
+
+background:
+rgba(255,255,255,.3);
+
+border-radius:45%;
+
+left:-75%;
+top:100%;
+
+animation:
+wave 5s linear infinite;
+
+}
+
+
+
+@keyframes wave{
+
+0%{
+top:100%;
+transform:rotate(0);
+}
+
+50%{
+top:-50%;
+}
+
+100%{
+top:100%;
+transform:rotate(360deg);
+}
+
+}
+
+
+
+
+
+.shine{
+
+position:absolute;
+top:0;
+left:-100%;
+
+width:50%;
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.5),
+transparent
+);
+
+animation:
+shine 3s infinite;
+
+}
+
+
+
+@keyframes shine{
+
+to{
+
+left:150%;
+
+}
+
+}
+
+
+
+
+
+/* PARTICLE */
+
+
+.dot{
+
+position:fixed;
+
+width:8px;
+height:8px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:.5;
+
+animation:
+float 8s infinite;
+
+}
+
+
+
+@keyframes float{
+
+from{
+
+transform:translateY(100vh);
+
+}
+
+to{
+
+transform:translateY(-20vh);
+
+}
 
 }
 
@@ -126,11 +386,21 @@ box-shadow:
 <body>
 
 
+<div class="light"></div>
+
+
+<div class="dot" style="left:20%;animation-delay:1s"></div>
+<div class="dot" style="left:70%;animation-delay:3s"></div>
+<div class="dot" style="left:40%;animation-delay:5s"></div>
+
+
+
 <video autoplay muted loop class="video-bg">
 
-<source src="bg.mp4" type="video/mp4">
+<source src="bg.mp4">
 
 </video>
+
 
 
 <div class="overlay"></div>
@@ -138,50 +408,49 @@ box-shadow:
 
 
 
-<div class="max-w-md w-full bg-black/70 rounded-3xl overflow-hidden border border-cyan-400/50 shadow-2xl card">
+
+<div class="card rounded-[35px] p-8 text-white">
 
 
 
-<!-- HEADER -->
+<div class="text-center">
 
-
-<div class="p-8 text-center border-b border-cyan-400/30">
-
-
-<div class="flex justify-center mb-5">
 
 <div class="
+logo
+mx-auto
 w-24
 h-24
 rounded-full
 bg-gradient-to-br
 from-blue-500
-via-cyan-400
 to-white
 flex
 items-center
 justify-center
 text-5xl
-glow">
+shadow-xl">
 
 ❄️
 
 </div>
 
-</div>
 
 
+<h1 class="
+gradient-text
+text-5xl
+font-bold
+mt-5">
 
-<h1 class="title text-5xl font-bold text-white">
-
-FAHRI NGL
+Fahri NGL
 
 </h1>
 
 
-<p class="text-cyan-200 mt-3">
+<p class="text-cyan-100 mt-2">
 
-✨ Kirim pesan rahasia ✨
+Kirim pesan rahasia
 
 </p>
 
@@ -192,36 +461,30 @@ FAHRI NGL
 
 
 
-
-<!-- FORM -->
-
-
-<div class="p-8">
-
-
 <textarea
 
 id="message"
 
-rows="8"
+rows="7"
 
 class="
+mt-8
 w-full
-bg-white/10
-border
-border-cyan-400/40
-focus:border-cyan-300
 rounded-3xl
+bg-black/30
+border
+border-white/30
 p-6
 text-white
 outline-none
 placeholder-white/50
-resize-none
 "
 
-placeholder="Tulis pesanmu di sini...">
+placeholder="Tulis pesan kamu...">
 
 </textarea>
+
+
 
 
 
@@ -231,82 +494,50 @@ placeholder="Tulis pesanmu di sini...">
 onclick="sendToTelegram()"
 
 class="
+send
 mt-6
 w-full
 py-6
 rounded-3xl
 font-bold
 text-xl
-bg-gradient-to-r
-from-blue-600
-via-cyan-500
-to-white
-text-blue-900
-hover:scale-105
-transition">
+">
 
+
+<span class="relative z-10">
 
 <i class="fa-solid fa-paper-plane"></i>
 
  KIRIM PESAN
+
+</span>
+
+
+<div class="wave"></div>
+
+<div class="shine"></div>
 
 
 </button>
 
 
 
-</div>
 
 
-
-
-
-
-<!-- FOOTER -->
-
-
-<div class="
-p-4
+<p class="
 text-center
 text-xs
-text-cyan-200
-border-t
-border-cyan-400/30">
+text-cyan-100
+mt-6">
 
 Web by Fahri
 
-</div>
+</p>
 
 
 
 </div>
 
-
-
-
-
-
-<!-- NOTIF -->
-
-<div id="toast"
-
-class="
-hidden
-fixed
-bottom-8
-left-1/2
--translate-x-1/2
-bg-black/80
-border
-border-cyan-400
-px-6
-py-4
-rounded-2xl
-text-white">
-
-<span id="toast-text"></span>
-
-</div>
 
 
 
@@ -318,9 +549,10 @@ text-white">
 <script>
 
 
-const BOT_TOKEN = "8814593028:AAFKzqYy-A3Q8qCI0hOC-64nyA7Jj7FGyzg";
+const BOT_TOKEN="8814593028:AAFKzqYy-A3Q8qCI0hOC-64nyA7Jj7FGyzg";
 
-const CHAT_ID = "8813003697";
+const CHAT_ID="8813003697";
+
 
 
 
@@ -328,16 +560,15 @@ const CHAT_ID = "8813003697";
 async function sendToTelegram(){
 
 
-const message = document
+let msg=document
 .getElementById("message")
-.value
-.trim();
+.value.trim();
 
 
 
-if(!message){
+if(!msg){
 
-showToast("Tulis pesan dulu!",true);
+alert("Tulis pesan dulu!");
 
 return;
 
@@ -345,10 +576,7 @@ return;
 
 
 
-try{
-
-
-let res = await fetch(
+await fetch(
 
 `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
 
@@ -357,9 +585,7 @@ let res = await fetch(
 method:"POST",
 
 headers:{
-
 "Content-Type":"application/json"
-
 },
 
 body:JSON.stringify({
@@ -367,8 +593,7 @@ body:JSON.stringify({
 chat_id:CHAT_ID,
 
 text:
-
-"📩 Pesan Baru\n\n"+message
+"📩 Pesan Baru\n\n"+msg
 
 })
 
@@ -378,77 +603,14 @@ text:
 
 
 
-if(res.ok){
+alert("✅ Pesan berhasil terkirim");
 
-showToast("✅ Pesan berhasil terkirim");
 
 document.getElementById("message").value="";
 
-}
-
-else{
-
-showToast("❌ Gagal mengirim",true);
 
 }
 
-
-}
-
-catch{
-
-showToast("❌ Koneksi gagal",true);
-
-}
-
-
-}
-
-
-
-
-
-function showToast(text,error=false){
-
-
-let toast=document.getElementById("toast");
-
-let txt=document.getElementById("toast-text");
-
-
-txt.innerHTML=text;
-
-
-toast.classList.remove("hidden");
-
-
-setTimeout(()=>{
-
-toast.classList.add("hidden");
-
-},2500);
-
-
-}
-
-
-
-
-document
-.getElementById("message")
-.addEventListener("keydown",e=>{
-
-
-if(e.key==="Enter" && !e.shiftKey){
-
-e.preventDefault();
-
-sendToTelegram();
-
-}
-
-
-});
 
 
 </script>
