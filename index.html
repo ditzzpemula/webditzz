@@ -9,13 +9,12 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
 
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
 
 *{
@@ -28,31 +27,37 @@ box-sizing:border-box;
 body{
 
 height:100vh;
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
 font-family:Poppins,sans-serif;
 
 }
 
 
+
 /* VIDEO */
 
-.video-bg{
+video{
 
 position:fixed;
 inset:0;
+
 width:100%;
 height:100%;
+
 object-fit:cover;
-z-index:-3;
+
+z-index:-5;
 
 }
 
 
 
-.overlay{
+/* DARK FILTER */
+
+.bg{
 
 position:fixed;
 inset:0;
@@ -60,44 +65,53 @@ inset:0;
 background:
 linear-gradient(
 135deg,
-rgba(0,55,150,.85),
-rgba(255,255,255,.2)
+rgba(0,45,120,.9),
+rgba(0,0,0,.5)
 );
 
-z-index:-2;
+z-index:-4;
 
 }
 
 
 
 
-/* LIGHT EFFECT */
 
-.light{
+/* AURORA */
+
+
+.aurora{
 
 position:fixed;
-width:400px;
-height:400px;
+
+width:500px;
+height:500px;
+
 background:#38bdf8;
-filter:blur(150px);
+
+filter:blur(160px);
+
 opacity:.4;
-animation:move 8s infinite alternate;
+
+animation:
+aurora 10s infinite alternate;
 
 }
 
 
 
-@keyframes move{
+@keyframes aurora{
 
 from{
-transform:translate(-100px,-100px);
+transform:translate(-200px,-150px);
 }
 
 to{
-transform:translate(150px,120px);
+transform:translate(200px,150px);
 }
 
 }
+
 
 
 
@@ -108,43 +122,45 @@ transform:translate(150px,120px);
 
 .card{
 
-width:100%;
+width:95%;
 max-width:430px;
 
 background:
 rgba(255,255,255,.12);
 
 border:
-1px solid
-rgba(255,255,255,.35);
+1px solid rgba(255,255,255,.35);
 
 backdrop-filter:
-blur(20px);
+blur(25px);
 
 box-shadow:
-0 25px 70px rgba(0,0,0,.5);
+0 30px 80px rgba(0,0,0,.6);
 
 animation:
-show .8s ease;
+enter 1s ease;
 
 }
 
 
 
-
-@keyframes show{
+@keyframes enter{
 
 from{
 
 opacity:0;
-transform:translateY(50px) scale(.9);
+transform:
+translateY(50px)
+scale(.8);
 
 }
 
 to{
 
 opacity:1;
-transform:translateY(0) scale(1);
+transform:
+translateY(0)
+scale(1);
 
 }
 
@@ -160,38 +176,25 @@ transform:translateY(0) scale(1);
 .logo{
 
 animation:
-rotate 6s linear infinite;
+
+pulse 2s infinite;
 
 }
 
 
 
-@keyframes rotate{
+@keyframes pulse{
 
-100%{
+50%{
 
-transform:rotate(360deg);
+box-shadow:
+
+0 0 50px #38bdf8;
+
+}
 
 }
 
-}
-
-
-
-
-.gradient-text{
-
-background:
-linear-gradient(
-90deg,
-#fff,
-#38bdf8
-);
-
--webkit-background-clip:text;
-color:transparent;
-
-}
 
 
 
@@ -212,10 +215,9 @@ transition:.3s;
 textarea:focus{
 
 box-shadow:
-0 0 25px #38bdf8;
+0 0 30px #38bdf8;
 
 }
-
 
 
 
@@ -228,16 +230,20 @@ box-shadow:
 .send{
 
 position:relative;
+
 overflow:hidden;
 
 background:
+
 rgba(56,189,248,.25);
 
 border:
-1px solid
-rgba(255,255,255,.5);
+
+1px solid white;
 
 backdrop-filter:blur(15px);
+
+transition:.4s;
 
 }
 
@@ -247,86 +253,47 @@ backdrop-filter:blur(15px);
 
 transform:scale(1.05);
 
-box-shadow:
-0 0 30px #38bdf8;
-
 }
 
 
 
-.wave{
+.energy{
 
 position:absolute;
 
-width:250%;
-height:250%;
+width:200%;
+height:200%;
 
 background:
-rgba(255,255,255,.3);
+rgba(255,255,255,.25);
 
-border-radius:45%;
+border-radius:40%;
 
-left:-75%;
+left:-50%;
+
 top:100%;
 
 animation:
-wave 5s linear infinite;
+
+energy 5s linear infinite;
 
 }
 
 
 
-@keyframes wave{
+@keyframes energy{
 
-0%{
-top:100%;
-transform:rotate(0);
-}
 
 50%{
-top:-50%;
+
+top:-40%;
+
 }
+
 
 100%{
+
 top:100%;
-transform:rotate(360deg);
-}
-
-}
-
-
-
-
-
-.shine{
-
-position:absolute;
-top:0;
-left:-100%;
-
-width:50%;
-height:100%;
-
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.5),
-transparent
-);
-
-animation:
-shine 3s infinite;
-
-}
-
-
-
-@keyframes shine{
-
-to{
-
-left:150%;
 
 }
 
@@ -336,42 +303,69 @@ left:150%;
 
 
 
-/* PARTICLE */
 
 
-.dot{
+/* STAR */
+
+
+.star{
 
 position:fixed;
 
-width:8px;
-height:8px;
+width:5px;
+
+height:5px;
 
 background:white;
 
 border-radius:50%;
 
-opacity:.5;
-
 animation:
-float 8s infinite;
+star 8s linear infinite;
 
 }
 
 
 
-@keyframes float{
+@keyframes star{
 
 from{
 
 transform:translateY(100vh);
 
+opacity:0;
+
 }
+
+
+20%{
+
+opacity:1;
+
+}
+
 
 to{
 
 transform:translateY(-20vh);
 
+opacity:0;
+
 }
+
+}
+
+
+
+
+
+
+/* TOAST */
+
+
+.toast{
+
+transition:.4s;
 
 }
 
@@ -379,37 +373,39 @@ transform:translateY(-20vh);
 
 </style>
 
-
 </head>
 
 
 <body>
 
 
-<div class="light"></div>
-
-
-<div class="dot" style="left:20%;animation-delay:1s"></div>
-<div class="dot" style="left:70%;animation-delay:3s"></div>
-<div class="dot" style="left:40%;animation-delay:5s"></div>
-
-
-
-<video autoplay muted loop class="video-bg">
+<video autoplay muted loop>
 
 <source src="bg.mp4">
 
 </video>
 
 
+<div class="bg"></div>
 
-<div class="overlay"></div>
-
-
-
+<div class="aurora"></div>
 
 
-<div class="card rounded-[35px] p-8 text-white">
+
+<div class="star" style="left:20%;animation-delay:1s"></div>
+<div class="star" style="left:50%;animation-delay:3s"></div>
+<div class="star" style="left:80%;animation-delay:5s"></div>
+
+
+
+
+
+
+<div class="
+card
+rounded-[40px]
+p-8
+text-white">
 
 
 
@@ -419,8 +415,8 @@ transform:translateY(-20vh);
 <div class="
 logo
 mx-auto
-w-24
-h-24
+w-28
+h-28
 rounded-full
 bg-gradient-to-br
 from-blue-500
@@ -428,8 +424,7 @@ to-white
 flex
 items-center
 justify-center
-text-5xl
-shadow-xl">
+text-6xl">
 
 ❄️
 
@@ -438,17 +433,21 @@ shadow-xl">
 
 
 <h1 class="
-gradient-text
 text-5xl
-font-bold
-mt-5">
+font-extrabold
+mt-6
+bg-gradient-to-r
+from-white
+to-cyan-300
+text-transparent
+bg-clip-text">
 
 Fahri NGL
 
 </h1>
 
 
-<p class="text-cyan-100 mt-2">
+<p class="text-cyan-100">
 
 Kirim pesan rahasia
 
@@ -475,9 +474,8 @@ bg-black/30
 border
 border-white/30
 p-6
-text-white
 outline-none
-placeholder-white/50
+text-white
 "
 
 placeholder="Tulis pesan kamu...">
@@ -500,22 +498,19 @@ w-full
 py-6
 rounded-3xl
 font-bold
-text-xl
-">
+text-xl">
 
 
 <span class="relative z-10">
 
 <i class="fa-solid fa-paper-plane"></i>
 
- KIRIM PESAN
+ KIRIM
 
 </span>
 
 
-<div class="wave"></div>
-
-<div class="shine"></div>
+<div class="energy"></div>
 
 
 </button>
@@ -527,18 +522,39 @@ text-xl
 <p class="
 text-center
 text-xs
-text-cyan-100
-mt-6">
+mt-6
+text-cyan-100">
 
 Web by Fahri
 
 </p>
 
 
-
 </div>
 
 
+
+
+
+
+<div id="toast"
+
+class="
+toast
+fixed
+bottom-8
+hidden
+left-1/2
+-translate-x-1/2
+bg-black/80
+border
+border-cyan-400
+px-6
+py-4
+rounded-2xl
+text-white">
+
+</div>
 
 
 
@@ -556,9 +572,10 @@ const CHAT_ID="8813003697";
 
 
 
-
 async function sendToTelegram(){
 
+
+let btn=document.querySelector(".send");
 
 let msg=document
 .getElementById("message")
@@ -568,7 +585,7 @@ let msg=document
 
 if(!msg){
 
-alert("Tulis pesan dulu!");
+show("Tulis pesan dulu");
 
 return;
 
@@ -576,7 +593,14 @@ return;
 
 
 
-await fetch(
+btn.innerHTML="⏳ Mengirim...";
+
+
+
+try{
+
+
+let res=await fetch(
 
 `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
 
@@ -603,10 +627,59 @@ text:
 
 
 
-alert("✅ Pesan berhasil terkirim");
+if(res.ok){
 
+show("✅ Pesan terkirim");
 
 document.getElementById("message").value="";
+
+}else{
+
+show("❌ Gagal kirim");
+
+}
+
+
+}
+
+catch{
+
+show("❌ Error koneksi");
+
+}
+
+
+
+btn.innerHTML=
+`
+<span class="relative z-10">
+<i class="fa-solid fa-paper-plane"></i>
+ KIRIM
+</span>
+<div class="energy"></div>
+`;
+
+
+}
+
+
+
+
+
+function show(text){
+
+let t=document.getElementById("toast");
+
+t.innerHTML=text;
+
+t.classList.remove("hidden");
+
+
+setTimeout(()=>{
+
+t.classList.add("hidden");
+
+},2500);
 
 
 }
