@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fahri NGL • Kirim Pesan Rahasia</title>
+    <title>Fahri NGL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -15,41 +15,33 @@
 <body class="bg-zinc-950 text-white min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl border border-zinc-800">
         
-        <div class="bg-black p-6 text-center border-b border-zinc-800">
+        <!-- Header -->
+        <div class="bg-black p-8 text-center border-b border-zinc-800">
             <div class="flex justify-center mb-4">
-                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-3xl flex items-center justify-center text-4xl shadow-lg">
+                <div class="w-20 h-20 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-3xl flex items-center justify-center text-5xl shadow-lg">
                     👀
                 </div>
             </div>
-            <h1 class="title text-4xl font-bold tracking-tighter">Fahri NGL</h1>
-            <p class="text-zinc-400 mt-1">Kirim pesan tanpa nama</p>
+            <h1 class="title text-5xl font-bold tracking-tighter">Fahri NGL</h1>
+            <p class="text-zinc-400 mt-2 text-lg">Kirim pesan rahasia</p>
         </div>
 
+        <!-- Content -->
         <div class="p-8">
-            <div class="mb-8">
-                <p class="text-xs uppercase tracking-widest text-zinc-500 mb-2 text-center">Bagikan link ini</p>
-                <div class="flex bg-zinc-800 rounded-2xl p-1">
-                    <input id="shareLink" value="https://t.me/fahri_ngl_bot" 
-                           class="bg-transparent flex-1 px-4 text-sm font-mono outline-none">
-                    <button onclick="copyLink()" class="bg-white hover:bg-zinc-200 text-black px-6 py-3 rounded-xl font-semibold">
-                        <i class="fa-solid fa-copy"></i>
-                    </button>
-                </div>
-            </div>
-
-            <textarea id="message" rows="7"
+            <textarea id="message" rows="8"
                       class="w-full bg-zinc-800 border border-zinc-700 focus:border-purple-500 rounded-3xl p-6 outline-none text-lg resize-none placeholder-zinc-500"
                       placeholder="Tulis pesanmu di sini..."></textarea>
 
             <button onclick="sendToTelegram()" 
-                    class="mt-6 w-full py-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl font-semibold text-xl flex items-center justify-center gap-3 hover:brightness-110 transition">
+                    class="mt-8 w-full py-7 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl font-semibold text-xl flex items-center justify-center gap-3 hover:brightness-110 transition-all">
                 <i class="fa-solid fa-paper-plane"></i>
-                KIRIM PESAN ANONIM
+                KIRIM PESAN
             </button>
+        </div>
 
-            <p class="text-center text-xs text-zinc-500 mt-6">
-                Pesan akan langsung masuk ke @fahri_ngl_bot
-            </p>
+        <!-- Footer -->
+        <div class="bg-black p-4 text-center text-xs text-zinc-500 border-t border-zinc-800">
+            Web by Fahri
         </div>
     </div>
 
@@ -58,9 +50,9 @@
     </div>
 
     <script>
-        // GANTI HANYA BARIS INI
+        // GANTI DUA BARIS INI
         const BOT_TOKEN = "8814593028:AAFKzqYy-A3Q8qCI0hOC-64nyA7Jj7FGyzg";
-        const CHAT_ID = "8813003697";   // Sudah terisi
+        const CHAT_ID = "8813003697";
 
         async function sendToTelegram() {
             const messageText = document.getElementById('message').value.trim();
@@ -92,17 +84,11 @@
                     showToast('✅ Pesan berhasil terkirim!', false);
                     document.getElementById('message').value = '';
                 } else {
-                    showToast('❌ Gagal mengirim. Cek Token!', true);
+                    showToast('❌ Gagal mengirim', true);
                 }
             } catch (err) {
-                showToast('❌ Tidak bisa terhubung ke Telegram', true);
+                showToast('❌ Tidak bisa terhubung', true);
             }
-        }
-
-        function copyLink() {
-            document.getElementById('shareLink').select();
-            document.execCommand('copy');
-            showToast('✅ Link berhasil dicopy');
         }
 
         function showToast(text, error = false) {
@@ -114,6 +100,7 @@
             setTimeout(() => toast.classList.add('hidden'), 2800);
         }
 
+        // Enter key support
         document.getElementById('message').addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
