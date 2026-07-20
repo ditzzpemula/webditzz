@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahri NGL • Kirim Pesan Rahasia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .title { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl border border-zinc-800">
+        
+        <div class="bg-black p-6 text-center border-b border-zinc-800">
+            <div class="flex justify-center mb-4">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-3xl flex items-center justify-center text-4xl shadow-lg">
+                    👀
+                </div>
+            </div>
+            <h1 class="title text-4xl font-bold tracking-tighter">Fahri NGL</h1>
+            <p class="text-zinc-400 mt-1">Kirim pesan tanpa nama</p>
+        </div>
+
+        <div class="p-8">
+            <div class="mb-8">
+                <p class="text-xs uppercase tracking-widest text-zinc-500 mb-2 text-center">Bagikan link ini</p>
+                <div class="flex bg-zinc-800 rounded-2xl p-1">
+                    <input id="shareLink" value="https://t.me/fahri_ngl_bot" 
+                           class="bg-transparent flex-1 px-4 text-sm font-mono outline-none">
+                    <button onclick="copyLink()" class="bg-white hover:bg-zinc-200 text-black px-6 py-3 rounded-xl font-semibold">
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <textarea id="message" rows="7"
+                      class="w-full bg-zinc-800 border border-zinc-700 focus:border-purple-500 rounded-3xl p-6 outline-none text-lg resize-none placeholder-zinc-500"
+                      placeholder="Tulis pesanmu di sini..."></textarea>
+
+            <button onclick="sendToTelegram()" 
+                    class="mt-6 w-full py-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl font-semibold text-xl flex items-center justify-center gap-3 hover:brightness-110 transition">
+                <i class="fa-solid fa-paper-plane"></i>
+                KIRIM PESAN ANONIM
+            </button>
+
+            <p class="text-center text-xs text-zinc-500 mt-6">
+                Pesan akan langsung masuk ke @fahri_ngl_bot
+            </p>
+        </div>
+    </div>
+
+    <div id="toast" class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 border border-zinc-700 px-6 py-4 rounded-2xl shadow-2xl">
+        <span id="toast-text" class="text-sm font-medium"></span>
+    </div>
+
+    <script>
+        // GANTI HANYA BARIS INI
+        const BOT_TOKEN = "8814593028:AAFKzqYy-A3Q8qCI0hOC-64nyA7Jj7FGyzg";
+        const CHAT_ID = "8813003697";   // Sudah terisi
+
+        async function sendToTelegram() {
+            const messageText = document.getElementById('message').value.trim();
+            
+            if (!messageText) {
+                showToast('Tulis pesan dulu!', true);
+                return;
+            }
+
+            if (BOT_TOKEN.includes("MASUKKAN")) {
+                showToast('Token bot belum diisi!', true);
+                return;
+            }
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const res = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: `📨 *Pesan Anonim Baru*\n\n${messageText}`,
+                        parse_mode: "Markdown"
+                    })
+                });
+
+                if (res.ok) {
+                    showToast('✅ Pesan berhasil terkirim!', false);
+                    document.getElementById('message').value = '';
+                } else {
+                    showToast('❌ Gagal mengirim. Cek Token!', true);
+                }
+            } catch (err) {
+                showToast('❌ Tidak bisa terhubung ke Telegram', true);
+            }
+        }
+
+        function copyLink() {
+            document.getElementById('shareLink').select();
+            document.execCommand('copy');
+            showToast('✅ Link berhasil dicopy');
+        }
+
+        function showToast(text, error = false) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            toastText.textContent = text;
+            toast.style.borderColor = error ? '#f87171' : '#4ade80';
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2800);
+        }
+
+        document.getElementById('message').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendToTelegram();
+            }
+        });
+    </script>
+</body>
+</html>
