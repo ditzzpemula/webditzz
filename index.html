@@ -1,710 +1,621 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Fahri NGL</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
-
-
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
-
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-
-body{
-
-height:100vh;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-font-family:Poppins,sans-serif;
-
-}
-
-
-
-/* VIDEO */
-
-video{
-
-position:fixed;
-inset:0;
-
-width:100%;
-height:100%;
-
-object-fit:cover;
-
-z-index:-5;
-
-}
-
-
-
-/* DARK FILTER */
-
-.bg{
-
-position:fixed;
-inset:0;
-
-background:
-linear-gradient(
-135deg,
-rgba(0,45,120,.9),
-rgba(0,0,0,.5)
-);
-
-z-index:-4;
-
-}
-
-
-
-
-
-/* AURORA */
-
-
-.aurora{
-
-position:fixed;
-
-width:500px;
-height:500px;
-
-background:#38bdf8;
-
-filter:blur(160px);
-
-opacity:.4;
-
-animation:
-aurora 10s infinite alternate;
-
-}
-
-
-
-@keyframes aurora{
-
-from{
-transform:translate(-200px,-150px);
-}
-
-to{
-transform:translate(200px,150px);
-}
-
-}
-
-
-
-
-
-
-/* CARD */
-
-
-.card{
-
-width:95%;
-max-width:430px;
-
-background:
-rgba(255,255,255,.12);
-
-border:
-1px solid rgba(255,255,255,.35);
-
-backdrop-filter:
-blur(25px);
-
-box-shadow:
-0 30px 80px rgba(0,0,0,.6);
-
-animation:
-enter 1s ease;
-
-}
-
-
-
-@keyframes enter{
-
-from{
-
-opacity:0;
-transform:
-translateY(50px)
-scale(.8);
-
-}
-
-to{
-
-opacity:1;
-transform:
-translateY(0)
-scale(1);
-
-}
-
-}
-
-
-
-
-
-/* LOGO */
-
-
-.logo{
-
-animation:
-
-pulse 2s infinite;
-
-}
-
-
-
-@keyframes pulse{
-
-50%{
-
-box-shadow:
-
-0 0 50px #38bdf8;
-
-}
-
-}
-
-
-
-
-
-
-
-/* INPUT */
-
-
-textarea{
-
-transition:.3s;
-
-}
-
-
-
-textarea:focus{
-
-box-shadow:
-0 0 30px #38bdf8;
-
-}
-
-
-
-
-
-
-/* BUTTON */
-
-
-.send{
-
-position:relative;
-
-overflow:hidden;
-
-background:
-
-rgba(56,189,248,.25);
-
-border:
-
-1px solid white;
-
-backdrop-filter:blur(15px);
-
-transition:.4s;
-
-}
-
-
-
-.send:hover{
-
-transform:scale(1.05);
-
-}
-
-
-
-.energy{
-
-position:absolute;
-
-width:200%;
-height:200%;
-
-background:
-rgba(255,255,255,.25);
-
-border-radius:40%;
-
-left:-50%;
-
-top:100%;
-
-animation:
-
-energy 5s linear infinite;
-
-}
-
-
-
-@keyframes energy{
-
-
-50%{
-
-top:-40%;
-
-}
-
-
-100%{
-
-top:100%;
-
-}
-
-}
-
-
-
-
-
-
-
-/* STAR */
-
-
-.star{
-
-position:fixed;
-
-width:5px;
-
-height:5px;
-
-background:white;
-
-border-radius:50%;
-
-animation:
-star 8s linear infinite;
-
-}
-
-
-
-@keyframes star{
-
-from{
-
-transform:translateY(100vh);
-
-opacity:0;
-
-}
-
-
-20%{
-
-opacity:1;
-
-}
-
-
-to{
-
-transform:translateY(-20vh);
-
-opacity:0;
-
-}
-
-}
-
-
-
-
-
-
-/* TOAST */
-
-
-.toast{
-
-transition:.4s;
-
-}
-
-
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VannSkyCloud • Premium Hosting</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(145deg, #050b18 0%, #0c1a36 50%, #081226 100%);
+      color: #e0f2fe;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.13) 0%, transparent 42%),
+        radial-gradient(circle at 85% 75%, rgba(14, 165, 233, 0.1) 0%, transparent 48%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .header {
+      text-align: center;
+      padding: 80px 20px 35px;
+    }
+
+    .header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      font-weight: 900;
+      background: linear-gradient(90deg, #38bdf8, #7dd3fc, #e0f2fe, #38bdf8);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 4s linear infinite;
+    }
+
+    @keyframes shine {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #7dd3fc;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .keuntungan {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 20px 30px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .keuntungan span {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      color: #bae6fd;
+    }
+
+    .section { padding: 40px 20px; }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #38bdf8;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+      margin: 8px auto 0;
+    }
+
+    .packages {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .package {
+      background: linear-gradient(160deg, rgba(12, 22, 45, 0.95), rgba(20, 45, 95, 0.4));
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      width: 230px;
+      padding: 20px 16px;
+      transition: 0.3s;
+    }
+
+    .package:hover {
+      transform: translateY(-8px);
+      border-color: #38bdf8;
+    }
+
+    .package h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      color: #7dd3fc;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .spec {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 0;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+      color: #cbd5e1;
+    }
+
+    .price {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #4ade80;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .eggs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .egg {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: #bae6fd;
+    }
+
+    /* Form & Payment Box */
+    .box {
+      max-width: 480px;
+      margin: 0 auto;
+      background: linear-gradient(160deg, rgba(12, 22, 45, 0.95), rgba(20, 45, 95, 0.4));
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      border-radius: 16px;
+      padding: 30px 25px;
+    }
+
+    .box h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #38bdf8;
+      text-align: center;
+      margin-bottom: 6px;
+      font-size: 1.4rem;
+    }
+
+    .box .desc {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 22px;
+      font-size: 0.9rem;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #7dd3fc;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(8, 18, 38, 0.8);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+      color: #e0f2fe;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #38bdf8;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 11px;
+      color: white;
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 6px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    .btn-success {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+    }
+
+    .btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(34, 197, 94, 0.35);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status-msg {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .status-msg.success { color: #4ade80; }
+    .status-msg.error { color: #f87171; }
+
+    /* Payment Section */
+    #paymentSection {
+      display: none;
+    }
+
+    .qris-box {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .qris-box img {
+      max-width: 220px;
+      width: 100%;
+      border-radius: 12px;
+      border: 3px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .dana-box {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 15px 0;
+      text-align: center;
+    }
+
+    .dana-box .label {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .dana-box .number {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin: 4px 0;
+      letter-spacing: 1px;
+    }
+
+    .copy-btn {
+      background: rgba(56, 189, 248, 0.2);
+      border: none;
+      color: #7dd3fc;
+      padding: 5px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    .payment-info {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+
+    .payment-info div {
+      margin: 4px 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px 20px 40px;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    .footer span { color: #38bdf8; }
+
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 54px;
+      height: 54px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .wa-float:hover { transform: scale(1.1); }
+
+    .wa-float svg {
+      width: 26px;
+      height: 26px;
+      fill: white;
+    }
+
+    @media (max-width: 600px) {
+      .package { width: 100%; max-width: 300px; }
+    }
+  </style>
 </head>
-
-
 <body>
 
+  <div class="header">
+    <h1>VannSkyCloud</h1>
+    <p class="tagline">Premium Hosting • Stabil & Cepat</p>
+  </div>
+
+  <div class="keuntungan">
+    <span>24/7 Online</span>
+    <span>Ping 30-50ms</span>
+    <span>Anti DDoS</span>
+    <span>Database</span>
+    <span>Panel Pterodactyl</span>
+    <span>Private</span>
+    <span>Expired 1 Bulan</span>
+  </div>
+
+  <div class="section" style="padding-top: 5px;">
+    <h2 class="section-title">Egg Support</h2>
+    <div class="eggs">
+      <div class="egg">Bot WA / DC</div>
+      <div class="egg">SA-MP</div>
+      <div class="egg">Minecraft</div>
+      <div class="egg">Voice Server</div>
+    </div>
+  </div>
+
+  <!-- PANEL HOSTING -->
+  <div class="section">
+    <h2 class="section-title">Panel Hosting</h2>
+    <div class="packages">
+      <div class="package"><h3>Paket 1</h3><div class="spec"><span>Slot</span><span>0/50</span></div><div class="spec"><span>CPU</span><span>50%</span></div><div class="spec"><span>RAM</span><span>10 GB</span></div><div class="spec"><span>Disk</span><span>10 GB</span></div><div class="price">Rp 5.000</div></div>
+      <div class="package"><h3>Paket 2</h3><div class="spec"><span>Slot</span><span>0/100</span></div><div class="spec"><span>CPU</span><span>130%</span></div><div class="spec"><span>RAM</span><span>30 GB</span></div><div class="spec"><span>Disk</span><span>30 GB</span></div><div class="price">Rp 10.000</div></div>
+      <div class="package"><h3>Paket 3</h3><div class="spec"><span>Slot</span><span>0/250</span></div><div class="spec"><span>CPU</span><span>300%</span></div><div class="spec"><span>RAM</span><span>55 GB</span></div><div class="spec"><span>Disk</span><span>55 GB</span></div><div class="price">Rp 16.000</div></div>
+      <div class="package"><h3>Paket 4</h3><div class="spec"><span>Slot</span><span>0/330</span></div><div class="spec"><span>CPU</span><span>500%</span></div><div class="spec"><span>RAM</span><span>75 GB</span></div><div class="spec"><span>Disk</span><span>75 GB</span></div><div class="price">Rp 25.000</div></div>
+      <div class="package"><h3>Paket 5</h3><div class="spec"><span>Slot</span><span>0/500</span></div><div class="spec"><span>CPU</span><span>800%</span></div><div class="spec"><span>RAM</span><span>100 GB</span></div><div class="spec"><span>Disk</span><span>100 GB</span></div><div class="price">Rp 35.000</div></div>
+    </div>
+  </div>
+
+  <!-- BOT HOSTING -->
+  <div class="section" style="background: rgba(8, 18, 38, 0.5);">
+    <h2 class="section-title">Bot Hosting</h2>
+    <div class="packages">
+      <div class="package"><h3>Paket 1</h3><div class="spec"><span>CPU</span><span>15%</span></div><div class="spec"><span>RAM</span><span>5 GB</span></div><div class="spec"><span>Disk</span><span>5 GB</span></div><div class="price">Rp 3.000</div></div>
+      <div class="package"><h3>Paket 2</h3><div class="spec"><span>CPU</span><span>23%</span></div><div class="spec"><span>RAM</span><span>10 GB</span></div><div class="spec"><span>Disk</span><span>10 GB</span></div><div class="price">Rp 6.000</div></div>
+      <div class="package"><h3>Paket 3</h3><div class="spec"><span>CPU</span><span>30%</span></div><div class="spec"><span>RAM</span><span>25 GB</span></div><div class="spec"><span>Disk</span><span>25 GB</span></div><div class="price">Rp 10.000</div></div>
+      <div class="package"><h3>Paket 4</h3><div class="spec"><span>CPU</span><span>50%</span></div><div class="spec"><span>RAM</span><span>30 GB</span></div><div class="spec"><span>Disk</span><span>30 GB</span></div><div class="price">Rp 16.000</div></div>
+      <div class="package"><h3>Paket 5</h3><div class="spec"><span>CPU</span><span>100%</span></div><div class="spec"><span>RAM</span><span>50 GB</span></div><div class="spec"><span>Disk</span><span>50 GB</span></div><div class="price">Rp 25.000</div></div>
+    </div>
+  </div>
+
+  <!-- FORM ORDER -->
+  <div class="section" id="orderSection">
+    <div class="box">
+      <h3>Pesan Sekarang</h3>
+      <p class="desc">Isi data → Bayar langsung di web</p>
+
+      <form id="orderForm" onsubmit="prosesOrder(event)">
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" id="nama" placeholder="Nama kamu..." required>
+        </div>
+
+        <div class="form-group">
+          <label>Tipe / Paket</label>
+          <select id="tipe" required>
+            <option value="">-- Pilih Paket --</option>
+            <optgroup label="Panel Hosting">
+              <option value="Panel Hosting - Paket 1|5000">Paket 1 - Rp 5.000</option>
+              <option value="Panel Hosting - Paket 2|10000">Paket 2 - Rp 10.000</option>
+              <option value="Panel Hosting - Paket 3|16000">Paket 3 - Rp 16.000</option>
+              <option value="Panel Hosting - Paket 4|25000">Paket 4 - Rp 25.000</option>
+              <option value="Panel Hosting - Paket 5|35000">Paket 5 - Rp 35.000</option>
+            </optgroup>
+            <optgroup label="Bot Hosting">
+              <option value="Bot Hosting - Paket 1|3000">Paket 1 - Rp 3.000</option>
+              <option value="Bot Hosting - Paket 2|6000">Paket 2 - Rp 6.000</option>
+              <option value="Bot Hosting - Paket 3|10000">Paket 3 - Rp 10.000</option>
+              <option value="Bot Hosting - Paket 4|16000">Paket 4 - Rp 16.000</option>
+              <option value="Bot Hosting - Paket 5|25000">Paket 5 - Rp 25.000</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Nomor WhatsApp</label>
+          <input type="text" id="nowa" placeholder="628xxxxxxxxxx" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btnOrder">LANJUT KE PEMBAYARAN</button>
+        <div class="status-msg" id="statusMsg"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- HALAMAN PEMBAYARAN -->
+  <div class="section" id="paymentSection">
+    <div class="box">
+      <h3>Pembayaran</h3>
+      <p class="desc">Silakan transfer sesuai nominal di bawah</p>
+
+      <div class="payment-info" id="paymentInfo"></div>
+
+      <!-- GANTI src DENGAN LINK GAMBAR QRIS KAMU -->
+      <div class="qris-box">
+        <img src="https://via.placeholder.com/220x220?text=QRIS+Kamu" alt="QRIS">
+        <p style="margin-top:8px; font-size:0.85rem; color:#94a3b8;">Scan QRIS di atas</p>
+      </div>
 
-<video autoplay muted loop>
+      <div class="dana-box">
+        <div class="label">Transfer Dana</div>
+        <div class="number" id="danaNumber">08xxxxxxxxxx</div>
+        <button class="copy-btn" onclick="copyDana()">Salin Nomor</button>
+      </div>
 
-<source src="bg.mp4">
+      <button class="btn btn-success" id="btnSudahBayar" onclick="konfirmasiBayar()">
+        SAYA SUDAH BAYAR
+      </button>
 
-</video>
+      <div class="status-msg" id="statusBayar"></div>
+    </div>
+  </div>
 
+  <div class="footer">
+    <p>© 2026 <span>VannSkyCloud</span> • Premium Hosting</p>
+  </div>
 
-<div class="bg"></div>
+  <a href="https://wa.me/6285282039905" class="wa-float" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
-<div class="aurora"></div>
+  <script>
+    // ==============================
+    // PENGATURAN
+    // ==============================
+    const BOT_TOKEN = "8814593028:AAFKzqYy-A3Q8qCI0hOC-64nyA7Jj7FGyzg";
+    const CHAT_ID   = "8813003697";
 
+    // Ganti nomor Dana kamu di sini
+    const NOMOR_DANA = "085191923519";
+    // ==============================
 
+    let dataOrder = {};
 
-<div class="star" style="left:20%;animation-delay:1s"></div>
-<div class="star" style="left:50%;animation-delay:3s"></div>
-<div class="star" style="left:80%;animation-delay:5s"></div>
+    document.getElementById('danaNumber').innerText = NOMOR_DANA;
 
+    async function prosesOrder(e) {
+      e.preventDefault();
 
+      const btn = document.getElementById('btnOrder');
+      const status = document.getElementById('statusMsg');
 
+      const nama = document.getElementById('nama').value.trim();
+      const tipeRaw = document.getElementById('tipe').value;
+      const nowa = document.getElementById('nowa').value.trim();
 
+      if (!tipeRaw) return;
 
+      const [tipe, harga] = tipeRaw.split('|');
 
-<div class="
-card
-rounded-[40px]
-p-8
-text-white">
+      dataOrder = { nama, tipe, harga, nowa };
 
+      if (BOT_TOKEN.includes("MASUKKAN") || CHAT_ID.includes("MASUKKAN")) {
+        status.style.display = 'block';
+        status.className = 'status-msg error';
+        status.innerText = '⚠️ Bot Token / Chat ID belum diisi!';
+        return;
+      }
 
+      btn.disabled = true;
+      btn.innerText = 'MEMPROSES...';
 
-<div class="text-center">
-
-
-<div class="
-logo
-mx-auto
-w-28
-h-28
-rounded-full
-bg-gradient-to-br
-from-blue-500
-to-white
-flex
-items-center
-justify-center
-text-6xl">
-
-❄️
-
-</div>
-
-
-
-<h1 class="
-text-5xl
-font-extrabold
-mt-6
-bg-gradient-to-r
-from-white
-to-cyan-300
-text-transparent
-bg-clip-text">
-
-Fahri NGL
-
-</h1>
-
-
-<p class="text-cyan-100">
-
-Kirim pesan rahasia
-
-</p>
-
-
-</div>
-
-
-
-
-
-<textarea
-
-id="message"
-
-rows="7"
-
-class="
-mt-8
-w-full
-rounded-3xl
-bg-black/30
-border
-border-white/30
-p-6
-outline-none
-text-white
-"
-
-placeholder="Tulis pesan kamu...">
-
-</textarea>
-
-
-
-
-
-
-<button
-
-onclick="sendToTelegram()"
-
-class="
-send
-mt-6
-w-full
-py-6
-rounded-3xl
-font-bold
-text-xl">
-
-
-<span class="relative z-10">
-
-<i class="fa-solid fa-paper-plane"></i>
-
- KIRIM
-
-</span>
-
-
-<div class="energy"></div>
-
-
-</button>
-
-
-
-
-
-<p class="
-text-center
-text-xs
-mt-6
-text-cyan-100">
-
-Web by Fahri
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<div id="toast"
-
-class="
-toast
-fixed
-bottom-8
-hidden
-left-1/2
--translate-x-1/2
-bg-black/80
-border
-border-cyan-400
-px-6
-py-4
-rounded-2xl
-text-white">
-
-</div>
-
-
-
-
-
-
-
-<script>
-
-
-const BOT_TOKEN="8814593028:AAFKzqYy-A3Q8qCI0hOC-64nyA7Jj7FGyzg";
-
-const CHAT_ID="8813003697";
-
-
-
-
-async function sendToTelegram(){
-
-
-let btn=document.querySelector(".send");
-
-let msg=document
-.getElementById("message")
-.value.trim();
-
-
-
-if(!msg){
-
-show("Tulis pesan dulu");
-
-return;
-
-}
-
-
-
-btn.innerHTML="⏳ Mengirim...";
-
-
-
-try{
-
-
-let res=await fetch(
-
-`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-chat_id:CHAT_ID,
-
-text:
-`╭──────────────╮
-  ❄️  FAHRI NGL  ❄️
-╰──────────────╯
-
-🌌 Pesan Rahasia Baru Telah Masuk
-
-💠 Status : Anonymous
-📨 Type   : Secret Message
-
+      const text = 
+`🛒 *ORDER BARU*
 ━━━━━━━━━━━━━━━━
-
-💌 Message:
-${msg}
-
+👤 Nama : ${nama}
+📦 Paket : ${tipe}
+💰 Harga : Rp ${Number(harga).toLocaleString('id-ID')}
+📱 WA   : ${nowa}
 ━━━━━━━━━━━━━━━━
+🕐 ${new Date().toLocaleString('id-ID')}`;
 
-✨ Terima kasih sudah mengirim pesan
-⚡ Powered by Fahri NGL`
+      try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text,
+            parse_mode: 'Markdown'
+          })
+        });
 
-})
+        // Tampilkan halaman pembayaran
+        document.getElementById('orderSection').style.display = 'none';
+        document.getElementById('paymentSection').style.display = 'block';
 
-}
+        document.getElementById('paymentInfo').innerHTML = `
+          <div><strong>Nama:</strong> ${nama}</div>
+          <div><strong>Paket:</strong> ${tipe}</div>
+          <div><strong>Total:</strong> <span style="color:#4ade80;font-weight:700">Rp ${Number(harga).toLocaleString('id-ID')}</span></div>
+        `;
 
-);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
+      } catch (err) {
+        status.style.display = 'block';
+        status.className = 'status-msg error';
+        status.innerText = '❌ Gagal memproses. Coba lagi.';
+        console.error(err);
+      }
 
+      btn.disabled = false;
+      btn.innerText = 'LANJUT KE PEMBAYARAN';
+    }
 
-if(res.ok){
+    function copyDana() {
+      navigator.clipboard.writeText(NOMOR_DANA);
+      alert('Nomor Dana berhasil disalin!');
+    }
 
-show("✅ Pesan terkirim");
+    async function konfirmasiBayar() {
+      const btn = document.getElementById('btnSudahBayar');
+      const status = document.getElementById('statusBayar');
 
-document.getElementById("message").value="";
+      btn.disabled = true;
+      btn.innerText = 'MENGIRIM KONFIRMASI...';
 
-}else{
+      const text = 
+`✅ *KONFIRMASI PEMBAYARAN*
+━━━━━━━━━━━━━━━━
+👤 Nama : ${dataOrder.nama}
+📦 Paket : ${dataOrder.tipe}
+💰 Total : Rp ${Number(dataOrder.harga).toLocaleString('id-ID')}
+📱 WA   : ${dataOrder.nowa}
+━━━━━━━━━━━━━━━━
+Status: *SUDAH TRANSFER*
+🕐 ${new Date().toLocaleString('id-ID')}`;
 
-show("❌ Gagal kirim");
+      try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text,
+            parse_mode: 'Markdown'
+          })
+        });
 
-}
-
-
-}
-
-catch{
-
-show("❌ Error koneksi");
-
-}
-
-
-
-btn.innerHTML=
-`
-<span class="relative z-10">
-<i class="fa-solid fa-paper-plane"></i>
- KIRIM
-</span>
-<div class="energy"></div>
-`;
-
-
-}
-
-
-
-
-
-function show(text){
-
-let t=document.getElementById("toast");
-
-t.innerHTML=text;
-
-t.classList.remove("hidden");
-
-
-setTimeout(()=>{
-
-t.classList.add("hidden");
-
-},2500);
-
-
-}
-
-
-
-</script>
-
-
-</body>
-</html>
+        status.style.display = 'block';
+        status.className = 'status-msg success';
+        status.innerText = '✅ Konfirmasi terkirim! Kami akan segera memproses order kamu.';
+        btn.inne
