@@ -14,42 +14,43 @@
     }
 
     body {
-      background: #080b12;
-      color: white;
+      background: #070a11;
+      color: #fff;
       min-height: 100vh;
     }
 
     header {
-      padding: 45px 20px;
+      padding: 55px 20px 40px;
       text-align: center;
       background:
-        radial-gradient(circle at top, #293cff55, transparent 45%),
-        #080b12;
+        radial-gradient(circle at 50% 0%, #5b55ff55, transparent 45%),
+        #070a11;
     }
 
     .logo {
-      font-size: 42px;
+      font-size: clamp(32px, 8vw, 52px);
       font-weight: 900;
-      background: linear-gradient(90deg, #6c63ff, #00d4ff);
+      background: linear-gradient(90deg, #7c5cff, #00d9ff);
       -webkit-background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
     }
 
     header p {
       margin-top: 10px;
-      color: #aab0c0;
+      color: #9da5b8;
       font-size: 15px;
     }
 
     .badge {
       display: inline-block;
       margin-top: 18px;
-      padding: 8px 16px;
+      padding: 9px 18px;
       border-radius: 30px;
       background: #ffffff0d;
-      border: 1px solid #ffffff15;
+      border: 1px solid #ffffff18;
       color: #00d9ff;
       font-size: 13px;
+      font-weight: bold;
     }
 
     .container {
@@ -61,16 +62,29 @@
 
     .section-title {
       text-align: center;
-      margin: 25px 0;
+      margin: 28px 0;
     }
 
     .section-title h2 {
-      font-size: 27px;
+      font-size: 28px;
     }
 
     .section-title p {
-      color: #8e95a7;
-      margin-top: 7px;
+      margin-top: 8px;
+      color: #8d95a8;
+    }
+
+    .warning {
+      margin: 0 auto 25px;
+      padding: 15px 18px;
+      max-width: 850px;
+      border-radius: 13px;
+      background: #211b08;
+      border: 1px solid #75601b;
+      color: #e8d48a;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     .products {
@@ -81,51 +95,50 @@
 
     .card {
       position: relative;
-      background: linear-gradient(145deg, #111622, #0d111a);
+      background: linear-gradient(145deg, #111723, #0c1018);
       border: 1px solid #ffffff12;
-      border-radius: 18px;
+      border-radius: 19px;
       padding: 24px;
-      transition: .3s;
       overflow: hidden;
+      transition: .3s;
     }
 
     .card:hover {
       transform: translateY(-7px);
-      border-color: #625cff;
-      box-shadow: 0 15px 40px #0008;
+      border-color: #655cff;
+      box-shadow: 0 15px 40px #0009;
     }
 
     .popular {
       position: absolute;
-      top: 14px;
-      right: -32px;
+      top: 15px;
+      right: -34px;
       transform: rotate(45deg);
-      background: #655cff;
-      padding: 5px 35px;
+      background: linear-gradient(90deg, #625cff, #00bfff);
+      padding: 5px 38px;
       font-size: 10px;
       font-weight: bold;
     }
 
     .icon {
-      font-size: 38px;
-      margin-bottom: 15px;
+      font-size: 40px;
+      margin-bottom: 14px;
     }
 
     .card h3 {
       font-size: 20px;
-      margin-bottom: 8px;
     }
 
-    .card .price {
+    .price {
       font-size: 27px;
-      font-weight: 800;
+      font-weight: 900;
       color: #00d9ff;
       margin: 12px 0;
     }
 
     .card ul {
       list-style: none;
-      color: #aab0c0;
+      color: #a6adbd;
       line-height: 1.9;
       font-size: 14px;
       margin-bottom: 18px;
@@ -154,10 +167,10 @@
     }
 
     .info {
-      margin-top: 35px;
+      margin-top: 25px;
       padding: 22px;
       border-radius: 17px;
-      background: #101520;
+      background: #101620;
       border: 1px solid #ffffff10;
     }
 
@@ -166,7 +179,7 @@
     }
 
     .info p {
-      color: #9ba2b3;
+      color: #9da5b5;
       line-height: 1.8;
       font-size: 14px;
     }
@@ -192,9 +205,19 @@
       align-items: center;
       text-decoration: none;
       color: white;
-      font-size: 27px;
-      box-shadow: 0 8px 25px #0008;
-      z-index: 10;
+      font-size: 26px;
+      box-shadow: 0 8px 25px #0009;
+      z-index: 20;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        padding-top: 40px;
+      }
+
+      .card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -203,7 +226,7 @@
 
 <header>
   <div class="logo">Vann +Follower</div>
-  <p>Panel Followers • Cepat • Praktis • Terpercaya</p>
+  <p>Follower Store • Cepat • Praktis • Terpercaya</p>
   <div class="badge">⚡ FOLLOWER STORE</div>
 </header>
 
@@ -211,7 +234,12 @@
 
   <div class="section-title">
     <h2>📦 Paket Followers</h2>
-    <p>Pilih paket sesuai kebutuhan kamu</p>
+    <p>Pilih paket followers sesuai kebutuhan kamu</p>
+  </div>
+
+  <div class="warning">
+    ⚠️ <b>PERHATIAN:</b> Harga dapat berubah sewaktu-waktu.
+    Pastikan melakukan konfirmasi harga kepada admin sebelum melakukan pembayaran.
   </div>
 
   <div class="products">
@@ -224,9 +252,11 @@
       <ul>
         <li>50 Followers</li>
         <li>Proses cepat</li>
-        <li>Order mudah</li>
+        <li>Order via WhatsApp</li>
       </ul>
-      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%2050%20Followers%20Rp2.000">
+
+      <a class="buy"
+         href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%2050%20Followers">
         🛒 Beli Sekarang
       </a>
     </div>
@@ -239,9 +269,11 @@
       <ul>
         <li>100 Followers</li>
         <li>Proses cepat</li>
-        <li>Order mudah</li>
+        <li>Order via WhatsApp</li>
       </ul>
-      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%20100%20Followers%20Rp4.000">
+
+      <a class="buy"
+         href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%20100%20Followers">
         🛒 Beli Sekarang
       </a>
     </div>
@@ -254,9 +286,11 @@
       <ul>
         <li>250 Followers</li>
         <li>Proses cepat</li>
-        <li>Order mudah</li>
+        <li>Order via WhatsApp</li>
       </ul>
-      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%20250%20Followers%20Rp8.000">
+
+      <a class="buy"
+         href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%20250%20Followers">
         🛒 Beli Sekarang
       </a>
     </div>
@@ -264,15 +298,18 @@
     <!-- 500 -->
     <div class="card">
       <div class="popular">POPULER</div>
+
       <div class="icon">🚀</div>
       <h3>500 Followers</h3>
       <div class="price">Rp15.000</div>
       <ul>
         <li>500 Followers</li>
         <li>Proses cepat</li>
-        <li>Order mudah</li>
+        <li>Order via WhatsApp</li>
       </ul>
-      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%20500%20Followers%20Rp15.000">
+
+      <a class="buy"
+         href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%20500%20Followers">
         🛒 Beli Sekarang
       </a>
     </div>
@@ -285,9 +322,11 @@
       <ul>
         <li>1.000 Followers</li>
         <li>Proses cepat</li>
-        <li>Order mudah</li>
+        <li>Order via WhatsApp</li>
       </ul>
-      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%201000%20Followers%20Rp25.000">
+
+      <a class="buy"
+         href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%201000%20Followers">
         🛒 Beli Sekarang
       </a>
     </div>
@@ -300,9 +339,11 @@
       <ul>
         <li>2.500 Followers</li>
         <li>Proses cepat</li>
-        <li>Order mudah</li>
+        <li>Order via WhatsApp</li>
       </ul>
-      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%202500%20Followers%20Rp55.000">
+
+      <a class="buy"
+         href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%202500%20Followers">
         🛒 Beli Sekarang
       </a>
     </div>
@@ -312,33 +353,37 @@
   <div class="info">
     <h3>📌 Cara Order</h3>
     <p>
-      1. Pilih paket Followers yang kamu inginkan.<br>
+      1. Pilih paket yang kamu inginkan.<br>
       2. Klik tombol <b>Beli Sekarang</b>.<br>
       3. Kamu akan diarahkan ke WhatsApp admin.<br>
-      4. Kirim username/link akun dan lakukan pembayaran sesuai instruksi admin.
+      4. Kirim link/username akun yang akan diproses.<br>
+      5. Konfirmasi harga dan lakukan pembayaran sesuai instruksi admin.
     </p>
   </div>
 
   <div class="info">
     <h3>⚠️ Ketentuan</h3>
     <p>
-      Pastikan akun tidak dalam mode private saat proses berlangsung.
-      Jangan memberikan password akun kepada siapa pun.
-      Estimasi proses dapat berbeda tergantung layanan dan jumlah order.
+      • Harga dapat berubah sewaktu-waktu.<br>
+      • Selalu konfirmasi harga terbaru sebelum pembayaran.<br>
+      • Jangan memberikan password akun kepada admin.<br>
+      • Pastikan akun dapat menerima followers.<br>
+      • Estimasi proses dapat berbeda tergantung jumlah order dan layanan.
     </p>
   </div>
 
 </div>
 
 <footer>
-  © 2026 Vann +Follower Store • All Rights Reserved
+  © 2026 Vann +Follower Store<br>
+  All Rights Reserved
 </footer>
 
 <a class="wa"
-   href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order"
+   href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20ingin%20bertanya"
    aria-label="WhatsApp">
   ☎
 </a>
 
 </body>
-    </html>
+</html>
