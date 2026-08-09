@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Vann +Follower — Premium Social Store</title>
 
 <meta name="description"
-content="Vann +Follower Store — Premium Social Media Store">
+content="Vann +Follower Premium Social Store">
 
 <style>
 
@@ -45,7 +48,9 @@ body{
 ===================================================== */
 
 #bgVideo{
+
     position:fixed;
+
     inset:0;
 
     width:100%;
@@ -54,6 +59,7 @@ body{
     object-fit:cover;
 
     z-index:-20;
+
     pointer-events:none;
 }
 
@@ -63,17 +69,20 @@ body{
 ===================================================== */
 
 .video-overlay{
+
     position:fixed;
+
     inset:0;
 
     background:
         linear-gradient(
             180deg,
-            rgba(3,5,10,.72),
-            rgba(3,5,10,.90)
+            rgba(3,5,10,.70),
+            rgba(3,5,10,.92)
         );
 
     z-index:-19;
+
     pointer-events:none;
 }
 
@@ -83,6 +92,7 @@ body{
 ===================================================== */
 
 body::before{
+
     content:"";
 
     position:fixed;
@@ -105,6 +115,7 @@ body::before{
 }
 
 body::after{
+
     content:"";
 
     position:fixed;
@@ -145,7 +156,8 @@ body::after{
 
     -webkit-backdrop-filter:blur(20px);
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
 }
 
 .nav-container{
@@ -232,9 +244,6 @@ body::after{
             #695cff,
             #00bfff
         );
-
-    box-shadow:
-        0 8px 25px rgba(80,90,255,.18);
 }
 
 
@@ -262,6 +271,11 @@ body::after{
     max-width:850px;
 }
 
+
+/* =====================================================
+   STORE STATUS
+===================================================== */
+
 .status{
 
     display:inline-flex;
@@ -270,30 +284,50 @@ body::after{
 
     gap:8px;
 
-    padding:8px 14px;
+    padding:9px 15px;
 
     border-radius:50px;
 
     background:rgba(255,255,255,.05);
 
-    border:1px solid rgba(255,255,255,.10);
-
-    color:#b5bdce;
+    border:
+        1px solid rgba(255,255,255,.10);
 
     font-size:11px;
 
-    margin-bottom:25px;
+    font-weight:800;
 
-    backdrop-filter:blur(10px);
+    transition:.3s;
 }
 
 .status-dot{
 
-    width:7px;
+    width:8px;
 
-    height:7px;
+    height:8px;
 
     border-radius:50%;
+
+    background:#777;
+
+    transition:.3s;
+}
+
+
+/* OPEN */
+
+.status.open{
+
+    color:#72ffc2;
+
+    background:
+        rgba(0,225,138,.07);
+
+    border-color:
+        rgba(0,225,138,.25);
+}
+
+.status.open .status-dot{
 
     background:#00e18a;
 
@@ -301,7 +335,50 @@ body::after{
         0 0 12px #00e18a;
 }
 
+
+/* CLOSED */
+
+.status.closed{
+
+    color:#ff8f8f;
+
+    background:
+        rgba(255,70,70,.07);
+
+    border-color:
+        rgba(255,70,70,.25);
+}
+
+.status.closed .status-dot{
+
+    background:#ff4545;
+
+    box-shadow:
+        0 0 12px #ff4545;
+}
+
+
+/* =====================================================
+   OPERATING TIME
+===================================================== */
+
+.operating-time{
+
+    margin-top:12px;
+
+    color:#7f8899;
+
+    font-size:11px;
+}
+
+
+/* =====================================================
+   HERO TITLE
+===================================================== */
+
 .hero h1{
+
+    margin-top:25px;
 
     font-size:
         clamp(45px,8vw,82px);
@@ -339,6 +416,11 @@ body::after{
 
     font-size:15px;
 }
+
+
+/* =====================================================
+   HERO BUTTONS
+===================================================== */
 
 .hero-buttons{
 
@@ -383,16 +465,19 @@ body::after{
         );
 
     box-shadow:
-        0 10px 35px rgba(80,90,255,.25);
+        0 10px 35px
+        rgba(80,90,255,.25);
 }
 
 .secondary-btn{
 
     color:#c6ccda;
 
-    background:rgba(255,255,255,.045);
+    background:
+        rgba(255,255,255,.045);
 
-    border:1px solid rgba(255,255,255,.10);
+    border:
+        1px solid rgba(255,255,255,.10);
 }
 
 .primary-btn:hover,
@@ -421,9 +506,11 @@ body::after{
 
     gap:1px;
 
-    background:rgba(255,255,255,.08);
+    background:
+        rgba(255,255,255,.08);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:
+        1px solid rgba(255,255,255,.08);
 
     border-radius:18px;
 
@@ -438,7 +525,8 @@ body::after{
 
     text-align:center;
 
-    background:rgba(10,14,22,.75);
+    background:
+        rgba(10,14,22,.75);
 }
 
 .stat strong{
@@ -516,7 +604,7 @@ body::after{
 
 
 /* =====================================================
-   WARNING
+   PRICE WARNING
 ===================================================== */
 
 .warning{
@@ -536,7 +624,8 @@ body::after{
             rgba(255,255,255,.025)
         );
 
-    border:1px solid rgba(255,190,0,.20);
+    border:
+        1px solid rgba(255,190,0,.20);
 
     color:#dcc77f;
 
@@ -579,32 +668,14 @@ body::after{
             rgba(255,255,255,.018)
         );
 
-    border:1px solid rgba(255,255,255,.09);
+    border:
+        1px solid rgba(255,255,255,.09);
 
     transition:.35s;
 
     overflow:hidden;
 
     backdrop-filter:blur(12px);
-}
-
-.card::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:160px;
-    height:160px;
-
-    background:#695cff;
-
-    filter:blur(100px);
-
-    opacity:.08;
-
-    right:-80px;
-    top:-80px;
 }
 
 .card:hover{
@@ -615,7 +686,8 @@ body::after{
         rgba(105,92,255,.65);
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.35);
+        0 20px 60px
+        rgba(0,0,0,.35);
 }
 
 .popular-card{
@@ -664,9 +736,11 @@ body::after{
 
     border-radius:15px;
 
-    background:rgba(255,255,255,.055);
+    background:
+        rgba(255,255,255,.055);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:
+        1px solid rgba(255,255,255,.08);
 
     margin-bottom:20px;
 }
@@ -692,17 +766,6 @@ body::after{
     font-size:28px;
 
     font-weight:900;
-
-    color:#fff;
-}
-
-.price span{
-
-    font-size:11px;
-
-    color:#737c8f;
-
-    font-weight:500;
 }
 
 .features{
@@ -731,6 +794,11 @@ body::after{
 
     margin-right:8px;
 }
+
+
+/* =====================================================
+   BUY BUTTON
+===================================================== */
 
 .buy{
 
@@ -765,7 +833,28 @@ body::after{
     transform:translateY(-2px);
 
     box-shadow:
-        0 10px 25px rgba(0,190,255,.15);
+        0 10px 25px
+        rgba(0,190,255,.15);
+}
+
+
+/* CLOSED BUTTON */
+
+.buy.closed{
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    color:#777f90;
+
+    cursor:not-allowed;
+
+    pointer-events:none;
+
+    box-shadow:none;
 }
 
 
@@ -789,9 +878,11 @@ body::after{
 
     border-radius:17px;
 
-    background:rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:
+        1px solid rgba(255,255,255,.08);
 
     backdrop-filter:blur(12px);
 }
@@ -821,7 +912,7 @@ body::after{
 
 
 /* =====================================================
-   HOW TO ORDER
+   STEPS
 ===================================================== */
 
 .steps{
@@ -840,9 +931,11 @@ body::after{
 
     border-radius:17px;
 
-    background:rgba(12,16,25,.75);
+    background:
+        rgba(12,16,25,.75);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:
+        1px solid rgba(255,255,255,.08);
 
     backdrop-filter:blur(12px);
 }
@@ -890,9 +983,11 @@ details{
 
     margin-bottom:10px;
 
-    background:rgba(12,16,25,.75);
+    background:
+        rgba(12,16,25,.75);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:
+        1px solid rgba(255,255,255,.08);
 
     border-radius:13px;
 
@@ -946,7 +1041,8 @@ details p{
         ),
         rgba(12,16,25,.78);
 
-    border:1px solid rgba(255,255,255,.09);
+    border:
+        1px solid rgba(255,255,255,.09);
 
     backdrop-filter:blur(15px);
 }
@@ -983,7 +1079,8 @@ footer{
 
     font-size:11px;
 
-    background:rgba(3,5,10,.45);
+    background:
+        rgba(3,5,10,.45);
 
     backdrop-filter:blur(15px);
 }
@@ -1031,36 +1128,32 @@ footer{
     font-size:26px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.5);
+        0 10px 35px
+        rgba(0,0,0,.5);
 
     z-index:2000;
 
-    transition:.3s;
-
-    animation:
-        pulse 2s infinite;
-}
-
-.whatsapp:hover{
-
-    transform:scale(1.08);
+    animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
 
     0%{
         box-shadow:
-            0 0 0 0 rgba(37,211,102,.5);
+            0 0 0 0
+            rgba(37,211,102,.5);
     }
 
     70%{
         box-shadow:
-            0 0 0 14px rgba(37,211,102,0);
+            0 0 0 14px
+            rgba(37,211,102,0);
     }
 
     100%{
         box-shadow:
-            0 0 0 0 rgba(37,211,102,0);
+            0 0 0 0
+            rgba(37,211,102,0);
     }
 }
 
@@ -1076,23 +1169,19 @@ footer{
     }
 
     .stats{
-
         grid-template-columns:1fr;
     }
 
     .features-grid{
-
         grid-template-columns:1fr;
     }
 
     .steps{
-
         grid-template-columns:
             1fr 1fr;
     }
 
     .hero h1{
-
         letter-spacing:-2px;
     }
 }
@@ -1101,39 +1190,33 @@ footer{
 @media(max-width:500px){
 
     .hero{
-
         min-height:590px;
     }
 
     .hero p{
-
         font-size:13px;
     }
 
     .steps{
-
         grid-template-columns:1fr;
     }
 
     .section-heading h2{
-
         font-size:28px;
     }
 
     .cta h2{
-
         font-size:25px;
     }
 
     .nav-btn{
-
         padding:9px 12px;
-
         font-size:10px;
     }
 }
 
 </style>
+
 </head>
 
 
@@ -1144,14 +1227,17 @@ footer{
      VIDEO BACKGROUND
 ===================================================== -->
 
-<video id="bgVideo"
-       autoplay
-       muted
-       loop
-       playsinline
-       preload="auto">
+<video
+    id="bgVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto">
 
-    <source src="bg.mp4" type="video/mp4">
+    <source
+        src="bg.mp4"
+        type="video/mp4">
 
 </video>
 
@@ -1166,9 +1252,13 @@ footer{
 
 <div class="nav-container">
 
+
 <div class="logo">
+
 Vann <span>+Follower</span>
+
 </div>
+
 
 <div class="nav-links">
 
@@ -1190,12 +1280,15 @@ FAQ
 
 </div>
 
-<a class="nav-btn"
+
+<a
+class="nav-btn"
 href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store">
 
 Chat Admin
 
 </a>
+
 
 </div>
 
@@ -1210,11 +1303,29 @@ Chat Admin
 
 <div class="hero-content">
 
-<div class="status">
 
-<span class="status-dot"></span>
+<!-- STATUS -->
 
-STORE ONLINE • SIAP MELAYANI
+<div
+class="status"
+id="storeStatus">
+
+<span
+class="status-dot"
+id="statusDot">
+</span>
+
+<span id="statusText">
+MEMERIKSA STATUS...
+</span>
+
+</div>
+
+
+<div class="operating-time">
+
+🕐 Jam Operasional:
+<b>10:00 - 22:00 WIB</b>
 
 </div>
 
@@ -1244,7 +1355,9 @@ untuk melakukan pemesanan.
 
 <div class="hero-buttons">
 
-<a class="primary-btn"
+
+<a
+class="primary-btn"
 href="#paket">
 
 🚀 Lihat Paket
@@ -1252,12 +1365,14 @@ href="#paket">
 </a>
 
 
-<a class="secondary-btn"
+<a
+class="secondary-btn"
 href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20ingin%20bertanya">
 
 💬 Hubungi Admin
 
 </a>
+
 
 </div>
 
@@ -1272,6 +1387,7 @@ href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20sa
 
 <div class="stats">
 
+
 <div class="stat">
 
 <strong>
@@ -1279,7 +1395,7 @@ href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20sa
 </strong>
 
 <span>
-Order Online
+Website Online
 </span>
 
 </div>
@@ -1288,11 +1404,11 @@ Order Online
 <div class="stat">
 
 <strong>
-FAST
+10:00
 </strong>
 
 <span>
-Proses Praktis
+Jam Buka
 </span>
 
 </div>
@@ -1301,23 +1417,25 @@ Proses Praktis
 <div class="stat">
 
 <strong>
-PREMIUM
+22:00
 </strong>
 
 <span>
-Service Support
+Jam Tutup
 </span>
 
 </div>
+
 
 </div>
 
 
 <!-- =====================================================
-     PACKAGE SECTION
+     PACKAGE
 ===================================================== -->
 
-<section class="section"
+<section
+class="section"
 id="paket">
 
 <div class="container">
@@ -1334,7 +1452,7 @@ Paket Followers
 </h2>
 
 <p>
-Harga terjangkau untuk kebutuhan social media kamu.
+Pilih paket followers sesuai kebutuhan kamu.
 </p>
 
 </div>
@@ -1378,26 +1496,21 @@ Rp2.000
 
 <ul class="features">
 
-<li>
-50 Followers
-</li>
+<li>50 Followers</li>
 
-<li>
-Order mudah
-</li>
+<li>Order mudah</li>
 
-<li>
-Support admin
-</li>
+<li>Support admin</li>
 
-<li>
-Proses sesuai layanan
-</li>
+<li>Proses sesuai layanan</li>
 
 </ul>
 
-<a class="buy"
-href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%2050%20Followers">
+
+<a
+class="buy"
+data-package="50 Followers - Rp2.000"
+href="#">
 
 Beli Sekarang →
 
@@ -1428,26 +1541,21 @@ Rp4.000
 
 <ul class="features">
 
-<li>
-100 Followers
-</li>
+<li>100 Followers</li>
 
-<li>
-Order mudah
-</li>
+<li>Order mudah</li>
 
-<li>
-Support admin
-</li>
+<li>Support admin</li>
 
-<li>
-Proses sesuai layanan
-</li>
+<li>Proses sesuai layanan</li>
 
 </ul>
 
-<a class="buy"
-href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%20100%20Followers">
+
+<a
+class="buy"
+data-package="100 Followers - Rp4.000"
+href="#">
 
 Beli Sekarang →
 
@@ -1478,26 +1586,21 @@ Rp8.000
 
 <ul class="features">
 
-<li>
-250 Followers
-</li>
+<li>250 Followers</li>
 
-<li>
-Order mudah
-</li>
+<li>Order mudah</li>
 
-<li>
-Support admin
-</li>
+<li>Support admin</li>
 
-<li>
-Proses sesuai layanan
-</li>
+<li>Proses sesuai layanan</li>
 
 </ul>
 
-<a class="buy"
-href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%20250%20Followers">
+
+<a
+class="buy"
+data-package="250 Followers - Rp8.000"
+href="#">
 
 Beli Sekarang →
 
@@ -1532,26 +1635,21 @@ Rp15.000
 
 <ul class="features">
 
-<li>
-500 Followers
-</li>
+<li>500 Followers</li>
 
-<li>
-Order mudah
-</li>
+<li>Order mudah</li>
 
-<li>
-Support admin
-</li>
+<li>Support admin</li>
 
-<li>
-Proses sesuai layanan
-</li>
+<li>Proses sesuai layanan</li>
 
 </ul>
 
-<a class="buy"
-href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%20500%20Followers">
+
+<a
+class="buy"
+data-package="500 Followers - Rp15.000"
+href="#">
 
 Beli Sekarang →
 
@@ -1582,26 +1680,21 @@ Rp25.000
 
 <ul class="features">
 
-<li>
-1.000 Followers
-</li>
+<li>1.000 Followers</li>
 
-<li>
-Order mudah
-</li>
+<li>Order mudah</li>
 
-<li>
-Support admin
-</li>
+<li>Support admin</li>
 
-<li>
-Proses sesuai layanan
-</li>
+<li>Proses sesuai layanan</li>
 
 </ul>
 
-<a class="buy"
-href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%201000%20Followers">
+
+<a
+class="buy"
+data-package="1.000 Followers - Rp25.000"
+href="#">
 
 Beli Sekarang →
 
@@ -1632,26 +1725,21 @@ Rp55.000
 
 <ul class="features">
 
-<li>
-2.500 Followers
-</li>
+<li>2.500 Followers</li>
 
-<li>
-Order mudah
-</li>
+<li>Order mudah</li>
 
-<li>
-Support admin
-</li>
+<li>Support admin</li>
 
-<li>
-Proses sesuai layanan
-</li>
+<li>Proses sesuai layanan</li>
 
 </ul>
 
-<a class="buy"
-href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20mau%20order%202500%20Followers">
+
+<a
+class="buy"
+data-package="2.500 Followers - Rp55.000"
+href="#">
 
 Beli Sekarang →
 
@@ -1671,7 +1759,8 @@ Beli Sekarang →
      FEATURES
 ===================================================== -->
 
-<section class="section"
+<section
+class="section"
 id="keunggulan">
 
 <div class="container">
@@ -1708,8 +1797,8 @@ Proses Praktis
 </h3>
 
 <p>
-Order dilakukan melalui WhatsApp sehingga lebih mudah
-untuk melakukan konfirmasi pesanan.
+Order dilakukan melalui WhatsApp sehingga
+lebih mudah melakukan konfirmasi pesanan.
 </p>
 
 </div>
@@ -1726,8 +1815,8 @@ Admin Support
 </h3>
 
 <p>
-Admin siap membantu menjawab pertanyaan mengenai
-paket dan proses pemesanan.
+Admin siap membantu menjawab pertanyaan
+mengenai paket dan proses pemesanan.
 </p>
 
 </div>
@@ -1744,8 +1833,8 @@ Layanan Premium
 </h3>
 
 <p>
-Tampilan store profesional dengan proses order
-yang dibuat sederhana untuk pelanggan.
+Tampilan store profesional dengan proses
+order yang dibuat sederhana.
 </p>
 
 </div>
@@ -1762,7 +1851,8 @@ yang dibuat sederhana untuk pelanggan.
      HOW TO ORDER
 ===================================================== -->
 
-<section class="section"
+<section
+class="section"
 id="cara">
 
 <div class="container">
@@ -1867,7 +1957,8 @@ Ikuti instruksi admin untuk menyelesaikan pesanan.
      FAQ
 ===================================================== -->
 
-<section class="section"
+<section
+class="section"
 id="faq">
 
 <div class="container">
@@ -1892,6 +1983,34 @@ Pertanyaan Umum
 <details>
 
 <summary>
+Kapan toko buka?
+</summary>
+
+<p>
+Toko buka otomatis setiap hari mulai pukul
+10:00 WIB sampai 22:00 WIB.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Kapan toko tutup?
+</summary>
+
+<p>
+Toko otomatis berubah menjadi CLOSED pada pukul
+22:00 WIB dan akan kembali OPEN pada pukul 10:00 WIB.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
 Apakah harga bisa berubah?
 </summary>
 
@@ -1911,8 +2030,9 @@ Bagaimana cara melakukan order?
 </summary>
 
 <p>
-Pilih paket yang diinginkan kemudian klik tombol
-Beli Sekarang. Kamu akan diarahkan ke WhatsApp admin.
+Pilih paket kemudian klik tombol Beli Sekarang.
+Jika toko sedang buka, kamu akan diarahkan
+langsung ke WhatsApp admin.
 </p>
 
 </details>
@@ -1925,23 +2045,8 @@ Apakah harus memberikan password akun?
 </summary>
 
 <p>
-Tidak. Jangan memberikan password atau kode keamanan
-akun kepada siapa pun. Cukup ikuti informasi yang
-diberikan admin.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-Berapa lama prosesnya?
-</summary>
-
-<p>
-Waktu proses dapat berbeda tergantung paket,
-layanan, jumlah order, dan kondisi sistem.
+Tidak. Jangan memberikan password atau kode
+keamanan akun kepada siapa pun.
 </p>
 
 </details>
@@ -1962,11 +2067,9 @@ layanan, jumlah order, dan kondisi sistem.
 
 <div class="cta">
 
-
 <h2>
 Ready to Grow?
 </h2>
-
 
 <p>
 Pilih paket yang kamu inginkan dan hubungi
@@ -1974,13 +2077,14 @@ admin Vann +Follower sekarang.
 </p>
 
 
-<a class="primary-btn"
+<a
+class="primary-btn"
+id="ctaButton"
 href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20ingin%20order">
 
 💬 Chat Admin Sekarang
 
 </a>
-
 
 </div>
 
@@ -2002,7 +2106,11 @@ Premium Social Store • 2026
 </p>
 
 <p style="margin-top:8px;">
-Harga dapat berubah sewaktu-waktu.
+🕐 Operasional 10:00 - 22:00 WIB
+</p>
+
+<p style="margin-top:8px;">
+⚠️ Harga dapat berubah sewaktu-waktu.
 Konfirmasi harga terbaru sebelum pembayaran.
 </p>
 
@@ -2013,7 +2121,9 @@ Konfirmasi harga terbaru sebelum pembayaran.
      WHATSAPP FLOAT
 ===================================================== -->
 
-<a class="whatsapp"
+<a
+class="whatsapp"
+id="whatsappButton"
 href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20ingin%20bertanya"
 aria-label="WhatsApp">
 
@@ -2023,36 +2133,305 @@ aria-label="WhatsApp">
 
 
 <!-- =====================================================
-     VIDEO AUTOPLAY FALLBACK
+     JAVASCRIPT
 ===================================================== -->
 
 <script>
 
-const video = document.getElementById("bgVideo");
+
+/* =====================================================
+   NOMOR WHATSAPP
+===================================================== */
+
+const whatsappNumber =
+"6285191923519";
+
+
+/* =====================================================
+   UPDATE STATUS TOKO
+   OPEN 10:00
+   CLOSE 22:00
+   WIB
+===================================================== */
+
+function updateStoreStatus(){
+
+    const now = new Date();
+
+
+    /* Ambil waktu WIB */
+
+    const wibString =
+        now.toLocaleString(
+            "en-US",
+            {
+                timeZone:"Asia/Jakarta"
+            }
+        );
+
+
+    const wib =
+        new Date(wibString);
+
+
+    const hour =
+        wib.getHours();
+
+    const minute =
+        wib.getMinutes();
+
+
+    const currentMinutes =
+        (hour * 60) + minute;
+
+
+    const openTime =
+        10 * 60;
+
+
+    const closeTime =
+        22 * 60;
+
+
+    const isOpen =
+        currentMinutes >= openTime &&
+        currentMinutes < closeTime;
+
+
+    const status =
+        document.getElementById(
+            "storeStatus"
+        );
+
+
+    const dot =
+        document.getElementById(
+            "statusDot"
+        );
+
+
+    const text =
+        document.getElementById(
+            "statusText"
+        );
+
+
+    /* =================================================
+       OPEN
+    ================================================= */
+
+    if(isOpen){
+
+        status.classList.remove(
+            "closed"
+        );
+
+        status.classList.add(
+            "open"
+        );
+
+
+        dot.style.background =
+            "#00e18a";
+
+
+        text.innerHTML =
+            "🟢 STORE OPEN • SIAP MELAYANI";
+
+    }
+
+
+    /* =================================================
+       CLOSED
+    ================================================= */
+
+    else{
+
+        status.classList.remove(
+            "open"
+        );
+
+        status.classList.add(
+            "closed"
+        );
+
+
+        dot.style.background =
+            "#ff4545";
+
+
+        text.innerHTML =
+            "🔴 STORE CLOSED • BUKA 10:00 WIB";
+
+    }
+
+
+    /* =================================================
+       UPDATE BUY BUTTON
+    ================================================= */
+
+    const buyButtons =
+        document.querySelectorAll(
+            ".buy"
+        );
+
+
+    buyButtons.forEach(
+        function(button){
+
+            const packageName =
+                button.dataset.package;
+
+
+            if(isOpen){
+
+                button.classList.remove(
+                    "closed"
+                );
+
+
+                button.innerHTML =
+                    "Beli Sekarang →";
+
+
+                button.href =
+                    "https://wa.me/" +
+                    whatsappNumber +
+                    "?text=" +
+                    encodeURIComponent(
+                        "Halo Vann +Follower Store,\n\n" +
+                        "Saya ingin order:\n" +
+                        packageName +
+                        "\n\n" +
+                        "Mohon info proses dan harga terbaru."
+                    );
+
+            }
+
+            else{
+
+                button.classList.add(
+                    "closed"
+                );
+
+
+                button.innerHTML =
+                    "🔒 Toko Tutup";
+
+
+                button.href =
+                    "javascript:void(0)";
+
+            }
+
+        }
+    );
+
+
+    /* =================================================
+       CTA BUTTON
+    ================================================= */
+
+    const cta =
+        document.getElementById(
+            "ctaButton"
+        );
+
+
+    if(isOpen){
+
+        cta.innerHTML =
+            "💬 Chat Admin Sekarang";
+
+        cta.href =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(
+                "Halo Vann +Follower Store, saya ingin order."
+            );
+
+    }
+
+    else{
+
+        cta.innerHTML =
+            "🔒 Toko Tutup — Buka 10:00 WIB";
+
+        cta.href =
+            "javascript:void(0)";
+
+        cta.style.opacity =
+            ".55";
+
+        cta.style.pointerEvents =
+            "none";
+
+    }
+
+}
+
+
+/* =====================================================
+   VIDEO AUTOPLAY
+===================================================== */
+
+const video =
+    document.getElementById(
+        "bgVideo"
+    );
+
 
 video.muted = true;
 
-const playVideo = () => {
 
-    video.play().catch(() => {});
+function playVideo(){
 
-};
+    video.play().catch(
+        function(){
+            /* Browser mungkin memblokir autoplay */
+        }
+    );
 
-document.addEventListener(
-    "touchstart",
-    playVideo,
-    {once:true}
-);
+}
 
-document.addEventListener(
-    "click",
-    playVideo,
-    {once:true}
-);
 
 window.addEventListener(
     "load",
     playVideo
+);
+
+
+document.addEventListener(
+    "touchstart",
+    playVideo,
+    {
+        once:true
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    playVideo,
+    {
+        once:true
+    }
+);
+
+
+/* =====================================================
+   JALANKAN STATUS
+===================================================== */
+
+updateStoreStatus();
+
+
+/* Update setiap 1 menit */
+
+setInterval(
+    updateStoreStatus,
+    60000
 );
 
 </script>
