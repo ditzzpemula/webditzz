@@ -1,1165 +1,344 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VannSkyCloud — Fast • Stable • Premium</title>
-  <meta name="description" content="VannSkyCloud - Hosting panel & bot premium. Online 24 jam, anti DDoS, ping stabil. Pterodactyl Panel, Minecraft, Discord Bot, WhatsApp Bot." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #070b14;
-      --bg-card: rgba(15, 23, 42, 0.75);
-      --bg-card-hover: rgba(22, 32, 55, 0.9);
-      --border: rgba(148, 163, 184, 0.12);
-      --border-glow: rgba(56, 189, 248, 0.35);
-      --text: #e2e8f0;
-      --text-muted: #94a3b8;
-      --primary: #38bdf8;
-      --primary-dark: #0ea5e9;
-      --accent: #818cf8;
-      --success: #34d399;
-      --gold: #fbbf24;
-      --bronze: #cd7f32;
-      --silver: #c0c0c0;
-      --diamond: #67e8f9;
-      --gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-      --gradient-soft: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(129,140,248,0.1));
-      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      --radius: 20px;
-      --radius-sm: 12px;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vann +Follower Store</title>
 
+  <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
+      background: #080b12;
+      color: white;
+      min-height: 100vh;
     }
 
-    /* Background effects */
-    .bg-glow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    header {
+      padding: 45px 20px;
+      text-align: center;
       background:
-        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(56, 189, 248, 0.18), transparent),
-        radial-gradient(ellipse 60% 40% at 90% 10%, rgba(129, 140, 248, 0.12), transparent),
-        radial-gradient(ellipse 50% 30% at 50% 100%, rgba(192, 132, 252, 0.08), transparent);
-    }
-
-    .grid-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-    }
-
-    .container {
-      width: min(1140px, 92%);
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1rem 0;
-      transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
-      border-bottom: 1px solid transparent;
-    }
-
-    nav.scrolled {
-      background: rgba(7, 11, 20, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom-color: var(--border);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+        radial-gradient(circle at top, #293cff55, transparent 45%),
+        #080b12;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      color: var(--text);
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
+      font-size: 42px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #6c63ff, #00d4ff);
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
-    .logo-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--gradient);
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      font-size: 1.1rem;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .nav-cta {
-      background: var(--gradient);
-      color: #0f172a !important;
-      padding: 0.55rem 1.25rem;
-      border-radius: 999px;
-      font-weight: 600 !important;
-      font-size: 0.875rem !important;
-      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
-      transition: transform 0.2s, box-shadow 0.2s !important;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(56, 189, 248, 0.45);
-      color: #0f172a !important;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    /* HERO */
-    .hero {
-      padding: 9rem 0 5rem;
-      text-align: center;
+    header p {
+      margin-top: 10px;
+      color: #aab0c0;
+      font-size: 15px;
     }
 
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--gradient-soft);
-      border: 1px solid var(--border-glow);
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--primary);
-      margin-bottom: 1.75rem;
-      letter-spacing: 0.02em;
-    }
-
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--success);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--success);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.9); }
-    }
-
-    .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.25rem;
-    }
-
-    .hero h1 span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 540px;
-      margin: 0 auto 2.5rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.9rem 1.75rem;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.25s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--gradient);
-      color: #0f172a;
-      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(56, 189, 248, 0.5);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      background: rgba(56, 189, 248, 0.08);
-    }
-
-    /* STATS */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
-      margin-top: 4.5rem;
-    }
-
-    .stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1.5rem 1rem;
-      text-align: center;
-      backdrop-filter: blur(12px);
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .stat-card:hover {
-      border-color: var(--border-glow);
-      transform: translateY(-4px);
-    }
-
-    .stat-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-    }
-
-    /* SECTION COMMON */
-    section {
-      padding: 5rem 0;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-tag {
       display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
+      margin-top: 18px;
+      padding: 8px 16px;
+      border-radius: 30px;
+      background: #ffffff0d;
+      border: 1px solid #ffffff15;
+      color: #00d9ff;
+      font-size: 13px;
     }
 
-    .section-header h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: auto;
+      padding-bottom: 50px;
     }
 
-    .section-header p {
-      color: var(--text-muted);
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    /* FEATURES */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      backdrop-filter: blur(12px);
-      transition: all 0.3s;
-    }
-
-    .feature-card:hover {
-      border-color: var(--border-glow);
-      background: var(--bg-card-hover);
-      transform: translateY(-6px);
-      box-shadow: var(--shadow);
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: var(--gradient-soft);
-      border: 1px solid var(--border-glow);
-      display: grid;
-      place-items: center;
-      font-size: 1.4rem;
-      margin-bottom: 1.15rem;
-    }
-
-    .feature-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    /* EGGS */
-    .eggs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-    }
-
-    .egg-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1.5rem 1rem;
+    .section-title {
       text-align: center;
-      backdrop-filter: blur(12px);
-      transition: all 0.3s;
+      margin: 25px 0;
     }
 
-    .egg-card:hover {
-      border-color: var(--border-glow);
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    .section-title h2 {
+      font-size: 27px;
     }
 
-    .egg-icon {
-      font-size: 2.2rem;
-      margin-bottom: 0.75rem;
+    .section-title p {
+      color: #8e95a7;
+      margin-top: 7px;
     }
 
-    .egg-card h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    /* PACKAGES */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 2.5rem;
-      background: rgba(15, 23, 42, 0.6);
-      padding: 0.4rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .tab-btn {
-      padding: 0.65rem 1.5rem;
-      border-radius: 999px;
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.25s;
-      font-family: inherit;
-    }
-
-    .tab-btn.active {
-      background: var(--gradient);
-      color: #0f172a;
-      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-    }
-
-    .packages-grid {
+    .products {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
+      gap: 18px;
     }
 
-    .package-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      backdrop-filter: blur(12px);
+    .card {
       position: relative;
-      transition: all 0.35s;
-      display: flex;
-      flex-direction: column;
+      background: linear-gradient(145deg, #111622, #0d111a);
+      border: 1px solid #ffffff12;
+      border-radius: 18px;
+      padding: 24px;
+      transition: .3s;
+      overflow: hidden;
     }
 
-    .package-card:hover {
-      border-color: var(--border-glow);
-      transform: translateY(-8px);
-      box-shadow: var(--shadow);
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #625cff;
+      box-shadow: 0 15px 40px #0008;
     }
 
-    .package-card.featured {
-      border-color: rgba(56, 189, 248, 0.45);
-      background: linear-gradient(160deg, rgba(56,189,248,0.12), rgba(15,23,42,0.9));
-    }
-
-    .package-card.featured::before {
-      content: 'POPULER';
+    .popular {
       position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gradient);
-      color: #0f172a;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 0.3rem 0.9rem;
-      border-radius: 999px;
+      top: 14px;
+      right: -32px;
+      transform: rotate(45deg);
+      background: #655cff;
+      padding: 5px 35px;
+      font-size: 10px;
+      font-weight: bold;
     }
 
-    .pkg-tier {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
+    .icon {
+      font-size: 38px;
+      margin-bottom: 15px;
     }
 
-    .pkg-emoji {
-      font-size: 1.4rem;
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
     }
 
-    .pkg-name {
-      font-weight: 600;
-      font-size: 1.05rem;
+    .card .price {
+      font-size: 27px;
+      font-weight: 800;
+      color: #00d9ff;
+      margin: 12px 0;
     }
 
-    .pkg-price {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.85rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-
-    .pkg-price span {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-
-    .pkg-period {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .pkg-specs {
+    .card ul {
       list-style: none;
-      flex: 1;
-      margin-bottom: 1.5rem;
+      color: #aab0c0;
+      line-height: 1.9;
+      font-size: 14px;
+      margin-bottom: 18px;
     }
 
-    .pkg-specs li {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.55rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.875rem;
+    .card li::before {
+      content: "✓ ";
+      color: #00df9a;
+      font-weight: bold;
     }
 
-    .pkg-specs li:last-child {
-      border-bottom: none;
-    }
-
-    .pkg-specs .label {
-      color: var(--text-muted);
-    }
-
-    .pkg-specs .value {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .pkg-btn {
+    .buy {
       display: block;
       text-align: center;
-      padding: 0.8rem;
-      border-radius: 12px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid var(--border-glow);
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 0.9rem;
       text-decoration: none;
-      transition: all 0.25s;
-    }
-
-    .pkg-btn:hover {
-      background: var(--gradient);
-      color: #0f172a;
-      border-color: transparent;
-    }
-
-    .package-card.featured .pkg-btn {
-      background: var(--gradient);
-      color: #0f172a;
-      border: none;
-    }
-
-    .package-card.featured .pkg-btn:hover {
-      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
-      transform: translateY(-2px);
-    }
-
-    /* PAYMENT & CONTACT */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .info-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      backdrop-filter: blur(12px);
-    }
-
-    .info-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.35rem;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .payment-methods {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .pay-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--border);
-      padding: 0.85rem 1.25rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: border-color 0.2s;
-    }
-
-    .pay-badge:hover {
-      border-color: var(--primary);
-    }
-
-    .pay-icon {
-      font-size: 1.3rem;
-    }
-
-    .contact-box {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .wa-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      background: #25D366;
+      background: linear-gradient(90deg, #625cff, #00bfff);
       color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: all 0.25s;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: .2s;
     }
 
-    .wa-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.45);
-      background: #20bd5a;
+    .buy:hover {
+      filter: brightness(1.2);
     }
 
-    .contact-note {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      text-align: center;
+    .info {
+      margin-top: 35px;
+      padding: 22px;
+      border-radius: 17px;
+      background: #101520;
+      border: 1px solid #ffffff10;
     }
 
-    /* FOOTER */
+    .info h3 {
+      margin-bottom: 12px;
+    }
+
+    .info p {
+      color: #9ba2b3;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
     footer {
-      padding: 3rem 0 2rem;
-      border-top: 1px solid var(--border);
       text-align: center;
+      padding: 25px;
+      color: #707789;
+      border-top: 1px solid #ffffff0d;
+      font-size: 13px;
     }
 
-    .footer-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-tagline {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-copy {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* TAB CONTENT */
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(7, 11, 20, 0.97);
-        backdrop-filter: blur(16px);
-        flex-direction: column;
-        padding: 1.5rem;
-        gap: 1rem;
-        border-bottom: 1px solid var(--border);
-      }
-      .nav-links.open {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-      }
-      .hero {
-        padding: 7.5rem 0 3.5rem;
-      }
-      .packages-grid {
-        grid-template-columns: 1fr;
-        max-width: 360px;
-        margin: 0 auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .stats {
-        grid-template-columns: 1fr 1fr;
-      }
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .btn {
-        justify-content: center;
-      }
+    .wa {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      font-size: 27px;
+      box-shadow: 0 8px 25px #0008;
+      z-index: 10;
     }
   </style>
 </head>
+
 <body>
-  <div class="bg-glow"></div>
-  <div class="grid-overlay"></div>
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <div class="container nav-inner">
-      <a href="#" class="logo">
-        <span class="logo-icon">☁️</span>
-        VannSkyCloud
-      </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#keunggulan">Keunggulan</a></li>
-        <li><a href="#egg">Egg</a></li>
-        <li><a href="#paket">Paket</a></li>
-        <li><a href="#pembayaran">Pembayaran</a></li>
-        <li><a href="#kontak" class="nav-cta">Order Sekarang</a></li>
+<header>
+  <div class="logo">Vann +Follower</div>
+  <p>Panel Followers • Cepat • Praktis • Terpercaya</p>
+  <div class="badge">⚡ FOLLOWER STORE</div>
+</header>
+
+<div class="container">
+
+  <div class="section-title">
+    <h2>📦 Paket Followers</h2>
+    <p>Pilih paket sesuai kebutuhan kamu</p>
+  </div>
+
+  <div class="products">
+
+    <!-- 50 -->
+    <div class="card">
+      <div class="icon">👤</div>
+      <h3>50 Followers</h3>
+      <div class="price">Rp2.000</div>
+      <ul>
+        <li>50 Followers</li>
+        <li>Proses cepat</li>
+        <li>Order mudah</li>
       </ul>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%2050%20Followers%20Rp2.000">
+        🛒 Beli Sekarang
+      </a>
     </div>
-  </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        Online 24 Jam Nonstop
-      </div>
-      <h1>Fast • Stable • <span>Premium</span></h1>
-      <p>Hosting panel & bot dengan performa maksimal, anti DDoS, dan harga bersahabat. Siap pakai untuk Minecraft, Discord, WhatsApp Bot & lebih.</p>
-      <div class="hero-actions">
-        <a href="#paket" class="btn btn-primary">Lihat Paket →</a>
-        <a href="https://wa.me/6285282039905" target="_blank" rel="noopener" class="btn btn-ghost">Hubungi WhatsApp</a>
-      </div>
-
-      <div class="stats">
-        <div class="stat-card">
-          <div class="stat-value">24/7</div>
-          <div class="stat-label">Online Nonstop</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">30–50ms</div>
-          <div class="stat-label">Ping Stabil</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">Anti DDoS</div>
-          <div class="stat-label">Proteksi Aktif</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">1 Bulan</div>
-          <div class="stat-label">Masa Aktif</div>
-        </div>
-      </div>
+    <!-- 100 -->
+    <div class="card">
+      <div class="icon">👥</div>
+      <h3>100 Followers</h3>
+      <div class="price">Rp4.000</div>
+      <ul>
+        <li>100 Followers</li>
+        <li>Proses cepat</li>
+        <li>Order mudah</li>
+      </ul>
+      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%20100%20Followers%20Rp4.000">
+        🛒 Beli Sekarang
+      </a>
     </div>
-  </section>
 
-  <!-- KEUNGGULAN -->
-  <section id="keunggulan">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Keunggulan</span>
-        <h2>Mengapa Pilih VannSkyCloud?</h2>
-        <p>Performa maksimal dengan infrastruktur yang stabil dan aman.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🟢</div>
-          <h3>Online 24 Jam Nonstop</h3>
-          <p>Server selalu aktif tanpa downtime. Server Anda siap kapan saja dibutuhkan.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3>Anti DDoS Protection</h3>
-          <p>Proteksi DDoS tingkat enterprise menjaga server Anda tetap aman dari serangan.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🛜</div>
-          <h3>Ping Stabil 30–50 ms</h3>
-          <p>Latensi rendah dan stabil untuk pengalaman bermain & bot yang mulus.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌐</div>
-          <h3>Pterodactyl Panel</h3>
-          <p>Panel modern, mudah dikelola, dengan UI yang bersih dan powerful.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📁</div>
-          <h3>Free Database</h3>
-          <p>Database gratis sudah termasuk. Siap untuk aplikasi dan bot Anda.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3>Private Server</h3>
-          <p>Server privat khusus Anda. Isolasi penuh untuk keamanan maksimal.</p>
-        </div>
-      </div>
+    <!-- 250 -->
+    <div class="card">
+      <div class="icon">🔥</div>
+      <h3>250 Followers</h3>
+      <div class="price">Rp8.000</div>
+      <ul>
+        <li>250 Followers</li>
+        <li>Proses cepat</li>
+        <li>Order mudah</li>
+      </ul>
+      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%20250%20Followers%20Rp8.000">
+        🛒 Beli Sekarang
+      </a>
     </div>
-  </section>
 
-  <!-- EGG -->
-  <section id="egg">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Egg Tersedia</span>
-        <h2>Siap Pakai untuk Kebutuhan Anda</h2>
-        <p>Pilih egg sesuai project — langsung deploy tanpa ribet.</p>
-      </div>
-      <div class="eggs-grid">
-        <div class="egg-card">
-          <div class="egg-icon">🤖</div>
-          <h4>Bot WhatsApp</h4>
-        </div>
-        <div class="egg-card">
-          <div class="egg-icon">💬</div>
-          <h4>Bot Discord</h4>
-        </div>
-        <div class="egg-card">
-          <div class="egg-icon">🎮</div>
-          <h4>SA-MP</h4>
-        </div>
-        <div class="egg-card">
-          <div class="egg-icon">⛏️</div>
-          <h4>Minecraft</h4>
-        </div>
-        <div class="egg-card">
-          <div class="egg-icon">🎙️</div>
-          <h4>Voice Server</h4>
-        </div>
-      </div>
+    <!-- 500 -->
+    <div class="card">
+      <div class="popular">POPULER</div>
+      <div class="icon">🚀</div>
+      <h3>500 Followers</h3>
+      <div class="price">Rp15.000</div>
+      <ul>
+        <li>500 Followers</li>
+        <li>Proses cepat</li>
+        <li>Order mudah</li>
+      </ul>
+      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%20500%20Followers%20Rp15.000">
+        🛒 Beli Sekarang
+      </a>
     </div>
-  </section>
 
-  <!-- PAKET -->
-  <section id="paket">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Harga</span>
-        <h2>Pilih Paket Sesuai Kebutuhan</h2>
-        <p>Semua paket aktif 1 bulan. Upgrade kapan saja.</p>
-      </div>
-
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="panel">📦 Panel Hosting</button>
-        <button class="tab-btn" data-tab="bot">🤖 Bot Hosting</button>
-      </div>
-
-      <!-- Panel packages -->
-      <div class="tab-content active" id="panel">
-        <div class="packages-grid">
-          <div class="package-card">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">🥉</span>
-              <span class="pkg-name">Paket 1</span>
-            </div>
-            <div class="pkg-price">Rp5.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">Slot</span><span class="value">0/50</span></li>
-              <li><span class="label">CPU</span><span class="value">50%</span></li>
-              <li><span class="label">RAM</span><span class="value">10 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">10 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Panel%20Hosting%20Paket%201%20(Rp5.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-
-          <div class="package-card">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">🥈</span>
-              <span class="pkg-name">Paket 2</span>
-            </div>
-            <div class="pkg-price">Rp10.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">Slot</span><span class="value">0/100</span></li>
-              <li><span class="label">CPU</span><span class="value">130%</span></li>
-              <li><span class="label">RAM</span><span class="value">30 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">30 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Panel%20Hosting%20Paket%202%20(Rp10.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-
-          <div class="package-card featured">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">🥇</span>
-              <span class="pkg-name">Paket 3</span>
-            </div>
-            <div class="pkg-price">Rp16.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">Slot</span><span class="value">0/250</span></li>
-              <li><span class="label">CPU</span><span class="value">300%</span></li>
-              <li><span class="label">RAM</span><span class="value">55 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">55 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Panel%20Hosting%20Paket%203%20(Rp16.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-
-          <div class="package-card">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">💎</span>
-              <span class="pkg-name">Paket 4</span>
-            </div>
-            <div class="pkg-price">Rp25.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">Slot</span><span class="value">0/330</span></li>
-              <li><span class="label">CPU</span><span class="value">500%</span></li>
-              <li><span class="label">RAM</span><span class="value">75 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">75 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Panel%20Hosting%20Paket%204%20(Rp25.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-
-          <div class="package-card">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">👑</span>
-              <span class="pkg-name">Paket 5</span>
-            </div>
-            <div class="pkg-price">Rp35.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">Slot</span><span class="value">0/500</span></li>
-              <li><span class="label">CPU</span><span class="value">800%</span></li>
-              <li><span class="label">RAM</span><span class="value">100 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">100 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Panel%20Hosting%20Paket%205%20(Rp35.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bot packages -->
-      <div class="tab-content" id="bot">
-        <div class="packages-grid">
-          <div class="package-card">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">🥉</span>
-              <span class="pkg-name">Paket 1</span>
-            </div>
-            <div class="pkg-price">Rp3.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">CPU</span><span class="value">15%</span></li>
-              <li><span class="label">RAM</span><span class="value">5 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">5 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Bot%20Hosting%20Paket%201%20(Rp3.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-
-          <div class="package-card">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">🥈</span>
-              <span class="pkg-name">Paket 2</span>
-            </div>
-            <div class="pkg-price">Rp6.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">CPU</span><span class="value">23%</span></li>
-              <li><span class="label">RAM</span><span class="value">10 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">10 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Bot%20Hosting%20Paket%202%20(Rp6.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-
-          <div class="package-card featured">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">🥇</span>
-              <span class="pkg-name">Paket 3</span>
-            </div>
-            <div class="pkg-price">Rp10.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">CPU</span><span class="value">30%</span></li>
-              <li><span class="label">RAM</span><span class="value">25 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">25 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Bot%20Hosting%20Paket%203%20(Rp10.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-
-          <div class="package-card">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">💎</span>
-              <span class="pkg-name">Paket 4</span>
-            </div>
-            <div class="pkg-price">Rp16.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">CPU</span><span class="value">50%</span></li>
-              <li><span class="label">RAM</span><span class="value">30 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">30 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Bot%20Hosting%20Paket%204%20(Rp16.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-
-          <div class="package-card">
-            <div class="pkg-tier">
-              <span class="pkg-emoji">👑</span>
-              <span class="pkg-name">Paket 5</span>
-            </div>
-            <div class="pkg-price">Rp25.000 <span>/bln</span></div>
-            <div class="pkg-period">Masa aktif 1 bulan</div>
-            <ul class="pkg-specs">
-              <li><span class="label">CPU</span><span class="value">100%</span></li>
-              <li><span class="label">RAM</span><span class="value">50 GB</span></li>
-              <li><span class="label">Disk</span><span class="value">50 GB</span></li>
-            </ul>
-            <a href="https://wa.me/6285282039905?text=Halo%20VannSkyCloud%2C%20saya%20ingin%20order%20Bot%20Hosting%20Paket%205%20(Rp25.000)" target="_blank" rel="noopener" class="pkg-btn">Order Sekarang</a>
-          </div>
-        </div>
-      </div>
+    <!-- 1000 -->
+    <div class="card">
+      <div class="icon">💎</div>
+      <h3>1.000 Followers</h3>
+      <div class="price">Rp25.000</div>
+      <ul>
+        <li>1.000 Followers</li>
+        <li>Proses cepat</li>
+        <li>Order mudah</li>
+      </ul>
+      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%201000%20Followers%20Rp25.000">
+        🛒 Beli Sekarang
+      </a>
     </div>
-  </section>
 
-  <!-- PAYMENT & CONTACT -->
-  <section id="pembayaran">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Order</span>
-        <h2>Pembayaran & Kontak</h2>
-        <p>Proses order cepat via WhatsApp. Pembayaran mudah.</p>
-      </div>
-      <div class="two-col">
-        <div class="info-card" id="kontak">
-          <h3>💳 Metode Pembayaran</h3>
-          <div class="payment-methods">
-            <div class="pay-badge">
-              <span class="pay-icon">💙</span>
-              Dana
-            </div>
-            <div class="pay-badge">
-              <span class="pay-icon">🧾</span>
-              QRIS
-            </div>
-          </div>
-        </div>
-        <div class="info-card">
-          <h3>📞 Hubungi Kami</h3>
-          <div class="contact-box">
-            <a href="https://wa.me/6285282039905" target="_blank" rel="noopener" class="wa-btn">
-              📲 Chat WhatsApp
-            </a>
-            <p class="contact-note">wa.me/6285282039905<br />Respon cepat • Siap membantu order Anda</p>
-          </div>
-        </div>
-      </div>
+    <!-- 2500 -->
+    <div class="card">
+      <div class="icon">👑</div>
+      <h3>2.500 Followers</h3>
+      <div class="price">Rp55.000</div>
+      <ul>
+        <li>2.500 Followers</li>
+        <li>Proses cepat</li>
+        <li>Order mudah</li>
+      </ul>
+      <a class="buy" href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order%202500%20Followers%20Rp55.000">
+        🛒 Beli Sekarang
+      </a>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-logo">☁️ VannSkyCloud</div>
-      <p class="footer-tagline">"Performa Maksimal, Harga Bersahabat."</p>
-      <p class="footer-copy">© 2025 VannSkyCloud. All rights reserved.</p>
-    </div>
-  </footer>
+  </div>
 
-  <script>
-    // Navbar scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
+  <div class="info">
+    <h3>📌 Cara Order</h3>
+    <p>
+      1. Pilih paket Followers yang kamu inginkan.<br>
+      2. Klik tombol <b>Beli Sekarang</b>.<br>
+      3. Kamu akan diarahkan ke WhatsApp admin.<br>
+      4. Kirim username/link akun dan lakukan pembayaran sesuai instruksi admin.
+    </p>
+  </div>
 
-    // Mobile menu
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
+  <div class="info">
+    <h3>⚠️ Ketentuan</h3>
+    <p>
+      Pastikan akun tidak dalam mode private saat proses berlangsung.
+      Jangan memberikan password akun kepada siapa pun.
+      Estimasi proses dapat berbeda tergantung layanan dan jumlah order.
+    </p>
+  </div>
 
-    // Tabs
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
-    });
-  </script>
+</div>
+
+<footer>
+  © 2026 Vann +Follower Store • All Rights Reserved
+</footer>
+
+<a class="wa"
+   href="https://wa.me/628xxxxxxxxxx?text=Halo%20Vann%20Follower%20Store,%20saya%20mau%20order"
+   aria-label="WhatsApp">
+  ☎
+</a>
+
 </body>
-</html>
+    </html>
