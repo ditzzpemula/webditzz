@@ -2,26 +2,31 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#06030d">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05030b">
 
-<title>Vann +Follower — Premium Store V5</title>
+<title>Vann +Follower — V10 Premium+++++</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&display=swap');
 
 :root{
-    --bg:#05030a;
-    --card:rgba(14,10,25,.68);
+    --bg:#05030b;
+    --bg2:#090613;
+    --card:rgba(17,12,29,.72);
+    --card2:rgba(24,16,40,.68);
     --purple:#8b5cf6;
     --violet:#a855f7;
     --cyan:#22d3ee;
     --pink:#ec4899;
     --green:#22c55e;
     --red:#ef4444;
+    --gold:#facc15;
     --white:#fff;
-    --muted:#898595;
-    --line:rgba(255,255,255,.09);
+    --muted:#817a8d;
+    --muted2:#57515f;
+    --line:rgba(255,255,255,.085);
+    --shadow:0 30px 90px rgba(0,0,0,.45);
 }
 
 *{
@@ -35,10 +40,20 @@ html{
 }
 
 body{
-    background:#05030a;
+    background:var(--bg);
     color:white;
     font-family:Inter,Arial,sans-serif;
     overflow-x:hidden;
+}
+
+button,
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+::selection{
+    background:#8b5cf6;
+    color:#fff;
 }
 
 /* =========================
@@ -51,60 +66,69 @@ body{
     width:100%;
     height:100%;
     object-fit:cover;
-    z-index:-10;
-    opacity:.32;
+    z-index:-20;
+    opacity:.28;
 }
 
 .video-overlay{
     position:fixed;
     inset:0;
-    z-index:-9;
+    z-index:-19;
 
     background:
         radial-gradient(
-            circle at 50% 0%,
-            rgba(139,92,246,.22),
+            circle at 50% -10%,
+            rgba(139,92,246,.28),
             transparent 38%
+        ),
+        radial-gradient(
+            circle at 90% 50%,
+            rgba(34,211,238,.07),
+            transparent 30%
         ),
         linear-gradient(
             180deg,
-            rgba(4,2,10,.45),
-            rgba(4,2,9,.96)
+            rgba(3,2,9,.35),
+            rgba(4,2,10,.96)
         );
+}
+
+.noise{
+    position:fixed;
+    inset:0;
+    z-index:-18;
+    pointer-events:none;
+    opacity:.035;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
 .grid{
     position:fixed;
     inset:0;
-    z-index:-8;
-    opacity:.12;
+    z-index:-17;
+    opacity:.10;
 
     background-image:
         linear-gradient(
-            rgba(168,85,247,.25) 1px,
+            rgba(139,92,246,.25) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(34,211,238,.18) 1px,
+            rgba(34,211,238,.16) 1px,
             transparent 1px
         );
 
-    background-size:55px 55px;
+    background-size:58px 58px;
 
     mask-image:
         linear-gradient(
             to bottom,
             black,
-            transparent 90%
+            transparent 85%
         );
-}
-
-#particles{
-    position:fixed;
-    inset:0;
-    z-index:-7;
-    pointer-events:none;
 }
 
 /* =========================
@@ -122,12 +146,14 @@ body{
 
     background:
         radial-gradient(
-            circle,
-            #170d2e,
-            #05030a 65%
+            circle at center,
+            #1b0c36,
+            #05030b 65%
         );
 
-    transition:.7s;
+    transition:
+        opacity .7s,
+        visibility .7s;
 }
 
 #loader.hide{
@@ -135,23 +161,23 @@ body{
     visibility:hidden;
 }
 
-.loader-content{
+.loader{
     text-align:center;
 }
 
 .loader-logo{
-    width:78px;
-    height:78px;
+    width:86px;
+    height:86px;
     margin:auto;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:24px;
+    border-radius:26px;
 
     font-family:Orbitron;
-    font-size:30px;
+    font-size:31px;
     font-weight:900;
 
     background:
@@ -163,32 +189,38 @@ body{
         );
 
     box-shadow:
-        0 0 30px rgba(139,92,246,.5),
-        0 0 80px rgba(34,211,238,.15);
+        0 0 40px rgba(139,92,246,.42);
 
-    animation:pulse 1.2s infinite;
+    animation:
+        loaderPulse 1.2s infinite;
 }
 
-.loader-title{
+.loader h3{
     margin-top:20px;
+
     font-family:Orbitron;
     font-size:13px;
     letter-spacing:3px;
 }
 
-.loader-sub{
+.loader p{
     margin-top:7px;
-    color:#777182;
-    font-size:9px;
+
+    color:#716a7c;
+    font-size:8px;
+    letter-spacing:2px;
 }
 
 .loader-bar{
-    width:190px;
+    width:210px;
     height:3px;
-    margin:18px auto 0;
+
+    margin:20px auto 0;
+
     overflow:hidden;
+
     border-radius:20px;
-    background:#1b1724;
+    background:#211a2d;
 }
 
 .loader-bar span{
@@ -203,29 +235,32 @@ body{
             #22d3ee
         );
 
-    animation:loading 1s infinite;
+    animation:
+        loaderBar 1.1s infinite;
 }
 
-@keyframes pulse{
+@keyframes loaderPulse{
     0%,100%{
         transform:scale(1);
     }
+
     50%{
-        transform:scale(1.07);
+        transform:scale(1.08);
     }
 }
 
-@keyframes loading{
+@keyframes loaderBar{
     from{
         transform:translateX(-150%);
     }
+
     to{
         transform:translateX(400%);
     }
 }
 
 /* =========================
-   NAVBAR
+   HEADER
 ========================= */
 
 header{
@@ -233,21 +268,23 @@ header{
     top:0;
     left:0;
     width:100%;
+
     z-index:5000;
 
     border-bottom:1px solid var(--line);
 
     background:
-        rgba(5,3,10,.55);
+        rgba(5,3,11,.58);
 
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
 }
 
 .nav{
     width:92%;
-    max-width:1200px;
-    height:74px;
+    max-width:1240px;
+    height:76px;
+
     margin:auto;
 
     display:flex;
@@ -255,23 +292,24 @@ header{
     justify-content:space-between;
 }
 
-.logo{
+.brand{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:11px;
+
     text-decoration:none;
     color:white;
 }
 
-.logo-icon{
-    width:42px;
-    height:42px;
+.brand-icon{
+    width:43px;
+    height:43px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:13px;
+    border-radius:14px;
 
     font-family:Orbitron;
     font-size:15px;
@@ -285,37 +323,41 @@ header{
         );
 
     box-shadow:
-        0 0 25px rgba(139,92,246,.3);
+        0 0 25px rgba(139,92,246,.25);
 }
 
-.logo-name{
+.brand-name{
     font-family:Orbitron;
-    font-size:13px;
+    font-size:12px;
     font-weight:900;
 }
 
-.logo-name span{
+.brand-name span{
     color:#a78bfa;
 }
 
-.logo-mini{
+.brand-sub{
     margin-top:3px;
-    color:#666270;
-    font-size:7px;
+
+    color:#5e5867;
+
+    font-size:6px;
     letter-spacing:2px;
 }
 
 .nav-links{
     display:flex;
     align-items:center;
-    gap:22px;
+    gap:25px;
 }
 
 .nav-links a{
-    color:#85808e;
+    color:#77717f;
     text-decoration:none;
-    font-size:9px;
+
+    font-size:8px;
     font-weight:800;
+
     transition:.25s;
 }
 
@@ -323,12 +365,12 @@ header{
     color:white;
 }
 
-.nav-order{
+.nav-btn{
     padding:10px 16px;
 
-    color:white !important;
-
     border-radius:10px;
+
+    color:white !important;
 
     background:
         linear-gradient(
@@ -336,6 +378,9 @@ header{
             #7c3aed,
             #06b6d4
         );
+
+    box-shadow:
+        0 8px 25px rgba(124,58,237,.18);
 }
 
 /* =========================
@@ -344,60 +389,82 @@ header{
 
 .hero{
     min-height:100vh;
+
     width:92%;
-    max-width:1200px;
+    max-width:1240px;
+
     margin:auto;
 
     display:flex;
     align-items:center;
 
     padding:
-        125px 0 70px;
+        125px 0 80px;
 
     position:relative;
 }
 
 .hero-content{
-    max-width:850px;
+    max-width:900px;
 }
 
-.eyebrow{
+.hero-badge{
     display:inline-flex;
     align-items:center;
     gap:9px;
 
     padding:8px 13px;
 
-    border:1px solid rgba(168,85,247,.23);
     border-radius:50px;
 
     background:
         rgba(139,92,246,.08);
 
-    color:#b7a2ff;
+    border:1px solid rgba(168,85,247,.23);
 
-    font-size:8px;
+    color:#baa8ff;
+
+    font-size:7px;
     font-weight:900;
-    letter-spacing:1px;
+    letter-spacing:1.5px;
 }
 
-.live-dot{
+.pulse-dot{
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:#a855f7;
-    box-shadow:0 0 12px #a855f7;
+
+    box-shadow:
+        0 0 13px #a855f7;
+
+    animation:
+        dotPulse 1.4s infinite;
+}
+
+@keyframes dotPulse{
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.45;
+        transform:scale(.75);
+    }
 }
 
 .hero h1{
-    margin-top:25px;
+    margin-top:24px;
 
     font-family:Orbitron;
 
     font-size:
-        clamp(42px,7vw,80px);
+        clamp(43px,7vw,84px);
 
-    line-height:1.03;
+    line-height:1.02;
 
     letter-spacing:-4px;
 
@@ -408,9 +475,10 @@ header{
     background:
         linear-gradient(
             90deg,
-            #c4b5fd,
-            #8b5cf6,
-            #22d3ee
+            #ddd6fe,
+            #a78bfa 35%,
+            #22d3ee 75%,
+            #67e8f9
         );
 
     -webkit-background-clip:text;
@@ -418,33 +486,35 @@ header{
 
     filter:
         drop-shadow(
-            0 0 24px
-            rgba(139,92,246,.25)
+            0 0 28px
+            rgba(139,92,246,.2)
         );
 }
 
-.hero p{
-    max-width:650px;
-    margin-top:22px;
+.hero-desc{
+    max-width:670px;
 
-    color:#9993a2;
+    margin-top:23px;
 
-    font-size:12px;
+    color:#96909e;
+
+    font-size:11px;
     line-height:1.9;
 }
 
-.hero-buttons{
+.hero-actions{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
 
-    margin-top:29px;
+    margin-top:30px;
 }
 
 .btn{
-    min-height:45px;
+    min-height:46px;
 
-    padding:0 19px;
+    padding:
+        0 19px;
 
     display:inline-flex;
     align-items:center;
@@ -455,13 +525,13 @@ header{
 
     text-decoration:none;
 
-    font-size:9px;
+    font-size:8px;
     font-weight:900;
 
-    transition:.25s;
+    transition:.3s;
 }
 
-.btn-main{
+.btn-primary{
     color:white;
 
     background:
@@ -472,77 +542,165 @@ header{
         );
 
     box-shadow:
-        0 13px 35px
-        rgba(124,58,237,.22);
+        0 14px 38px rgba(124,58,237,.2);
 }
 
-.btn-main:hover{
-    transform:translateY(-3px);
+.btn-primary:hover{
+    transform:
+        translateY(-3px)
+        scale(1.01);
+
     box-shadow:
-        0 18px 45px
-        rgba(124,58,237,.35);
+        0 20px 50px rgba(124,58,237,.32);
 }
 
-.btn-dark{
-    color:#d5d1db;
+.btn-secondary{
+    color:#c5bfcc;
 
     background:
-        rgba(255,255,255,.045);
+        rgba(255,255,255,.04);
 
     border:1px solid var(--line);
 }
 
-.btn-dark:hover{
-    transform:translateY(-3px);
-    background:rgba(255,255,255,.08);
+.btn-secondary:hover{
+    color:white;
+
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(255,255,255,.07);
 }
 
 /* =========================
-   STORE STATUS
+   STORE PANEL
 ========================= */
 
-.status{
-    width:max-content;
-    max-width:100%;
+.hero-panel{
+    position:absolute;
 
-    margin-top:28px;
+    right:0;
+    bottom:115px;
 
-    padding:12px 15px;
+    width:275px;
+
+    padding:18px;
+
+    border-radius:19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,16,42,.78),
+            rgba(8,6,14,.75)
+        );
+
+    border:1px solid var(--line);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        var(--shadow);
+
+    animation:
+        floating 5s ease-in-out infinite;
+}
+
+@keyframes floating{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-9px);
+    }
+}
+
+.panel-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.panel-label{
+    color:#77707f;
+
+    font-size:7px;
+    font-weight:800;
+    letter-spacing:1.5px;
+}
+
+.panel-icon{
+    width:28px;
+    height:28px;
 
     display:flex;
     align-items:center;
-    gap:12px;
+    justify-content:center;
 
-    border-radius:13px;
+    border-radius:9px;
 
     background:
-        rgba(12,9,20,.65);
-
-    border:1px solid var(--line);
-
-    backdrop-filter:blur(15px);
+        rgba(139,92,246,.12);
 }
 
-.status-light{
-    width:9px;
-    height:9px;
-    border-radius:50%;
+.panel-status{
+    margin-top:16px;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:
+        rgba(34,197,94,.06);
+
+    border:1px solid rgba(34,197,94,.12);
 }
 
-.status strong{
+.panel-status strong{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    font-size:10px;
+}
+
+.panel-status small{
     display:block;
-    font-size:9px;
-}
 
-.status small{
-    display:block;
-    margin-top:3px;
-    color:#716c79;
+    margin-top:5px;
+
+    color:#6f6977;
+
     font-size:7px;
 }
 
+.panel-line{
+    height:1px;
+
+    margin:15px 0;
+
+    background:var(--line);
+}
+
+.panel-row{
+    display:flex;
+    justify-content:space-between;
+
+    margin:9px 0;
+
+    color:#716b78;
+
+    font-size:8px;
+}
+
+.panel-row b{
+    color:#d7d1df;
+}
+
 /* =========================
-   MINI STATS
+   STATS
 ========================= */
 
 .stats{
@@ -550,13 +708,13 @@ header{
     flex-wrap:wrap;
     gap:10px;
 
-    margin-top:27px;
+    margin-top:28px;
 }
 
 .stat{
     min-width:125px;
 
-    padding:13px 15px;
+    padding:14px 15px;
 
     border-radius:13px;
 
@@ -568,14 +726,18 @@ header{
 
 .stat b{
     display:block;
+
     font-family:Orbitron;
-    font-size:15px;
+    font-size:14px;
 }
 
 .stat span{
     display:block;
-    margin-top:4px;
-    color:#676270;
+
+    margin-top:5px;
+
+    color:#625d69;
+
     font-size:7px;
 }
 
@@ -585,42 +747,48 @@ header{
 
 .section{
     width:92%;
-    max-width:1200px;
+    max-width:1240px;
+
     margin:auto;
 
-    padding:90px 0;
+    padding:95px 0;
 }
 
 .section-head{
     text-align:center;
-    margin-bottom:38px;
+
+    margin-bottom:40px;
 }
 
-.section-head .label{
+.section-label{
     color:#a78bfa;
+
     font-family:Orbitron;
-    font-size:8px;
+
+    font-size:7px;
     letter-spacing:3px;
 }
 
 .section-head h2{
-    margin-top:10px;
+    margin-top:11px;
 
     font-family:Orbitron;
-    font-size:
-        clamp(25px,4vw,38px);
 
-    letter-spacing:-1.5px;
+    font-size:
+        clamp(26px,4vw,40px);
+
+    letter-spacing:-1.7px;
 }
 
 .section-head p{
-    max-width:570px;
-    margin:11px auto 0;
+    max-width:590px;
 
-    color:#716d7a;
+    margin:12px auto 0;
 
-    font-size:10px;
-    line-height:1.8;
+    color:#716b78;
+
+    font-size:9px;
+    line-height:1.9;
 }
 
 /* =========================
@@ -628,29 +796,76 @@ header{
 ========================= */
 
 .notice{
-    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    margin-bottom:17px;
 
     padding:14px 17px;
 
-    display:flex;
-    align-items:center;
-    gap:10px;
-
     border-radius:13px;
 
-    color:#b9a968;
+    color:#c3ad63;
 
     background:
         linear-gradient(
             90deg,
-            rgba(234,179,8,.07),
-            rgba(234,179,8,.025)
+            rgba(250,204,21,.07),
+            rgba(250,204,21,.025)
         );
 
-    border:1px solid rgba(234,179,8,.14);
+    border:1px solid rgba(250,204,21,.13);
 
-    font-size:9px;
+    font-size:8px;
     line-height:1.7;
+}
+
+.notice b{
+    color:#facc15;
+}
+
+/* =========================
+   PACKAGE FILTER
+========================= */
+
+.filter{
+    display:flex;
+    justify-content:center;
+    gap:7px;
+
+    margin-bottom:23px;
+}
+
+.filter button{
+    padding:9px 13px;
+
+    border-radius:9px;
+
+    border:1px solid var(--line);
+
+    color:#706a77;
+
+    background:
+        rgba(255,255,255,.03);
+
+    font-size:7px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.filter button.active,
+.filter button:hover{
+    color:white;
+
+    border-color:
+        rgba(139,92,246,.3);
+
+    background:
+        rgba(139,92,246,.12);
 }
 
 /* =========================
@@ -659,8 +874,10 @@ header{
 
 .products{
     display:grid;
+
     grid-template-columns:
         repeat(3,1fr);
+
     gap:16px;
 }
 
@@ -668,75 +885,80 @@ header{
     position:relative;
     overflow:hidden;
 
-    padding:23px;
+    min-height:390px;
 
-    min-height:380px;
+    padding:23px;
 
     display:flex;
     flex-direction:column;
 
-    border-radius:20px;
+    border-radius:21px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(26,18,42,.72),
-            rgba(9,8,16,.78)
+            rgba(26,18,43,.75),
+            rgba(8,6,15,.80)
         );
 
     border:1px solid var(--line);
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.38);
+        0 20px 65px rgba(0,0,0,.35);
 
     backdrop-filter:blur(18px);
 
     transition:
         transform .3s,
-        border-color .3s,
+        border .3s,
         box-shadow .3s;
 }
 
-.product::after{
+.product::before{
     content:"";
 
     position:absolute;
 
-    width:170px;
-    height:170px;
+    width:190px;
+    height:190px;
 
-    right:-90px;
-    top:-90px;
+    right:-110px;
+    top:-110px;
 
     border-radius:50%;
 
     background:#8b5cf6;
 
-    filter:blur(80px);
+    filter:blur(85px);
 
-    opacity:.13;
+    opacity:.12;
 }
 
 .product:hover{
-    transform:translateY(-8px);
+    transform:
+        translateY(-8px);
 
     border-color:
-        rgba(139,92,246,.38);
+        rgba(139,92,246,.32);
 
     box-shadow:
-        0 28px 80px rgba(0,0,0,.5),
-        0 0 35px rgba(139,92,246,.08);
+        0 30px 80px rgba(0,0,0,.5),
+        0 0 40px rgba(139,92,246,.07);
+}
+
+.product.hidden{
+    display:none;
 }
 
 .product.featured{
     border-color:
-        rgba(168,85,247,.42);
+        rgba(168,85,247,.38);
 
     background:
         linear-gradient(
             145deg,
-            rgba(38,22,64,.80),
-            rgba(10,8,18,.82)
+            rgba(40,23,65,.82),
+            rgba(9,6,16,.82)
         );
 }
 
@@ -759,13 +981,14 @@ header{
             #06b6d4
         );
 
-    font-size:7px;
+    font-size:6px;
     font-weight:900;
+    letter-spacing:.4px;
 }
 
-.icon{
-    width:48px;
-    height:48px;
+.product-icon{
+    width:49px;
+    height:49px;
 
     display:flex;
     align-items:center;
@@ -776,11 +999,11 @@ header{
     background:
         linear-gradient(
             135deg,
-            rgba(139,92,246,.17),
-            rgba(34,211,238,.08)
+            rgba(139,92,246,.16),
+            rgba(34,211,238,.06)
         );
 
-    border:1px solid rgba(168,85,247,.18);
+    border:1px solid rgba(168,85,247,.17);
 
     font-size:19px;
 }
@@ -789,59 +1012,70 @@ header{
     margin-top:19px;
 
     font-family:Orbitron;
-    font-size:14px;
+
+    font-size:13px;
 }
 
-.product .desc{
+.product-type{
     margin-top:5px;
 
-    color:#66616f;
-    font-size:8px;
-    letter-spacing:1px;
+    color:#625c69;
+
+    font-size:7px;
+    letter-spacing:1.2px;
 }
 
 .price{
-    margin-top:19px;
+    margin-top:18px;
 
     font-family:Orbitron;
-    font-size:27px;
+
+    font-size:26px;
     font-weight:900;
 }
 
 .price small{
-    color:#65606d;
+    color:#5e5866;
+
     font-family:Inter;
-    font-size:8px;
+
+    font-size:7px;
     font-weight:500;
 }
 
-.product ul{
-    list-style:none;
-
+.product-list{
     flex:1;
 
     margin:17px 0;
+
+    list-style:none;
 }
 
-.product li{
+.product-list li{
     padding:6px 0;
 
-    color:#85808d;
+    color:#807987;
 
-    font-size:9px;
+    font-size:8px;
 }
 
-.product li::before{
-    content:"✦";
+.product-list li::before{
+    content:"✓";
+
     margin-right:8px;
-    color:#9b7cff;
+
+    color:#a78bfa;
+
+    font-weight:900;
 }
 
-.order{
+.order-btn{
     width:100%;
+
     min-height:43px;
 
     border:0;
+
     border-radius:10px;
 
     color:white;
@@ -853,7 +1087,7 @@ header{
             #06b6d4
         );
 
-    font-size:9px;
+    font-size:8px;
     font-weight:900;
 
     cursor:pointer;
@@ -861,23 +1095,25 @@ header{
     transition:.25s;
 }
 
-.order:hover{
+.order-btn:hover{
     transform:translateY(-2px);
 
     box-shadow:
-        0 12px 30px
-        rgba(124,58,237,.24);
+        0 12px 30px rgba(124,58,237,.25);
 }
 
-.order.closed{
-    background:#211f28;
-    color:#66616d;
+.order-btn.closed{
+    color:#5d5864;
+
+    background:#201d27;
+
     cursor:not-allowed;
+
     box-shadow:none;
 }
 
 /* =========================
-   FEATURES
+   FEATURE
 ========================= */
 
 .feature-grid{
@@ -890,26 +1126,28 @@ header{
 }
 
 .feature{
-    padding:22px;
     min-height:185px;
+
+    padding:21px;
 
     border-radius:17px;
 
     background:
-        rgba(14,10,23,.65);
+        rgba(15,10,24,.68);
 
     border:1px solid var(--line);
 
     backdrop-filter:blur(15px);
 
-    transition:.25s;
+    transition:.3s;
 }
 
 .feature:hover{
-    transform:translateY(-5px);
+    transform:
+        translateY(-6px);
 
     border-color:
-        rgba(139,92,246,.3);
+        rgba(139,92,246,.27);
 }
 
 .feature-icon{
@@ -925,18 +1163,21 @@ header{
     background:
         rgba(139,92,246,.09);
 
-    font-size:18px;
+    font-size:17px;
 }
 
 .feature h3{
     margin-top:15px;
-    font-size:11px;
+
+    font-size:10px;
 }
 
 .feature p{
     margin-top:7px;
-    color:#6e6977;
-    font-size:9px;
+
+    color:#6b6572;
+
+    font-size:8px;
     line-height:1.8;
 }
 
@@ -946,39 +1187,44 @@ header{
 
 .steps{
     display:grid;
+
     grid-template-columns:
         repeat(4,1fr);
+
     gap:13px;
 }
 
 .step{
-    position:relative;
-
-    padding:23px;
+    padding:22px;
 
     border-radius:17px;
 
     background:
-        rgba(14,10,23,.64);
+        rgba(15,10,24,.65);
 
     border:1px solid var(--line);
 }
 
 .step-number{
-    font-family:Orbitron;
     color:#a78bfa;
-    font-size:10px;
+
+    font-family:Orbitron;
+
+    font-size:9px;
 }
 
 .step h3{
-    margin-top:14px;
-    font-size:11px;
+    margin-top:13px;
+
+    font-size:10px;
 }
 
 .step p{
     margin-top:7px;
-    color:#6d6876;
-    font-size:9px;
+
+    color:#6a6472;
+
+    font-size:8px;
     line-height:1.8;
 }
 
@@ -988,6 +1234,7 @@ header{
 
 .faq{
     max-width:850px;
+
     margin:auto;
 }
 
@@ -999,27 +1246,34 @@ details{
     border-radius:13px;
 
     background:
-        rgba(14,10,23,.65);
+        rgba(15,10,24,.65);
 
     border:1px solid var(--line);
+
+    transition:.25s;
+}
+
+details[open]{
+    border-color:
+        rgba(139,92,246,.22);
 }
 
 summary{
     cursor:pointer;
 
-    color:#ded9e4;
+    color:#ddd8e4;
 
-    font-size:9px;
+    font-size:8px;
     font-weight:800;
 }
 
 details p{
     margin-top:10px;
 
-    color:#716c79;
+    color:#6f6977;
 
-    font-size:9px;
-    line-height:1.8;
+    font-size:8px;
+    line-height:1.9;
 }
 
 /* =========================
@@ -1027,48 +1281,78 @@ details p{
 ========================= */
 
 .cta{
-    width:92%;
-    max-width:1200px;
-
-    margin:
-        20px auto 90px;
-
-    padding:65px 22px;
-
-    text-align:center;
-
     position:relative;
     overflow:hidden;
 
-    border-radius:25px;
+    width:92%;
+    max-width:1240px;
+
+    margin:
+        10px auto 95px;
+
+    padding:
+        70px 20px;
+
+    text-align:center;
+
+    border-radius:27px;
 
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(139,92,246,.24),
+            rgba(139,92,246,.25),
             transparent 55%
         ),
-        rgba(14,10,24,.76);
+        rgba(14,9,24,.78);
 
     border:1px solid rgba(139,92,246,.18);
 
     box-shadow:
-        0 30px 90px rgba(0,0,0,.45);
+        var(--shadow);
+}
+
+.cta::before{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:-150px;
+
+    width:300px;
+    height:300px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:#8b5cf6;
+
+    filter:blur(130px);
+
+    opacity:.08;
 }
 
 .cta h2{
+    position:relative;
+
     font-family:Orbitron;
+
     font-size:
-        clamp(25px,4vw,39px);
+        clamp(25px,4vw,40px);
 }
 
 .cta p{
-    max-width:540px;
-    margin:12px auto 24px;
+    position:relative;
 
-    color:#746f7d;
-    font-size:10px;
-    line-height:1.8;
+    max-width:560px;
+
+    margin:12px auto 25px;
+
+    color:#706a78;
+
+    font-size:9px;
+    line-height:1.9;
 }
 
 /* =========================
@@ -1076,24 +1360,27 @@ details p{
 ========================= */
 
 footer{
-    padding:40px 20px;
+    padding:43px 20px;
 
     text-align:center;
 
     background:
-        rgba(2,1,5,.9);
+        rgba(2,1,6,.92);
 
     border-top:1px solid var(--line);
 
-    color:#55515d;
+    color:#514c58;
 
-    font-size:8px;
+    font-size:7px;
+    line-height:1.8;
 }
 
 .footer-logo{
     font-family:Orbitron;
+
     font-size:13px;
     font-weight:900;
+
     color:#eeeaf4;
 }
 
@@ -1116,13 +1403,13 @@ footer{
 .whatsapp{
     position:fixed;
 
-    right:17px;
-    bottom:17px;
+    right:18px;
+    bottom:18px;
 
     z-index:7000;
 
-    width:55px;
-    height:55px;
+    width:56px;
+    height:56px;
 
     display:flex;
     align-items:center;
@@ -1136,26 +1423,27 @@ footer{
 
     text-decoration:none;
 
-    font-size:22px;
+    font-size:23px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.5);
+        0 10px 40px rgba(0,0,0,.5);
 
     animation:
         waPulse 2s infinite;
 }
 
 @keyframes waPulse{
+
     0%,100%{
         box-shadow:
-            0 10px 35px rgba(0,0,0,.5),
+            0 10px 40px rgba(0,0,0,.5),
             0 0 0 0 rgba(37,211,102,.25);
     }
 
     50%{
         box-shadow:
-            0 10px 35px rgba(0,0,0,.5),
-            0 0 0 10px rgba(37,211,102,0);
+            0 10px 40px rgba(0,0,0,.5),
+            0 0 0 11px rgba(37,211,102,0);
     }
 }
 
@@ -1170,15 +1458,16 @@ footer{
     z-index:9000;
 
     display:none;
+
     align-items:center;
     justify-content:center;
 
     padding:20px;
 
     background:
-        rgba(0,0,0,.72);
+        rgba(0,0,0,.75);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(13px);
 }
 
 .modal.show{
@@ -1196,23 +1485,26 @@ footer{
     background:
         linear-gradient(
             145deg,
-            #191126,
+            #1b102c,
             #090711
         );
 
     border:1px solid rgba(168,85,247,.25);
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,.65);
+        0 35px 110px rgba(0,0,0,.7);
 
     animation:
         modalIn .25s ease;
 }
 
 @keyframes modalIn{
+
     from{
         opacity:0;
-        transform:translateY(20px) scale(.96);
+        transform:
+            translateY(20px)
+            scale(.96);
     }
 
     to{
@@ -1229,7 +1521,8 @@ footer{
 
 .modal-top h3{
     font-family:Orbitron;
-    font-size:14px;
+
+    font-size:13px;
 }
 
 .close{
@@ -1237,9 +1530,10 @@ footer{
     height:30px;
 
     border:0;
+
     border-radius:9px;
 
-    color:#aaa4b2;
+    color:#aaa3b0;
 
     background:
         rgba(255,255,255,.06);
@@ -1261,32 +1555,38 @@ footer{
 }
 
 .selected small{
-    color:#77717f;
-    font-size:7px;
+    color:#6c6674;
+
+    font-size:6px;
+    letter-spacing:1px;
 }
 
 .selected strong{
     display:block;
-    margin-top:5px;
-    font-size:12px;
+
+    margin-top:6px;
+
+    font-size:11px;
 }
 
 .modal-note{
     margin-top:13px;
 
-    color:#706a78;
+    color:#706a77;
 
     font-size:8px;
-    line-height:1.7;
+    line-height:1.8;
 }
 
 .modal-action{
     width:100%;
+
     min-height:43px;
 
     margin-top:18px;
 
     border:0;
+
     border-radius:10px;
 
     color:white;
@@ -1298,19 +1598,19 @@ footer{
             #06b6d4
         );
 
-    font-size:9px;
+    font-size:8px;
     font-weight:900;
 
     cursor:pointer;
 }
 
 /* =========================
-   RESPONSIVE
+   MOBILE
 ========================= */
 
-@media(max-width:950px){
+@media(max-width:1050px){
 
-    .nav-links{
+    .hero-panel{
         display:none;
     }
 
@@ -1330,14 +1630,23 @@ footer{
     }
 }
 
-@media(max-width:600px){
+@media(max-width:650px){
 
     #bgVideo{
-        opacity:.23;
+        opacity:.20;
+    }
+
+    .nav{
+        height:68px;
+    }
+
+    .nav-links{
+        display:none;
     }
 
     .hero{
-        padding-top:120px;
+        padding:
+            120px 0 70px;
     }
 
     .hero h1{
@@ -1345,12 +1654,13 @@ footer{
         letter-spacing:-2.5px;
     }
 
-    .hero p{
-        font-size:10px;
+    .hero-desc{
+        font-size:9px;
     }
 
     .stats{
         display:grid;
+
         grid-template-columns:
             repeat(2,1fr);
     }
@@ -1366,11 +1676,20 @@ footer{
     }
 
     .section{
-        padding:70px 0;
+        padding:72px 0;
+    }
+
+    .filter{
+        flex-wrap:wrap;
     }
 
     .cta{
-        padding:50px 20px;
+        padding:53px 20px;
+    }
+
+    .whatsapp{
+        width:53px;
+        height:53px;
     }
 }
 
@@ -1388,23 +1707,25 @@ footer{
 
 <body>
 
-<!-- LOADER -->
+<!-- =========================
+     LOADER
+========================= -->
 
 <div id="loader">
 
-    <div class="loader-content">
+    <div class="loader">
 
         <div class="loader-logo">
             V
         </div>
 
-        <div class="loader-title">
+        <h3>
             VANN +FOLLOWER
-        </div>
+        </h3>
 
-        <div class="loader-sub">
-            PREMIUM STORE V5
-        </div>
+        <p>
+            PREMIUM STORE V10
+        </p>
 
         <div class="loader-bar">
             <span></span>
@@ -1415,7 +1736,9 @@ footer{
 </div>
 
 
-<!-- BACKGROUND VIDEO -->
+<!-- =========================
+     BACKGROUND
+========================= -->
 
 <video
     id="bgVideo"
@@ -1432,30 +1755,31 @@ footer{
 </video>
 
 <div class="video-overlay"></div>
+<div class="noise"></div>
 <div class="grid"></div>
 
-<canvas id="particles"></canvas>
 
-
-<!-- NAVBAR -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <header>
 
 <nav class="nav">
 
-<a href="#" class="logo">
+<a href="#" class="brand">
 
-    <div class="logo-icon">
+    <div class="brand-icon">
         V
     </div>
 
     <div>
 
-        <div class="logo-name">
+        <div class="brand-name">
             Vann <span>+Follower</span>
         </div>
 
-        <div class="logo-mini">
+        <div class="brand-sub">
             PREMIUM SOCIAL STORE
         </div>
 
@@ -1467,15 +1791,15 @@ footer{
 <div class="nav-links">
 
     <a href="#paket">
-        Paket
+        PAKET
     </a>
 
     <a href="#fitur">
-        Fitur
+        FITUR
     </a>
 
     <a href="#cara">
-        Cara Order
+        CARA ORDER
     </a>
 
     <a href="#faq">
@@ -1484,7 +1808,7 @@ footer{
 
     <a
         href="#paket"
-        class="nav-order">
+        class="nav-btn">
         ORDER
     </a>
 
@@ -1495,15 +1819,17 @@ footer{
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
 <div class="hero-content">
 
-    <div class="eyebrow">
+    <div class="hero-badge">
 
-        <span class="live-dot"></span>
+        <span class="pulse-dot"></span>
 
         PREMIUM SOCIAL MEDIA STORE
 
@@ -1512,67 +1838,44 @@ footer{
 
     <h1>
 
-        Level Up Your
+        Make Your
 
         <br>
 
         <span class="gradient">
-            Social Presence.
+            Social Look Bigger.
         </span>
 
     </h1>
 
 
-    <p>
+    <p class="hero-desc">
 
-        Vann +Follower hadir dengan pengalaman
-        order yang simpel, cepat, dan modern.
-        Pilih paket yang kamu inginkan lalu
-        hubungi admin melalui WhatsApp.
+        Vann +Follower menghadirkan pengalaman
+        order yang modern, cepat, simpel, dan
+        nyaman. Pilih paket followers, cek status
+        toko, lalu langsung hubungi admin.
 
     </p>
 
 
-    <div class="hero-buttons">
+    <div class="hero-actions">
 
         <a
             href="#paket"
-            class="btn btn-main">
+            class="btn btn-primary">
 
-            ✦ EXPLORE PACKAGE
+            ✦ EXPLORE PACKAGES
 
         </a>
 
-
         <a
             href="https://wa.me/6285191923519"
-            class="btn btn-dark">
+            class="btn btn-secondary">
 
             ◉ CHAT ADMIN
 
         </a>
-
-    </div>
-
-
-    <div class="status">
-
-        <div
-            id="statusLight"
-            class="status-light">
-        </div>
-
-        <div>
-
-            <strong id="statusText">
-                CHECKING STORE...
-            </strong>
-
-            <small id="statusSub">
-                Mengecek jam operasional WIB
-            </small>
-
-        </div>
 
     </div>
 
@@ -1621,691 +1924,835 @@ footer{
 
 </div>
 
+
+<!-- FLOATING STORE PANEL -->
+
+<div class="hero-panel">
+
+    <div class="panel-top">
+
+        <span class="panel-label">
+            STORE STATUS
+        </span>
+
+        <div class="panel-icon">
+            ✦
+        </div>
+
+    </div>
+
+
+    <div class="panel-status">
+
+        <strong>
+
+            <span
+                id="heroDot"
+                class="pulse-dot">
+            </span>
+
+            <span id="heroStatus">
+                CHECKING...
+            </span>
+
+        </strong>
+
+        <small id="heroStatusSub">
+            Checking operating hours...
+        </small>
+
+    </div>
+
+
+    <div class="panel-line"></div>
+
+
+    <div class="panel-row">
+
+        <span>
+            Service
+        </span>
+
+        <b>
+            +Follower
+        </b>
+
+    </div>
+
+
+    <div class="panel-row">
+
+        <span>
+            Open
+        </span>
+
+        <b>
+            10:00 WIB
+        </b>
+
+    </div>
+
+
+    <div class="panel-row">
+
+        <span>
+            Close
+        </span>
+
+        <b>
+            22:00 WIB
+        </b>
+
+    </div>
+
+
+    <div class="panel-row">
+
+        <span>
+            Starting
+        </span>
+
+        <b>
+            Rp2K
+        </b>
+
+    </div>
+
+</div>
+
 </section>
 
 
-<!-- PACKAGE -->
+<!-- =========================
+     PACKAGES
+========================= -->
 
 <section
     class="section"
     id="paket">
 
-    <div class="section-head">
+<div class="section-head">
 
-        <div class="label">
-            PREMIUM PACKAGES
-        </div>
-
-        <h2>
-            Pick Your Package.
-        </h2>
-
-        <p>
-            Paket mulai dari 50 followers.
-            Harga dapat berubah sewaktu-waktu,
-            jadi konfirmasi harga terbaru
-            kepada admin sebelum pembayaran.
-        </p>
-
+    <div class="section-label">
+        PREMIUM PACKAGES
     </div>
 
+    <h2>
+        Choose Your Growth.
+    </h2>
 
-    <div class="notice">
+    <p>
+        Paket followers dari starter sampai
+        elite. Harga di website merupakan
+        harga awal dan dapat berubah sewaktu-waktu.
+    </p>
 
-        ⚠️
+</div>
 
-        <span>
-            <b>Important:</b>
-            Harga dapat berubah sewaktu-waktu.
-            Pastikan cek harga terbaru melalui
-            WhatsApp admin.
-        </span>
 
+<div class="notice">
+
+    ⚠️
+
+    <span>
+        <b>NOTICE:</b>
+        Harga dapat berubah sewaktu-waktu.
+        Silakan konfirmasi harga terbaru
+        kepada admin sebelum pembayaran.
+    </span>
+
+</div>
+
+
+<div class="filter">
+
+    <button
+        class="active"
+        data-filter="all">
+        ALL
+    </button>
+
+    <button
+        data-filter="starter">
+        STARTER
+    </button>
+
+    <button
+        data-filter="popular">
+        POPULAR
+    </button>
+
+    <button
+        data-filter="premium">
+        PREMIUM
+    </button>
+
+</div>
+
+
+<div class="products">
+
+
+<!-- 50 -->
+
+<div
+    class="product"
+    data-category="starter">
+
+    <div class="product-icon">
+        👤
     </div>
 
-
-    <div class="products">
-
-
-        <!-- 50 -->
-
-        <div class="product">
-
-            <div class="icon">
-                👤
-            </div>
-
-            <h3>
-                50 Followers
-            </h3>
-
-            <div class="desc">
-                STARTER
-            </div>
-
-            <div class="price">
-                Rp2.000
-                <small>
-                    / paket
-                </small>
-            </div>
-
-            <ul>
-
-                <li>
-                    50 Followers
-                </li>
-
-                <li>
-                    Admin Support
-                </li>
-
-                <li>
-                    Fast Order
-                </li>
-
-                <li>
-                    Konfirmasi harga terbaru
-                </li>
-
-            </ul>
-
-            <button
-                class="order"
-                data-package="50 Followers — Rp2.000">
-
-                ORDER NOW
-
-            </button>
-
-        </div>
-
-
-        <!-- 100 -->
-
-        <div class="product">
-
-            <div class="icon">
-                👥
-            </div>
-
-            <h3>
-                100 Followers
-            </h3>
-
-            <div class="desc">
-                BASIC
-            </div>
-
-            <div class="price">
-                Rp4.000
-                <small>
-                    / paket
-                </small>
-            </div>
-
-            <ul>
-
-                <li>
-                    100 Followers
-                </li>
-
-                <li>
-                    Admin Support
-                </li>
-
-                <li>
-                    Fast Order
-                </li>
-
-                <li>
-                    Konfirmasi harga terbaru
-                </li>
-
-            </ul>
-
-            <button
-                class="order"
-                data-package="100 Followers — Rp4.000">
-
-                ORDER NOW
-
-            </button>
-
-        </div>
-
-
-        <!-- 250 -->
-
-        <div class="product">
-
-            <div class="icon">
-                🔥
-            </div>
-
-            <h3>
-                250 Followers
-            </h3>
-
-            <div class="desc">
-                GROWTH
-            </div>
-
-            <div class="price">
-                Rp8.000
-                <small>
-                    / paket
-                </small>
-            </div>
-
-            <ul>
-
-                <li>
-                    250 Followers
-                </li>
-
-                <li>
-                    Admin Support
-                </li>
-
-                <li>
-                    Fast Order
-                </li>
-
-                <li>
-                    Konfirmasi harga terbaru
-                </li>
-
-            </ul>
-
-            <button
-                class="order"
-                data-package="250 Followers — Rp8.000">
-
-                ORDER NOW
-
-            </button>
-
-        </div>
-
-
-        <!-- 500 -->
-
-        <div class="product featured">
-
-            <div class="badge">
-                BEST SELLER
-            </div>
-
-            <div class="icon">
-                🚀
-            </div>
-
-            <h3>
-                500 Followers
-            </h3>
-
-            <div class="desc">
-                POPULAR
-            </div>
-
-            <div class="price">
-                Rp15.000
-                <small>
-                    / paket
-                </small>
-            </div>
-
-            <ul>
-
-                <li>
-                    500 Followers
-                </li>
-
-                <li>
-                    Admin Support
-                </li>
-
-                <li>
-                    Fast Order
-                </li>
-
-                <li>
-                    Konfirmasi harga terbaru
-                </li>
-
-            </ul>
-
-            <button
-                class="order"
-                data-package="500 Followers — Rp15.000">
-
-                ORDER NOW
-
-            </button>
-
-        </div>
-
-
-        <!-- 1000 -->
-
-        <div class="product">
-
-            <div class="icon">
-                💎
-            </div>
-
-            <h3>
-                1.000 Followers
-            </h3>
-
-            <div class="desc">
-                PREMIUM
-            </div>
-
-            <div class="price">
-                Rp25.000
-                <small>
-                    / paket
-                </small>
-            </div>
-
-            <ul>
-
-                <li>
-                    1.000 Followers
-                </li>
-
-                <li>
-                    Admin Support
-                </li>
-
-                <li>
-                    Fast Order
-                </li>
-
-                <li>
-                    Konfirmasi harga terbaru
-                </li>
-
-            </ul>
-
-            <button
-                class="order"
-                data-package="1.000 Followers — Rp25.000">
-
-                ORDER NOW
-
-            </button>
-
-        </div>
-
-
-        <!-- 2500 -->
-
-        <div class="product">
-
-            <div class="icon">
-                👑
-            </div>
-
-            <h3>
-                2.500 Followers
-            </h3>
-
-            <div class="desc">
-                ELITE
-            </div>
-
-            <div class="price">
-                Rp55.000
-                <small>
-                    / paket
-                </small>
-            </div>
-
-            <ul>
-
-                <li>
-                    2.500 Followers
-                </li>
-
-                <li>
-                    Admin Support
-                </li>
-
-                <li>
-                    Fast Order
-                </li>
-
-                <li>
-                    Konfirmasi harga terbaru
-                </li>
-
-            </ul>
-
-            <button
-                class="order"
-                data-package="2.500 Followers — Rp55.000">
-
-                ORDER NOW
-
-            </button>
-
-        </div>
-
+    <h3>
+        50 Followers
+    </h3>
+
+    <div class="product-type">
+        STARTER
     </div>
+
+    <div class="price">
+        Rp2.000
+        <small>
+            / paket
+        </small>
+    </div>
+
+    <ul class="product-list">
+
+        <li>
+            50 Followers
+        </li>
+
+        <li>
+            Fast Order
+        </li>
+
+        <li>
+            Admin Support
+        </li>
+
+        <li>
+            Konfirmasi harga terbaru
+        </li>
+
+    </ul>
+
+    <button
+        class="order-btn"
+        data-package="50 Followers — Rp2.000">
+
+        ORDER NOW
+
+    </button>
+
+</div>
+
+
+<!-- 100 -->
+
+<div
+    class="product"
+    data-category="starter">
+
+    <div class="product-icon">
+        👥
+    </div>
+
+    <h3>
+        100 Followers
+    </h3>
+
+    <div class="product-type">
+        STARTER
+    </div>
+
+    <div class="price">
+        Rp4.000
+        <small>
+            / paket
+        </small>
+    </div>
+
+    <ul class="product-list">
+
+        <li>
+            100 Followers
+        </li>
+
+        <li>
+            Fast Order
+        </li>
+
+        <li>
+            Admin Support
+        </li>
+
+        <li>
+            Konfirmasi harga terbaru
+        </li>
+
+    </ul>
+
+    <button
+        class="order-btn"
+        data-package="100 Followers — Rp4.000">
+
+        ORDER NOW
+
+    </button>
+
+</div>
+
+
+<!-- 250 -->
+
+<div
+    class="product"
+    data-category="popular">
+
+    <div class="product-icon">
+        🔥
+    </div>
+
+    <h3>
+        250 Followers
+    </h3>
+
+    <div class="product-type">
+        POPULAR
+    </div>
+
+    <div class="price">
+        Rp8.000
+        <small>
+            / paket
+        </small>
+    </div>
+
+    <ul class="product-list">
+
+        <li>
+            250 Followers
+        </li>
+
+        <li>
+            Fast Order
+        </li>
+
+        <li>
+            Admin Support
+        </li>
+
+        <li>
+            Konfirmasi harga terbaru
+        </li>
+
+    </ul>
+
+    <button
+        class="order-btn"
+        data-package="250 Followers — Rp8.000">
+
+        ORDER NOW
+
+    </button>
+
+</div>
+
+
+<!-- 500 -->
+
+<div
+    class="product featured"
+    data-category="popular">
+
+    <div class="badge">
+        BEST SELLER
+    </div>
+
+    <div class="product-icon">
+        🚀
+    </div>
+
+    <h3>
+        500 Followers
+    </h3>
+
+    <div class="product-type">
+        POPULAR
+    </div>
+
+    <div class="price">
+        Rp15.000
+        <small>
+            / paket
+        </small>
+    </div>
+
+    <ul class="product-list">
+
+        <li>
+            500 Followers
+        </li>
+
+        <li>
+            Fast Order
+        </li>
+
+        <li>
+            Admin Support
+        </li>
+
+        <li>
+            Konfirmasi harga terbaru
+        </li>
+
+    </ul>
+
+    <button
+        class="order-btn"
+        data-package="500 Followers — Rp15.000">
+
+        ORDER NOW
+
+    </button>
+
+</div>
+
+
+<!-- 1000 -->
+
+<div
+    class="product"
+    data-category="premium">
+
+    <div class="product-icon">
+        💎
+    </div>
+
+    <h3>
+        1.000 Followers
+    </h3>
+
+    <div class="product-type">
+        PREMIUM
+    </div>
+
+    <div class="price">
+        Rp25.000
+        <small>
+            / paket
+        </small>
+    </div>
+
+    <ul class="product-list">
+
+        <li>
+            1.000 Followers
+        </li>
+
+        <li>
+            Fast Order
+        </li>
+
+        <li>
+            Admin Support
+        </li>
+
+        <li>
+            Konfirmasi harga terbaru
+        </li>
+
+    </ul>
+
+    <button
+        class="order-btn"
+        data-package="1.000 Followers — Rp25.000">
+
+        ORDER NOW
+
+    </button>
+
+</div>
+
+
+<!-- 2500 -->
+
+<div
+    class="product"
+    data-category="premium">
+
+    <div class="product-icon">
+        👑
+    </div>
+
+    <h3>
+        2.500 Followers
+    </h3>
+
+    <div class="product-type">
+        PREMIUM
+    </div>
+
+    <div class="price">
+        Rp55.000
+        <small>
+            / paket
+        </small>
+    </div>
+
+    <ul class="product-list">
+
+        <li>
+            2.500 Followers
+        </li>
+
+        <li>
+            Fast Order
+        </li>
+
+        <li>
+            Admin Support
+        </li>
+
+        <li>
+            Konfirmasi harga terbaru
+        </li>
+
+    </ul>
+
+    <button
+        class="order-btn"
+        data-package="2.500 Followers — Rp55.000">
+
+        ORDER NOW
+
+    </button>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- FEATURES -->
+<!-- =========================
+     FEATURES
+========================= -->
 
 <section
     class="section"
     id="fitur">
 
-    <div class="section-head">
+<div class="section-head">
 
-        <div class="label">
-            WHY CHOOSE US
-        </div>
-
-        <h2>
-            Simple. Fast. Premium.
-        </h2>
-
-        <p>
-            Dibuat supaya pengalaman order
-            terasa lebih modern dan tidak ribet.
-        </p>
-
+    <div class="section-label">
+        WHY VANN +FOLLOWER
     </div>
 
+    <h2>
+        Built To Feel Premium.
+    </h2>
 
-    <div class="feature-grid">
+    <p>
+        Bukan sekadar halaman harga.
+        Seluruh tampilan dibuat seperti
+        premium digital store.
+    </p>
 
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                ⚡
-            </div>
-
-            <h3>
-                Quick Order
-            </h3>
-
-            <p>
-                Klik paket dan langsung
-                diarahkan ke WhatsApp admin.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="feature">
-
-            <div class="feature-icon">
-                🕐
-            </div>
-
-            <h3>
-                Auto Schedule
-            </h3>
-
-            <p>
-                Sistem otomatis membaca
-                jam 10:00–22:00 WIB.
-            </p>
-
-        </div>
+<div class="feature-grid">
 
 
-        <div class="feature">
+<div class="feature">
 
-            <div class="feature-icon">
-                ✨
-            </div>
-
-            <h3>
-                Premium UI
-            </h3>
-
-            <p>
-                Tampilan futuristic dengan
-                glass effect, glow, dan video.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                🔐
-            </div>
-
-            <h3>
-                Account Safety
-            </h3>
-
-            <p>
-                Jangan pernah memberikan password,
-                OTP, atau recovery code akun.
-            </p>
-
-        </div>
-
-
+    <div class="feature-icon">
+        ⚡
     </div>
+
+    <h3>
+        Fast Order
+    </h3>
+
+    <p>
+        Pilih paket dan langsung kirim
+        detail order ke WhatsApp admin.
+    </p>
+
+</div>
+
+
+<div class="feature">
+
+    <div class="feature-icon">
+        🕐
+    </div>
+
+    <h3>
+        Auto Schedule
+    </h3>
+
+    <p>
+        Status toko otomatis berubah
+        berdasarkan jam WIB.
+    </p>
+
+</div>
+
+
+<div class="feature">
+
+    <div class="feature-icon">
+        ✨
+    </div>
+
+    <h3>
+        Premium Interface
+    </h3>
+
+    <p>
+        Glassmorphism, cinematic video,
+        neon glow, dan responsive layout.
+    </p>
+
+</div>
+
+
+<div class="feature">
+
+    <div class="feature-icon">
+        📱
+    </div>
+
+    <h3>
+        Mobile Ready
+    </h3>
+
+    <p>
+        Tampilan dibuat nyaman digunakan
+        dari HP maupun desktop.
+    </p>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- HOW TO ORDER -->
+<!-- =========================
+     HOW TO
+========================= -->
 
 <section
     class="section"
     id="cara">
 
-    <div class="section-head">
+<div class="section-head">
 
-        <div class="label">
-            HOW TO ORDER
-        </div>
-
-        <h2>
-            Order In 4 Steps.
-        </h2>
-
+    <div class="section-label">
+        HOW IT WORKS
     </div>
 
+    <h2>
+        Four Simple Steps.
+    </h2>
 
-    <div class="steps">
-
-
-        <div class="step">
-
-            <div class="step-number">
-                01
-            </div>
-
-            <h3>
-                Pilih Paket
-            </h3>
-
-            <p>
-                Pilih jumlah followers
-                sesuai kebutuhan.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="step">
-
-            <div class="step-number">
-                02
-            </div>
-
-            <h3>
-                Klik Order
-            </h3>
-
-            <p>
-                Tekan tombol order
-                pada paket pilihan.
-            </p>
-
-        </div>
+<div class="steps">
 
 
-        <div class="step">
+<div class="step">
 
-            <div class="step-number">
-                03
-            </div>
-
-            <h3>
-                WhatsApp Admin
-            </h3>
-
-            <p>
-                Detail paket akan
-                otomatis masuk ke WhatsApp.
-            </p>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-number">
-                04
-            </div>
-
-            <h3>
-                Konfirmasi
-            </h3>
-
-            <p>
-                Tanyakan harga terbaru
-                lalu lanjutkan order.
-            </p>
-
-        </div>
-
-
+    <div class="step-number">
+        01
     </div>
+
+    <h3>
+        Pilih Paket
+    </h3>
+
+    <p>
+        Tentukan jumlah followers
+        yang kamu butuhkan.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <div class="step-number">
+        02
+    </div>
+
+    <h3>
+        Klik Order
+    </h3>
+
+    <p>
+        Tekan tombol order pada
+        paket pilihanmu.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <div class="step-number">
+        03
+    </div>
+
+    <h3>
+        Chat Admin
+    </h3>
+
+    <p>
+        Detail paket akan otomatis
+        dibuat menjadi pesan WhatsApp.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <div class="step-number">
+        04
+    </div>
+
+    <h3>
+        Konfirmasi
+    </h3>
+
+    <p>
+        Tanyakan harga terbaru
+        dan ikuti instruksi admin.
+    </p>
+
+</div>
+
+
+</div>
 
 </section>
 
 
-<!-- FAQ -->
+<!-- =========================
+     FAQ
+========================= -->
 
 <section
     class="section"
     id="faq">
 
-    <div class="section-head">
+<div class="section-head">
 
-        <div class="label">
-            FAQ
-        </div>
-
-        <h2>
-            Need To Know.
-        </h2>
-
+    <div class="section-label">
+        FREQUENTLY ASKED
     </div>
 
+    <h2>
+        Questions.
+    </h2>
 
-    <div class="faq">
-
-
-        <details>
-
-            <summary>
-                Jam buka Vann +Follower?
-            </summary>
-
-            <p>
-                Jam layanan adalah 10:00 sampai
-                22:00 WIB. Status toko akan
-                berubah otomatis berdasarkan
-                waktu Asia/Jakarta.
-            </p>
-
-        </details>
+</div>
 
 
-        <details>
-
-            <summary>
-                Apakah harga bisa berubah?
-            </summary>
-
-            <p>
-                Bisa. Harga dapat berubah sewaktu-waktu.
-                Konfirmasi harga terbaru kepada admin
-                sebelum melakukan pembayaran.
-            </p>
-
-        </details>
+<div class="faq">
 
 
-        <details>
+<details>
 
-            <summary>
-                Bagaimana cara order?
-            </summary>
+    <summary>
+        Kapan toko buka?
+    </summary>
 
-            <p>
-                Pilih paket lalu tekan ORDER NOW.
-                Website akan membuat pesan WhatsApp
-                otomatis untuk admin.
-            </p>
+    <p>
+        Toko otomatis OPEN pukul 10:00 WIB
+        dan CLOSED pukul 22:00 WIB.
+        Status di website mengikuti waktu
+        Asia/Jakarta.
+    </p>
 
-        </details>
-
-
-        <details>
-
-            <summary>
-                Apakah password akun diperlukan?
-            </summary>
-
-            <p>
-                Jangan memberikan password, OTP,
-                recovery code, atau kode keamanan
-                akun kepada pihak lain.
-            </p>
-
-        </details>
+</details>
 
 
-        <details>
+<details>
 
-            <summary>
-                Apa yang terjadi saat toko tutup?
-            </summary>
+    <summary>
+        Apakah harga tetap?
+    </summary>
 
-            <p>
-                Tombol order otomatis menjadi CLOSED
-                dan aktif kembali ketika jam layanan
-                dimulai pukul 10:00 WIB.
-            </p>
+    <p>
+        Tidak selalu. Harga dapat berubah
+        sewaktu-waktu. Konfirmasi harga
+        terbaru kepada admin sebelum melakukan
+        pembayaran.
+    </p>
 
-        </details>
+</details>
 
 
-    </div>
+<details>
+
+    <summary>
+        Bagaimana cara order?
+    </summary>
+
+    <p>
+        Pilih paket, klik ORDER NOW, kemudian
+        tekan CONTINUE TO WHATSAPP untuk
+        menghubungi admin.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Apakah saya harus memberikan password?
+    </summary>
+
+    <p>
+        Jangan memberikan password, OTP,
+        recovery code, atau kode keamanan
+        akun kepada siapa pun.
+    </p>
+
+</details>
+
+
+<details>
+
+    <summary>
+        Bagaimana jika toko sedang CLOSED?
+    </summary>
+
+    <p>
+        Tombol order akan otomatis dinonaktifkan.
+        Tombol akan aktif kembali setelah
+        toko memasuki jam operasional.
+    </p>
+
+</details>
+
+
+</div>
 
 </section>
 
 
-<!-- CTA -->
+<!-- =========================
+     CTA
+========================= -->
 
 <div class="cta">
 
@@ -2314,22 +2761,24 @@ footer{
     </h2>
 
     <p>
-        Pilih paket favoritmu dan hubungi admin
-        Vann +Follower sekarang.
+        Pilih paket followers yang kamu inginkan
+        dan hubungi admin Vann +Follower.
     </p>
 
     <a
         href="https://wa.me/6285191923519"
-        class="btn btn-main">
+        class="btn btn-primary">
 
-        ✦ CHAT ADMIN
+        ✦ CHAT ADMIN NOW
 
     </a>
 
 </div>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
@@ -2337,15 +2786,15 @@ footer{
         Vann <span>+Follower</span>
     </div>
 
-    <div style="margin-top:8px;">
+    <div>
         Premium Social Media Store
     </div>
 
-    <div style="margin-top:5px;">
+    <div>
         Open 10:00 — 22:00 WIB
     </div>
 
-    <div style="margin-top:5px;">
+    <div>
         Harga dapat berubah sewaktu-waktu.
     </div>
 
@@ -2356,11 +2805,13 @@ footer{
 </footer>
 
 
-<!-- WHATSAPP -->
+<!-- =========================
+     WHATSAPP
+========================= -->
 
 <a
-    class="whatsapp"
     href="https://wa.me/6285191923519"
+    class="whatsapp"
     aria-label="WhatsApp">
 
     ☏
@@ -2368,86 +2819,88 @@ footer{
 </a>
 
 
-<!-- ORDER MODAL -->
+<!-- =========================
+     ORDER MODAL
+========================= -->
 
 <div
-    id="orderModal"
+    id="modal"
     class="modal">
 
-    <div class="modal-box">
+<div class="modal-box">
 
-        <div class="modal-top">
+    <div class="modal-top">
 
-            <h3>
-                CONFIRM PACKAGE
-            </h3>
-
-            <button
-                id="closeModal"
-                class="close">
-
-                ×
-
-            </button>
-
-        </div>
-
-
-        <div class="selected">
-
-            <small>
-                SELECTED PACKAGE
-            </small>
-
-            <strong id="selectedPackage">
-                -
-            </strong>
-
-        </div>
-
-
-        <div class="modal-note">
-
-            Harga yang tertera merupakan harga awal
-            dan dapat berubah sewaktu-waktu.
-            Konfirmasi harga terbaru kepada admin
-            sebelum pembayaran.
-
-        </div>
-
+        <h3>
+            ORDER PACKAGE
+        </h3>
 
         <button
-            id="continueOrder"
-            class="modal-action">
+            id="closeModal"
+            class="close">
 
-            CONTINUE TO WHATSAPP
+            ×
 
         </button>
 
     </div>
+
+
+    <div class="selected">
+
+        <small>
+            SELECTED PACKAGE
+        </small>
+
+        <strong id="selectedPackage">
+            -
+        </strong>
+
+    </div>
+
+
+    <div class="modal-note">
+
+        Harga yang tampil merupakan harga
+        awal dan dapat berubah sewaktu-waktu.
+        Konfirmasi harga terbaru kepada admin
+        sebelum pembayaran.
+
+    </div>
+
+
+    <button
+        id="continueOrder"
+        class="modal-action">
+
+        CONTINUE TO WHATSAPP
+
+    </button>
+
+</div>
 
 </div>
 
 
 <script>
 
-/* ==========================================
-   CONFIG
-========================================== */
+/* =========================================
+   CONFIGURATION
+========================================= */
 
 const WHATSAPP =
     "6285191923519";
 
-const OPEN =
+const OPEN_MINUTES =
     10 * 60;
 
-const CLOSE =
+const CLOSE_MINUTES =
     22 * 60;
 
 
-/* ==========================================
-   STATUS TOKO
-========================================== */
+/* =========================================
+   GET WIB TIME
+========================================= */
 
 function getWIB(){
 
@@ -2464,58 +2917,59 @@ function getWIB(){
 }
 
 
+/* =========================================
+   STORE STATUS
+========================================= */
+
 function updateStore(){
 
-    const time =
+    const now =
         getWIB();
 
     const minutes =
-        time.getHours() * 60 +
-        time.getMinutes();
+        now.getHours() * 60 +
+        now.getMinutes();
 
-    const isOpen =
-        minutes >= OPEN &&
-        minutes < CLOSE;
+    const open =
+        minutes >= OPEN_MINUTES &&
+        minutes < CLOSE_MINUTES;
 
 
-    const light =
+    const heroStatus =
         document.getElementById(
-            "statusLight"
+            "heroStatus"
         );
 
-    const text =
+    const heroSub =
         document.getElementById(
-            "statusText"
+            "heroStatusSub"
         );
 
-    const sub =
+    const heroDot =
         document.getElementById(
-            "statusSub"
+            "heroDot"
         );
 
 
     const buttons =
         document.querySelectorAll(
-            ".order"
+            ".order-btn"
         );
 
 
-    if(isOpen){
+    if(open){
 
-        light.style.background =
-            "#22c55e";
-
-        light.style.boxShadow =
-            "0 0 15px #22c55e";
-
-        text.style.color =
-            "#65e69a";
-
-        text.textContent =
+        heroStatus.textContent =
             "STORE OPEN";
 
-        sub.textContent =
-            "Order tersedia • 10:00–22:00 WIB";
+        heroSub.textContent =
+            "Order tersedia sampai 22:00 WIB";
+
+        heroDot.style.background =
+            "#22c55e";
+
+        heroDot.style.boxShadow =
+            "0 0 13px #22c55e";
 
 
         buttons.forEach(
@@ -2536,20 +2990,17 @@ function updateStore(){
 
     }else{
 
-        light.style.background =
-            "#ef4444";
-
-        light.style.boxShadow =
-            "0 0 15px #ef4444";
-
-        text.style.color =
-            "#ff7777";
-
-        text.textContent =
+        heroStatus.textContent =
             "STORE CLOSED";
 
-        sub.textContent =
+        heroSub.textContent =
             "Buka kembali pukul 10:00 WIB";
+
+        heroDot.style.background =
+            "#ef4444";
+
+        heroDot.style.boxShadow =
+            "0 0 13px #ef4444";
 
 
         buttons.forEach(
@@ -2573,18 +3024,85 @@ function updateStore(){
 }
 
 
-/* ==========================================
+/* =========================================
+   PACKAGE FILTER
+========================================= */
+
+const filterButtons =
+    document.querySelectorAll(
+        ".filter button"
+    );
+
+const products =
+    document.querySelectorAll(
+        ".product"
+    );
+
+
+filterButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                filterButtons.forEach(
+                    b =>
+                        b.classList.remove(
+                            "active"
+                        )
+                );
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                const filter =
+                    button.dataset.filter;
+
+
+                products.forEach(
+                    product => {
+
+                        const category =
+                            product.dataset.category;
+
+
+                        if(
+                            filter === "all" ||
+                            category === filter
+                        ){
+
+                            product.classList.remove(
+                                "hidden"
+                            );
+
+                        }else{
+
+                            product.classList.add(
+                                "hidden"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================
    ORDER MODAL
-========================================== */
+========================================= */
 
 const modal =
     document.getElementById(
-        "orderModal"
-    );
-
-const selected =
-    document.getElementById(
-        "selectedPackage"
+        "modal"
     );
 
 const closeModal =
@@ -2592,33 +3110,39 @@ const closeModal =
         "closeModal"
     );
 
+const selectedPackage =
+    document.getElementById(
+        "selectedPackage"
+    );
+
 const continueOrder =
     document.getElementById(
         "continueOrder"
     );
 
-let currentPackage =
+
+let selected =
     "";
 
 
 document.querySelectorAll(
-    ".order"
+    ".order-btn"
 ).forEach(
     button => {
 
         button.addEventListener(
             "click",
-            function(){
+            () => {
 
                 if(button.disabled)
                     return;
 
 
-                currentPackage =
+                selected =
                     button.dataset.package;
 
-                selected.textContent =
-                    currentPackage;
+                selectedPackage.textContent =
+                    selected;
 
                 modal.classList.add(
                     "show"
@@ -2633,7 +3157,7 @@ document.querySelectorAll(
 
 closeModal.addEventListener(
     "click",
-    function(){
+    () => {
 
         modal.classList.remove(
             "show"
@@ -2645,9 +3169,11 @@ closeModal.addEventListener(
 
 modal.addEventListener(
     "click",
-    function(event){
+    event => {
 
-        if(event.target === modal){
+        if(
+            event.target === modal
+        ){
 
             modal.classList.remove(
                 "show"
@@ -2661,18 +3187,18 @@ modal.addEventListener(
 
 continueOrder.addEventListener(
     "click",
-    function(){
+    () => {
 
         const message =
 `Halo Vann +Follower 👋
 
 Saya ingin order:
 
-📦 ${currentPackage}
+📦 ${selected}
 
 Mohon info harga terbaru dan proses ordernya.
 
-Terima kasih.`;
+Terima kasih 🙏`;
 
         const url =
             "https://wa.me/" +
@@ -2691,155 +3217,17 @@ Terima kasih.`;
 );
 
 
-/* ==========================================
-   PARTICLES
-========================================== */
-
-const canvas =
-    document.getElementById(
-        "particles"
-    );
-
-const ctx =
-    canvas.getContext(
-        "2d"
-    );
-
-let particles = [];
-
-
-function resize(){
-
-    canvas.width =
-        window.innerWidth;
-
-    canvas.height =
-        window.innerHeight;
-
-}
-
-
-window.addEventListener(
-    "resize",
-    resize
-);
-
-resize();
-
-
-function createParticles(){
-
-    particles = [];
-
-    const amount =
-        window.innerWidth < 600
-        ? 35
-        : 75;
-
-
-    for(
-        let i = 0;
-        i < amount;
-        i++
-    ){
-
-        particles.push({
-
-            x:
-                Math.random() *
-                canvas.width,
-
-            y:
-                Math.random() *
-                canvas.height,
-
-            size:
-                Math.random() *
-                1.6 + .3,
-
-            speed:
-                Math.random() *
-                .28 + .06,
-
-            alpha:
-                Math.random() *
-                .5 + .1
-
-        });
-
-    }
-
-}
-
-
-createParticles();
-
-
-function animate(){
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    particles.forEach(
-        p => {
-
-            p.y -= p.speed;
-
-
-            if(
-                p.y < -10
-            ){
-
-                p.y =
-                    canvas.height + 10;
-
-            }
-
-
-            ctx.beginPath();
-
-            ctx.arc(
-                p.x,
-                p.y,
-                p.size,
-                0,
-                Math.PI * 2
-            );
-
-            ctx.fillStyle =
-                `rgba(167,139,250,${p.alpha})`;
-
-            ctx.fill();
-
-        }
-    );
-
-
-    requestAnimationFrame(
-        animate
-    );
-
-}
-
-
-animate();
-
-
-/* ==========================================
-   VIDEO
-========================================== */
+/* =========================================
+   VIDEO AUTOPLAY
+========================================= */
 
 const video =
     document.getElementById(
         "bgVideo"
     );
 
-video.muted = true;
+video.muted =
+    true;
 
 video.play().catch(
     () => {}
@@ -2855,13 +3243,15 @@ document.addEventListener(
         );
 
     },
-    {once:true}
+    {
+        once:true
+    }
 );
 
 
-/* ==========================================
+/* =========================================
    LOADER
-========================================== */
+========================================= */
 
 window.addEventListener(
     "load",
@@ -2879,24 +3269,22 @@ window.addEventListener(
                     );
 
             },
-            850
+            900
         );
 
     }
 );
 
 
-/* ==========================================
-   START STATUS
-========================================== */
+/* =========================================
+   INIT
+========================================= */
 
 updateStore();
 
 
 /*
-   Cek setiap 30 detik.
-   Tidak perlu refresh ketika
-   jam toko berubah.
+   Update status setiap 30 detik.
 */
 
 setInterval(
