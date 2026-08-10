@@ -2,12 +2,18 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="Vann +Follower - TikTok Followers Store">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Vann +Follower — TikTok Followers</title>
 
+<meta name="description"
+content="Vann +Follower - TikTok Followers Premium Store">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     margin:0;
@@ -20,50 +26,58 @@ html{
 }
 
 body{
-    font-family:Inter,sans-serif;
-    color:#fff;
+    font-family:Inter,Arial,sans-serif;
     background:#05070d;
+    color:#fff;
     overflow-x:hidden;
 }
 
-/* VIDEO */
+/* =====================================================
+   VIDEO BACKGROUND
+===================================================== */
+
 #bgVideo{
     position:fixed;
     inset:0;
     width:100%;
     height:100%;
     object-fit:cover;
-    z-index:-20;
+    z-index:-30;
     pointer-events:none;
 }
 
 .video-overlay{
     position:fixed;
     inset:0;
-    z-index:-19;
+    z-index:-29;
     background:
         linear-gradient(
             180deg,
-            rgba(3,5,10,.68),
-            rgba(3,5,10,.94)
+            rgba(2,4,10,.68),
+            rgba(2,4,10,.95)
         );
+    pointer-events:none;
 }
 
-/* GLOW */
-body:before{
+/* =====================================================
+   GLOW
+===================================================== */
+
+body::before{
     content:"";
     position:fixed;
     width:500px;
     height:500px;
-    top:-220px;
     left:-180px;
-    background:#6b5cff;
+    top:-180px;
+    background:#735cff;
     filter:blur(180px);
-    opacity:.14;
-    z-index:-18;
+    opacity:.16;
+    z-index:-28;
+    pointer-events:none;
 }
 
-body:after{
+body::after{
     content:"";
     position:fixed;
     width:450px;
@@ -72,18 +86,27 @@ body:after{
     bottom:-180px;
     background:#00d9ff;
     filter:blur(180px);
-    opacity:.08;
-    z-index:-18;
+    opacity:.10;
+    z-index:-28;
+    pointer-events:none;
 }
 
-/* NAVBAR */
+/* =====================================================
+   NAVBAR
+===================================================== */
+
 .navbar{
     position:sticky;
     top:0;
     z-index:1000;
+
     background:rgba(5,7,13,.65);
+
     backdrop-filter:blur(20px);
-    border-bottom:1px solid rgba(255,255,255,.08);
+    -webkit-backdrop-filter:blur(20px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
 }
 
 .nav-container{
@@ -91,6 +114,7 @@ body:after{
     max-width:1150px;
     height:70px;
     margin:auto;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -99,10 +123,17 @@ body:after{
 .logo{
     font-size:20px;
     font-weight:900;
+    letter-spacing:-.8px;
 }
 
 .logo span{
-    background:linear-gradient(90deg,#8c6cff,#00d9ff);
+    background:
+        linear-gradient(
+            90deg,
+            #8d6cff,
+            #00d9ff
+        );
+
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -113,10 +144,11 @@ body:after{
 }
 
 .nav-links a{
-    color:#9da5b7;
+    color:#a1a9ba;
     text-decoration:none;
-    font-size:13px;
+    font-size:12px;
     font-weight:700;
+    transition:.3s;
 }
 
 .nav-links a:hover{
@@ -124,22 +156,37 @@ body:after{
 }
 
 .nav-btn{
-    color:#fff;
     text-decoration:none;
-    padding:10px 17px;
-    border-radius:10px;
-    font-size:12px;
-    font-weight:800;
-    background:linear-gradient(135deg,#695cff,#00bfff);
+    color:#fff;
+
+    padding:10px 16px;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #695cff,
+            #00bfff
+        );
+
+    font-size:11px;
+    font-weight:900;
 }
 
-/* HERO */
+/* =====================================================
+   HERO
+===================================================== */
+
 .hero{
     min-height:650px;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     text-align:center;
+
     padding:90px 20px;
 }
 
@@ -147,104 +194,175 @@ body:after{
     max-width:850px;
 }
 
-/* STATUS */
+/* =====================================================
+   STATUS
+===================================================== */
+
 .status{
     display:inline-flex;
     align-items:center;
     gap:9px;
-    padding:9px 15px;
+
+    padding:9px 16px;
+
     border-radius:50px;
+
     font-size:11px;
     font-weight:900;
+
     border:1px solid rgba(255,255,255,.1);
-    background:rgba(255,255,255,.05);
+
+    background:rgba(255,255,255,.04);
+
+    transition:.3s;
 }
 
 .status-dot{
-    width:8px;
-    height:8px;
+    width:9px;
+    height:9px;
     border-radius:50%;
 }
 
+/* OPEN */
+
 .status.open{
-    color:#72ffc2;
-    background:rgba(0,225,138,.07);
-    border-color:rgba(0,225,138,.25);
+    color:#6dffc1;
+
+    background:
+        rgba(0,225,138,.07);
+
+    border-color:
+        rgba(0,225,138,.25);
 }
 
 .status.open .status-dot{
     background:#00e18a;
-    box-shadow:0 0 12px #00e18a;
+
+    box-shadow:
+        0 0 14px #00e18a;
 }
 
+/* CLOSED */
+
 .status.closed{
-    color:#ff8f8f;
-    background:rgba(255,70,70,.07);
-    border-color:rgba(255,70,70,.25);
+    color:#ff8888;
+
+    background:
+        rgba(255,60,60,.07);
+
+    border-color:
+        rgba(255,60,60,.25);
 }
 
 .status.closed .status-dot{
-    background:#ff4545;
-    box-shadow:0 0 12px #ff4545;
+    background:#ff4040;
+
+    box-shadow:
+        0 0 14px #ff4040;
 }
 
 .operating-time{
     margin-top:12px;
-    color:#7f8899;
+
+    color:#7d8799;
+
     font-size:11px;
 }
 
+/* =====================================================
+   HERO TITLE
+===================================================== */
+
 .hero h1{
     margin-top:25px;
-    font-size:clamp(45px,8vw,82px);
-    line-height:1;
+
+    font-size:
+        clamp(45px,8vw,82px);
+
+    line-height:.98;
+
     letter-spacing:-4px;
+
     font-weight:900;
 }
 
 .gradient-text{
-    background:linear-gradient(90deg,#8c6cff,#00d9ff);
+    background:
+        linear-gradient(
+            90deg,
+            #8c6cff,
+            #00d9ff
+        );
+
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
 .hero p{
     max-width:650px;
+
     margin:25px auto;
-    color:#959daf;
+
+    color:#959eaf;
+
     line-height:1.8;
-    font-size:15px;
+
+    font-size:14px;
 }
+
+/* =====================================================
+   BUTTON
+===================================================== */
 
 .hero-buttons{
     display:flex;
     justify-content:center;
     gap:12px;
+
     flex-wrap:wrap;
+
     margin-top:30px;
 }
 
 .primary-btn,
 .secondary-btn{
     display:inline-block;
+
     padding:14px 22px;
+
     border-radius:12px;
+
     text-decoration:none;
-    font-size:13px;
-    font-weight:800;
+
+    font-size:12px;
+    font-weight:900;
+
     transition:.3s;
 }
 
 .primary-btn{
     color:#fff;
-    background:linear-gradient(135deg,#695cff,#00bfff);
-    box-shadow:0 10px 35px rgba(80,90,255,.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            #695cff,
+            #00bfff
+        );
+
+    box-shadow:
+        0 12px 40px
+        rgba(80,90,255,.25);
 }
 
 .secondary-btn{
-    color:#c6ccda;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.1);
+    color:#c7ccda;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid rgba(255,255,255,.1);
 }
 
 .primary-btn:hover,
@@ -252,42 +370,69 @@ body:after{
     transform:translateY(-3px);
 }
 
-/* STATS */
+/* =====================================================
+   STATS
+===================================================== */
+
 .stats{
     width:92%;
     max-width:900px;
+
     margin:-35px auto 70px;
+
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:1px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
     border-radius:18px;
+
     overflow:hidden;
+
+    backdrop-filter:blur(15px);
 }
 
 .stat{
-    padding:24px;
+    padding:25px;
+
     text-align:center;
-    background:rgba(10,14,22,.78);
+
+    background:
+        rgba(10,14,22,.78);
 }
 
 .stat strong{
     display:block;
+
     font-size:25px;
+    font-weight:900;
 }
 
 .stat span{
     display:block;
+
     margin-top:5px;
+
     color:#7e8799;
+
     font-size:11px;
 }
 
-/* CONTAINER */
+/* =====================================================
+   CONTAINER
+===================================================== */
+
 .container{
     width:92%;
     max-width:1150px;
+
     margin:auto;
 }
 
@@ -297,136 +442,200 @@ body:after{
 
 .section-heading{
     text-align:center;
+
     margin-bottom:40px;
 }
 
 .section-heading small{
     color:#00d9ff;
-    font-size:11px;
-    font-weight:800;
+
+    font-size:10px;
+
+    font-weight:900;
+
     letter-spacing:2px;
 }
 
 .section-heading h2{
     margin-top:10px;
+
     font-size:35px;
+
     letter-spacing:-1.5px;
 }
 
 .section-heading p{
     margin-top:10px;
-    color:#858d9f;
+
+    color:#858e9f;
+
     font-size:13px;
 }
 
-/* PRICE NOTICE */
+/* =====================================================
+   PRICE WARNING
+===================================================== */
+
 .warning{
     max-width:850px;
-    margin:0 auto 30px;
+
+    margin:
+        0 auto 30px;
+
     padding:16px 20px;
+
+    text-align:center;
+
     border-radius:14px;
-    background:linear-gradient(
-        135deg,
-        rgba(255,184,0,.1),
-        rgba(255,255,255,.025)
-    );
-    border:1px solid rgba(255,190,0,.2);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,184,0,.09),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,190,0,.2);
+
     color:#dcc77f;
-    text-align:center;
+
     font-size:12px;
+
     line-height:1.7;
+
+    backdrop-filter:blur(10px);
 }
 
-/* PROMO */
-.promo-box{
-    max-width:850px;
-    margin:0 auto 30px;
-    padding:18px 20px;
+/* =====================================================
+   DAY PRICE INFO
+===================================================== */
+
+.price-day{
+    max-width:500px;
+
+    margin:
+        -15px auto 30px;
+
     text-align:center;
-    border-radius:15px;
-    background:linear-gradient(
-        135deg,
-        rgba(105,92,255,.12),
-        rgba(0,217,255,.07)
-    );
-    border:1px solid rgba(0,217,255,.2);
+
+    padding:11px 15px;
+
+    border-radius:12px;
+
+    color:#9ba4b5;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    font-size:11px;
 }
 
-.promo-box strong{
-    color:#fff;
+.price-day strong{
+    color:#00d9ff;
 }
 
-.promo-code{
-    display:inline-block;
-    margin-top:8px;
-    padding:7px 12px;
-    border-radius:8px;
-    color:#fff;
-    font-weight:900;
-    background:linear-gradient(135deg,#695cff,#00bfff);
-}
+/* =====================================================
+   PRODUCTS
+===================================================== */
 
-/* PRODUCTS */
 .products{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(230px,1fr));
+
     gap:18px;
 }
 
 .card{
     position:relative;
+
     padding:26px;
+
     border-radius:20px;
-    background:linear-gradient(
-        145deg,
-        rgba(255,255,255,.065),
-        rgba(255,255,255,.018)
-    );
-    border:1px solid rgba(255,255,255,.09);
-    transition:.35s;
-    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.018)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
     backdrop-filter:blur(12px);
+
+    transition:.35s;
+
+    overflow:hidden;
 }
 
 .card:hover{
     transform:translateY(-8px);
-    border-color:rgba(105,92,255,.65);
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+    border-color:
+        rgba(105,92,255,.65);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.35);
 }
 
 .popular-card{
-    border-color:rgba(0,210,255,.38);
+    border-color:
+        rgba(0,210,255,.4);
 }
 
 .popular{
     position:absolute;
+
     top:16px;
     right:16px;
-    padding:6px 9px;
-    border-radius:7px;
-    background:linear-gradient(135deg,#695cff,#00bfff);
-    font-size:9px;
-    font-weight:900;
-}
 
-.discount{
-    display:none;
-    margin-top:8px;
-    color:#65ffc1;
-    font-size:10px;
-    font-weight:800;
+    padding:6px 9px;
+
+    border-radius:7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #695cff,
+            #00bfff
+        );
+
+    font-size:9px;
+
+    font-weight:900;
 }
 
 .product-icon{
     width:52px;
     height:52px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     font-size:24px;
+
     border-radius:15px;
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     margin-bottom:20px;
 }
 
@@ -436,74 +645,139 @@ body:after{
 
 .card-desc{
     color:#747e91;
+
     font-size:11px;
+
     margin-top:5px;
 }
 
 .price{
     margin:18px 0;
+
     font-size:28px;
+
     font-weight:900;
+}
+
+.price small{
+    display:block;
+
+    margin-top:5px;
+
+    color:#687285;
+
+    font-size:9px;
+
+    font-weight:600;
 }
 
 .features{
     list-style:none;
+
     margin-bottom:22px;
 }
 
 .features li{
     color:#969eae;
+
     font-size:12px;
+
     padding:6px 0;
 }
 
-.features li:before{
+.features li::before{
     content:"✓";
+
     color:#00d99a;
+
     font-weight:900;
+
     margin-right:8px;
 }
 
+/* =====================================================
+   BUY BUTTON
+===================================================== */
+
 .buy{
     display:block;
+
     text-align:center;
+
     padding:12px;
+
     border-radius:11px;
+
     color:#fff;
+
     text-decoration:none;
-    background:linear-gradient(135deg,#6258ff,#00bfff);
+
+    background:
+        linear-gradient(
+            135deg,
+            #6258ff,
+            #00bfff
+        );
+
     font-size:12px;
+
     font-weight:800;
+
     transition:.3s;
 }
 
 .buy:hover{
     transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,190,255,.15);
 }
 
 .buy.closed{
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.08);
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     color:#777f90;
+
     pointer-events:none;
 }
 
-/* FEATURES */
+/* =====================================================
+   FEATURES
+===================================================== */
+
 .features-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:18px;
 }
 
 .feature{
     padding:25px;
+
     border-radius:17px;
-    background:rgba(255,255,255,.035);
-    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
 }
 
 .feature-icon{
     font-size:26px;
+
     margin-bottom:15px;
 }
 
@@ -513,77 +787,127 @@ body:after{
 
 .feature p{
     color:#7e8799;
+
     font-size:12px;
+
     line-height:1.7;
+
     margin-top:8px;
 }
 
-/* STEPS */
+/* =====================================================
+   STEPS
+===================================================== */
+
 .steps{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:15px;
 }
 
 .step{
     padding:23px;
+
     border-radius:17px;
-    background:rgba(12,16,25,.75);
-    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(12,16,25,.75);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
 }
 
 .step-number{
     color:#00d9ff;
+
     font-size:11px;
+
     font-weight:900;
 }
 
 .step h3{
     margin-top:12px;
+
     font-size:14px;
 }
 
 .step p{
     margin-top:7px;
+
     color:#7e8799;
+
     font-size:11px;
+
     line-height:1.7;
 }
 
-/* FAQ */
+/* =====================================================
+   FAQ
+===================================================== */
+
 .faq{
     max-width:800px;
+
     margin:auto;
 }
 
 details{
     margin-bottom:10px;
-    background:rgba(12,16,25,.75);
-    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(12,16,25,.75);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     border-radius:13px;
+
     padding:17px;
+
+    backdrop-filter:blur(12px);
 }
 
 summary{
     cursor:pointer;
+
     font-size:13px;
+
     font-weight:700;
 }
 
 details p{
     color:#7f889a;
+
     font-size:12px;
+
     line-height:1.7;
+
     margin-top:12px;
 }
 
-/* CTA */
+/* =====================================================
+   CTA
+===================================================== */
+
 .cta{
-    margin:30px auto 80px;
+    margin:
+        30px auto 80px;
+
     max-width:900px;
+
     padding:55px 25px;
+
     text-align:center;
+
     border-radius:25px;
+
     background:
         radial-gradient(
             circle at 50% 0%,
@@ -591,7 +915,12 @@ details p{
             transparent 55%
         ),
         rgba(12,16,25,.78);
-    border:1px solid rgba(255,255,255,.09);
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    backdrop-filter:blur(15px);
 }
 
 .cta h2{
@@ -600,46 +929,102 @@ details p{
 
 .cta p{
     color:#81899b;
-    margin:12px auto 25px;
+
+    margin:
+        12px auto 25px;
+
     font-size:13px;
 }
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
+
 footer{
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
     padding:30px 20px;
+
     text-align:center;
+
     color:#646d7e;
+
     font-size:11px;
-    background:rgba(3,5,10,.45);
+
+    background:
+        rgba(3,5,10,.45);
+
+    backdrop-filter:blur(15px);
 }
 
 .footer-logo{
     color:#fff;
+
     font-weight:900;
+
     margin-bottom:7px;
 }
 
-/* WHATSAPP */
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
 .whatsapp{
     position:fixed;
+
     right:20px;
     bottom:20px;
+
     width:58px;
     height:58px;
+
     border-radius:50%;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     background:#25d366;
+
     color:#fff;
+
     text-decoration:none;
+
     font-size:26px;
-    box-shadow:0 10px 35px rgba(0,0,0,.5);
+
     z-index:2000;
+
+    animation:pulse 2s infinite;
 }
 
-/* MOBILE */
+@keyframes pulse{
+
+    0%{
+        box-shadow:
+            0 0 0 0
+            rgba(37,211,102,.5);
+    }
+
+    70%{
+        box-shadow:
+            0 0 0 14px
+            rgba(37,211,102,0);
+    }
+
+    100%{
+        box-shadow:
+            0 0 0 0
+            rgba(37,211,102,0);
+    }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
 @media(max-width:800px){
 
     .nav-links{
@@ -655,7 +1040,12 @@ footer{
     }
 
     .steps{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
     }
 }
 
@@ -663,10 +1053,6 @@ footer{
 
     .hero{
         min-height:590px;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
     }
 
     .hero p{
@@ -690,723 +1076,1029 @@ footer{
         font-size:10px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<video id="bgVideo" autoplay muted loop playsinline preload="auto">
-    <source src="bg.mp4" type="video/mp4">
+<!-- =====================================================
+     VIDEO
+===================================================== -->
+
+<video
+    id="bgVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto">
+
+    <source
+        src="bg.mp4"
+        type="video/mp4">
+
 </video>
 
 <div class="video-overlay"></div>
 
-<!-- NAVBAR -->
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
 <nav class="navbar">
-    <div class="nav-container">
 
-        <div class="logo">
-            Vann <span>+Follower</span>
-        </div>
+<div class="nav-container">
 
-        <div class="nav-links">
-            <a href="#paket">Paket</a>
-            <a href="#keunggulan">Keunggulan</a>
-            <a href="#cara">Cara Order</a>
-            <a href="#faq">FAQ</a>
-        </div>
+<div class="logo">
+    Vann <span>+Follower</span>
+</div>
 
-        <a class="nav-btn"
-           href="https://wa.me/6285191923519">
-           Chat Admin
-        </a>
+<div class="nav-links">
 
-    </div>
+<a href="#paket">
+    Paket
+</a>
+
+<a href="#keunggulan">
+    Keunggulan
+</a>
+
+<a href="#cara">
+    Cara Order
+</a>
+
+<a href="#faq">
+    FAQ
+</a>
+
+</div>
+
+<a
+class="nav-btn"
+href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store">
+
+Chat Admin
+
+</a>
+
+</div>
+
 </nav>
 
-<!-- HERO -->
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <section class="hero">
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <div class="status" id="storeStatus">
-            <span class="status-dot"></span>
-            <span id="statusText">MEMERIKSA STATUS...</span>
-        </div>
+<div
+class="status"
+id="storeStatus">
 
-        <div class="operating-time">
-            🕐 Jam Operasional:
-            <b>10:00 - 22:00 WIB</b>
-        </div>
+<span
+class="status-dot"
+id="statusDot">
+</span>
 
-        <h1>
-            Grow Your
-            <br>
-            <span class="gradient-text">
-                TikTok Presence.
-            </span>
-        </h1>
+<span id="statusText">
+MEMERIKSA STATUS...
+</span>
 
-        <p>
-            Vann +Follower menyediakan paket followers TikTok
-            dengan pilihan jumlah yang fleksibel dan proses order
-            melalui WhatsApp.
-        </p>
+</div>
 
-        <div class="hero-buttons">
+<div class="operating-time">
 
-            <a class="primary-btn" href="#paket">
-                🚀 Lihat Paket
-            </a>
+🕐 Jam Operasional:
+<b>10:00 - 22:00 WIB</b>
 
-            <a class="secondary-btn"
-               href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20ingin%20bertanya">
-                💬 Hubungi Admin
-            </a>
+</div>
 
-        </div>
+<h1>
 
-    </div>
+TikTok
+
+<br>
+
+<span class="gradient-text">
+Followers.
+</span>
+
+</h1>
+
+<p>
+
+Naikkan jumlah followers TikTok
+dengan paket yang simpel dan mudah
+dipesan. Harga dapat berubah setiap
+hari sesuai sistem harga Vann +Follower.
+
+</p>
+
+<div class="hero-buttons">
+
+<a
+class="primary-btn"
+href="#paket">
+
+🚀 Lihat Paket
+
+</a>
+
+<a
+class="secondary-btn"
+href="https://wa.me/6285191923519?text=Halo%20Vann%20%2BFollower%20Store%2C%20saya%20ingin%20bertanya">
+
+💬 Hubungi Admin
+
+</a>
+
+</div>
+
+</div>
 
 </section>
 
-<!-- STATS -->
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
 <div class="stats">
 
-    <div class="stat">
-        <strong>🎵 TikTok</strong>
-        <span>Followers</span>
-    </div>
+<div class="stat">
 
-    <div class="stat">
-        <strong>10:00</strong>
-        <span>Jam Buka</span>
-    </div>
+<strong>
+TikTok
+</strong>
 
-    <div class="stat">
-        <strong>22:00</strong>
-        <span>Jam Tutup</span>
-    </div>
+<span>
+Platform
+</span>
 
 </div>
 
-<!-- PACKAGE -->
-<section class="section" id="paket">
+<div class="stat">
+
+<strong>
+10:00
+</strong>
+
+<span>
+Jam Buka
+</span>
+
+</div>
+
+<div class="stat">
+
+<strong>
+22:00
+</strong>
+
+<span>
+Jam Tutup
+</span>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PACKAGE
+===================================================== -->
+
+<section
+class="section"
+id="paket">
 
 <div class="container">
 
-    <div class="section-heading">
+<div class="section-heading">
 
-        <small>
-            TIKTOK FOLLOWERS
-        </small>
+<small>
+TIKTOK FOLLOWERS
+</small>
 
-        <h2>
-            Paket Followers
-        </h2>
+<h2>
+Paket Followers
+</h2>
 
-        <p>
-            Harga dapat berubah otomatis setiap hari.
-        </p>
+<p>
+Harga mengikuti perubahan harian.
+</p>
 
-    </div>
+</div>
 
-    <div class="warning">
 
-        ⚠️ <b>INFORMASI HARGA</b>
+<div class="warning">
 
-        <br>
+⚠️ <b>INFORMASI HARGA</b>
 
-        Harga selain paket Rp2.000 dapat berubah
-        secara otomatis setiap hari.
-        Perubahan harga dapat berupa naik atau turun
-        Rp1.000–Rp2.000.
+<br>
 
-        <br>
+Harga dapat naik atau turun setiap hari.
+Harga yang tampil merupakan harga hari ini.
+Konfirmasi kembali sebelum melakukan pembayaran.
 
-        Konfirmasi harga terbaru kepada admin
-        sebelum melakukan pembayaran.
+</div>
 
-    </div>
 
-    <div class="promo-box">
+<div class="price-day">
 
-        🎁 <strong>PROMO VANN +FOLLOWER</strong>
+📅 Harga Hari Ini:
+<strong id="dayName">
+MEMUAT...
+</strong>
 
-        <br>
+&nbsp; • &nbsp;
 
-        Pembelian dengan harga
-        <b>Rp15.000 atau lebih</b>
-        mendapatkan potongan
+Perubahan:
+<strong id="priceChange">
+MEMUAT...
+</strong>
 
-        <b>Rp5.000</b>.
+</div>
 
-        <br>
 
-        <span class="promo-code">
-            KODE: VANN5K
-        </span>
+<div class="products">
 
-    </div>
 
-    <div class="products">
+<!-- =====================================================
+     50
+===================================================== -->
 
-        <!-- 50 -->
-        <div class="card">
+<div class="card">
 
-            <div class="product-icon">
-                👤
-            </div>
+<div class="product-icon">
+👤
+</div>
 
-            <h3>
-                50 Followers
-            </h3>
+<h3>
+50 Followers
+</h3>
 
-            <div class="card-desc">
-                Starter Package
-            </div>
+<div class="card-desc">
+Starter TikTok
+</div>
 
-            <div class="price" id="price50">
-                Rp2.000
-            </div>
+<div
+class="price"
+id="price50">
 
-            <div class="discount">
-                Harga spesial tetap
-            </div>
+Rp2.000
 
-            <ul class="features">
-                <li>50 Followers</li>
-                <li>Order mudah</li>
-                <li>Admin support</li>
-                <li>Harga tetap Rp2.000</li>
-            </ul>
+<small>
+Harga hari ini
+</small>
 
-            <a class="buy"
-               data-id="50"
-               data-name="50 Followers"
-               href="#">
-               Beli Sekarang →
-            </a>
+</div>
 
-        </div>
+<ul class="features">
 
-        <!-- 100 -->
-        <div class="card">
+<li>
+50 TikTok Followers
+</li>
 
-            <div class="product-icon">
-                👥
-            </div>
-
-            <h3>
-                100 Followers
-            </h3>
-
-            <div class="card-desc">
-                Basic Package
-            </div>
-
-            <div class="price" id="price100">
-                Rp4.000
-            </div>
-
-            <ul class="features">
-                <li>100 Followers</li>
-                <li>Order mudah</li>
-                <li>Admin support</li>
-                <li>Harga otomatis</li>
-            </ul>
-
-            <a class="buy"
-               data-id="100"
-               data-name="100 Followers"
-               href="#">
-               Beli Sekarang →
-            </a>
-
-        </div>
-
-        <!-- 250 -->
-        <div class="card">
-
-            <div class="product-icon">
-                🔥
-            </div>
-
-            <h3>
-                250 Followers
-            </h3>
-
-            <div class="card-desc">
-                Growth Package
-            </div>
-
-            <div class="price" id="price250">
-                Rp8.000
-            </div>
-
-            <ul class="features">
-                <li>250 Followers</li>
-                <li>Order mudah</li>
-                <li>Admin support</li>
-                <li>Harga otomatis</li>
-            </ul>
-
-            <a class="buy"
-               data-id="250"
-               data-name="250 Followers"
-               href="#">
-               Beli Sekarang →
-            </a>
-
-        </div>
-
-        <!-- 500 -->
-        <div class="card popular-card">
-
-            <div class="popular">
-                BEST SELLER
-            </div>
-
-            <div class="product-icon">
-                🚀
-            </div>
-
-            <h3>
-                500 Followers
-            </h3>
-
-            <div class="card-desc">
-                Popular Package
-            </div>
-
-            <div class="price" id="price500">
-                Rp15.000
-            </div>
-
-            <ul class="features">
-                <li>500 Followers</li>
-                <li>Order mudah</li>
-                <li>Admin support</li>
-                <li>Potensi promo Rp5K</li>
-            </ul>
-
-            <a class="buy"
-               data-id="500"
-               data-name="500 Followers"
-               href="#">
-               Beli Sekarang →
-            </a>
-
-        </div>
-
-        <!-- 1000 -->
-        <div class="card">
-
-            <div class="product-icon">
-                💎
-            </div>
-
-            <h3>
-                1.000 Followers
-            </h3>
-
-            <div class="card-desc">
-                Premium Package
-            </div>
-
-            <div class="price" id="price1000">
-                Rp25.000
-            </div>
-
-            <ul class="features">
-                <li>1.000 Followers</li>
-                <li>Order mudah</li>
-                <li>Admin support</li>
-                <li>Potensi promo Rp5K</li>
-            </ul>
-
-            <a class="buy"
-               data-id="1000"
-               data-name="1.000 Followers"
-               href="#">
-               Beli Sekarang →
-            </a>
-
-        </div>
-
-        <!-- 2500 -->
-        <div class="card">
-
-            <div class="product-icon">
-                👑
-            </div>
-
-            <h3>
-                2.500 Followers
-            </h3>
-
-            <div class="card-desc">
-                Elite Package
-            </div>
-
-            <div class="price" id="price2500">
-                Rp55.000
-            </div>
-
-            <ul class="features">
-                <li>2.500 Followers</li>
-                <li>Order mudah</li>
-                <li>Admin support</li>
-                <li>Potensi promo Rp5K</li>
-            </ul>
-
-            <a class="buy"
-               data-id="2500"
-               data-name="2.500 Followers"
-               href="#">
-               Beli Sekarang →
-            </a>
-
-        </div>
-
-    </div>
+<li>
+Order melalui WhatsApp
+</li>
+
+<li>
+Admin Support
+</li>
+
+<li>
+Harga dinamis harian
+</li>
+
+</ul>
+
+<a
+class="buy"
+data-base="2000"
+data-name="50 TikTok Followers"
+href="#">
+
+Beli Sekarang →
+
+</a>
+
+</div>
+
+
+<!-- =====================================================
+     100
+===================================================== -->
+
+<div class="card">
+
+<div class="product-icon">
+👥
+</div>
+
+<h3>
+100 Followers
+</h3>
+
+<div class="card-desc">
+Basic TikTok
+</div>
+
+<div
+class="price"
+id="price100">
+
+Rp4.000
+
+<small>
+Harga hari ini
+</small>
+
+</div>
+
+<ul class="features">
+
+<li>
+100 TikTok Followers
+</li>
+
+<li>
+Order mudah
+</li>
+
+<li>
+Admin Support
+</li>
+
+<li>
+Harga dinamis harian
+</li>
+
+</ul>
+
+<a
+class="buy"
+data-base="4000"
+data-name="100 TikTok Followers"
+href="#">
+
+Beli Sekarang →
+
+</a>
+
+</div>
+
+
+<!-- =====================================================
+     250
+===================================================== -->
+
+<div class="card">
+
+<div class="product-icon">
+🔥
+</div>
+
+<h3>
+250 Followers
+</h3>
+
+<div class="card-desc">
+Growth TikTok
+</div>
+
+<div
+class="price"
+id="price250">
+
+Rp8.000
+
+<small>
+Harga hari ini
+</small>
+
+</div>
+
+<ul class="features">
+
+<li>
+250 TikTok Followers
+</li>
+
+<li>
+Order mudah
+</li>
+
+<li>
+Admin Support
+</li>
+
+<li>
+Harga dinamis harian
+</li>
+
+</ul>
+
+<a
+class="buy"
+data-base="8000"
+data-name="250 TikTok Followers"
+href="#">
+
+Beli Sekarang →
+
+</a>
+
+</div>
+
+
+<!-- =====================================================
+     500
+===================================================== -->
+
+<div class="card popular-card">
+
+<div class="popular">
+BEST SELLER
+</div>
+
+<div class="product-icon">
+🚀
+</div>
+
+<h3>
+500 Followers
+</h3>
+
+<div class="card-desc">
+Popular TikTok
+</div>
+
+<div
+class="price"
+id="price500">
+
+Rp15.000
+
+<small>
+Harga hari ini
+</small>
+
+</div>
+
+<ul class="features">
+
+<li>
+500 TikTok Followers
+</li>
+
+<li>
+Paket populer
+</li>
+
+<li>
+Admin Support
+</li>
+
+<li>
+Harga dinamis harian
+</li>
+
+</ul>
+
+<a
+class="buy"
+data-base="15000"
+data-name="500 TikTok Followers"
+href="#">
+
+Beli Sekarang →
+
+</a>
+
+</div>
+
+
+<!-- =====================================================
+     1000
+===================================================== -->
+
+<div class="card">
+
+<div class="product-icon">
+💎
+</div>
+
+<h3>
+1.000 Followers
+</h3>
+
+<div class="card-desc">
+Premium TikTok
+</div>
+
+<div
+class="price"
+id="price1000">
+
+Rp25.000
+
+<small>
+Harga hari ini
+</small>
+
+</div>
+
+<ul class="features">
+
+<li>
+1.000 TikTok Followers
+</li>
+
+<li>
+Paket premium
+</li>
+
+<li>
+Admin Support
+</li>
+
+<li>
+Harga dinamis harian
+</li>
+
+</ul>
+
+<a
+class="buy"
+data-base="25000"
+data-name="1.000 TikTok Followers"
+href="#">
+
+Beli Sekarang →
+
+</a>
+
+</div>
+
+
+<!-- =====================================================
+     2500
+===================================================== -->
+
+<div class="card">
+
+<div class="product-icon">
+👑
+</div>
+
+<h3>
+2.500 Followers
+</h3>
+
+<div class="card-desc">
+Elite TikTok
+</div>
+
+<div
+class="price"
+id="price2500">
+
+Rp55.000
+
+<small>
+Harga hari ini
+</small>
+
+</div>
+
+<ul class="features">
+
+<li>
+2.500 TikTok Followers
+</li>
+
+<li>
+Paket elite
+</li>
+
+<li>
+Admin Support
+</li>
+
+<li>
+Harga dinamis harian
+</li>
+
+</ul>
+
+<a
+class="buy"
+data-base="55000"
+data-name="2.500 TikTok Followers"
+href="#">
+
+Beli Sekarang →
+
+</a>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
 
-<!-- FEATURES -->
-<section class="section" id="keunggulan">
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section
+class="section"
+id="keunggulan">
 
 <div class="container">
 
-    <div class="section-heading">
+<div class="section-heading">
 
-        <small>
-            WHY VANN +FOLLOWER
-        </small>
+<small>
+WHY VANN +FOLLOWER
+</small>
 
-        <h2>
-            Kenapa Pilih Kami?
-        </h2>
+<h2>
+Kenapa Pilih Kami?
+</h2>
 
-        <p>
-            Store TikTok dengan tampilan premium
-            dan sistem harga otomatis.
-        </p>
+<p>
+Order simpel dengan informasi harga yang jelas.
+</p>
 
-    </div>
+</div>
 
-    <div class="features-grid">
 
-        <div class="feature">
+<div class="features-grid">
 
-            <div class="feature-icon">
-                ⚡
-            </div>
+<div class="feature">
 
-            <h3>
-                Harga Dinamis
-            </h3>
+<div class="feature-icon">
+⚡
+</div>
 
-            <p>
-                Harga paket dapat berubah setiap hari
-                secara otomatis sesuai sistem.
-            </p>
+<h3>
+Praktis
+</h3>
 
-        </div>
+<p>
+Pilih paket kemudian langsung hubungi admin
+melalui WhatsApp.
+</p>
 
-        <div class="feature">
+</div>
 
-            <div class="feature-icon">
-                🎁
-            </div>
 
-            <h3>
-                Promo Rp5K
-            </h3>
+<div class="feature">
 
-            <p>
-                Paket dengan harga Rp15.000 atau lebih
-                mendapatkan kode promo VANN5K.
-            </p>
+<div class="feature-icon">
+📅
+</div>
 
-        </div>
+<h3>
+Harga Dinamis
+</h3>
 
-        <div class="feature">
+<p>
+Harga dapat berubah setiap hari sehingga
+selalu cek harga terbaru sebelum order.
+</p>
 
-            <div class="feature-icon">
-                🛡️
-            </div>
+</div>
 
-            <h3>
-                Admin Support
-            </h3>
 
-            <p>
-                Hubungi admin melalui WhatsApp
-                untuk konfirmasi harga dan order.
-            </p>
+<div class="feature">
 
-        </div>
+<div class="feature-icon">
+🛡️
+</div>
 
-    </div>
+<h3>
+Admin Support
+</h3>
+
+<p>
+Admin siap membantu proses pemesanan
+selama jam operasional.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
 
-<!-- CARA ORDER -->
-<section class="section" id="cara">
+
+<!-- =====================================================
+     CARA ORDER
+===================================================== -->
+
+<section
+class="section"
+id="cara">
 
 <div class="container">
 
-    <div class="section-heading">
+<div class="section-heading">
 
-        <small>
-            HOW IT WORKS
-        </small>
+<small>
+HOW IT WORKS
+</small>
 
-        <h2>
-            Cara Order
-        </h2>
+<h2>
+Cara Order
+</h2>
 
-    </div>
+</div>
 
-    <div class="steps">
 
-        <div class="step">
-            <div class="step-number">01</div>
-            <h3>Pilih Paket</h3>
-            <p>
-                Pilih jumlah followers TikTok
-                yang kamu inginkan.
-            </p>
-        </div>
+<div class="steps">
 
-        <div class="step">
-            <div class="step-number">02</div>
-            <h3>Cek Harga</h3>
-            <p>
-                Harga ditampilkan otomatis
-                sesuai harga hari tersebut.
-            </p>
-        </div>
+<div class="step">
 
-        <div class="step">
-            <div class="step-number">03</div>
-            <h3>Klik Beli</h3>
-            <p>
-                Klik tombol beli untuk membuka
-                WhatsApp admin.
-            </p>
-        </div>
+<div class="step-number">
+01
+</div>
 
-        <div class="step">
-            <div class="step-number">04</div>
-            <h3>Konfirmasi</h3>
-            <p>
-                Konfirmasi detail pesanan
-                kepada admin.
-            </p>
-        </div>
+<h3>
+Pilih Paket
+</h3>
 
-    </div>
+<p>
+Pilih jumlah TikTok Followers
+yang kamu inginkan.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+02
+</div>
+
+<h3>
+Cek Harga
+</h3>
+
+<p>
+Lihat harga yang tampil hari ini
+karena harga dapat berubah.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+03
+</div>
+
+<h3>
+Klik Beli
+</h3>
+
+<p>
+Klik tombol Beli Sekarang
+untuk membuka WhatsApp.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+04
+</div>
+
+<h3>
+Konfirmasi
+</h3>
+
+<p>
+Konfirmasi paket dan harga
+kepada admin.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
 
-<!-- FAQ -->
-<section class="section" id="faq">
+
+<!-- =====================================================
+     FAQ
+===================================================== -->
+
+<section
+class="section"
+id="faq">
 
 <div class="container">
 
-    <div class="section-heading">
+<div class="section-heading">
 
-        <small>
-            FAQ
-        </small>
+<small>
+FAQ
+</small>
 
-        <h2>
-            Pertanyaan Umum
-        </h2>
+<h2>
+Pertanyaan Umum
+</h2>
 
-    </div>
+</div>
 
-    <div class="faq">
 
-        <details>
-            <summary>
-                Apakah harga benar-benar berubah otomatis?
-            </summary>
+<div class="faq">
 
-            <p>
-                Ya. Harga paket selain Rp2.000 akan
-                ditentukan otomatis setiap hari.
-            </p>
-        </details>
+<details>
 
-        <details>
-            <summary>
-                Apakah harga Rp2.000 ikut berubah?
-            </summary>
+<summary>
+Apakah harga setiap hari berubah?
+</summary>
 
-            <p>
-                Tidak. Paket 50 Followers tetap
-                Rp2.000.
-            </p>
-        </details>
+<p>
+Ya. Harga dapat naik atau turun setiap hari.
+Sistem akan menentukan perubahan harga
+berdasarkan hari.
+</p>
 
-        <details>
-            <summary>
-                Bagaimana sistem perubahan harga?
-            </summary>
+</details>
 
-            <p>
-                Sistem memilih perubahan secara acak:
-                turun Rp2.000, turun Rp1.000,
-                tetap, naik Rp1.000, atau naik Rp2.000.
-            </p>
-        </details>
 
-        <details>
-            <summary>
-                Bagaimana mendapatkan promo Rp5K?
-            </summary>
+<details>
 
-            <p>
-                Jika harga paket mencapai Rp15.000
-                atau lebih, gunakan kode promo
-                VANN5K dan konfirmasi kepada admin.
-            </p>
-        </details>
+<summary>
+Apakah harga berubah saat halaman direfresh?
+</summary>
 
-        <details>
-            <summary>
-                Kapan toko buka?
-            </summary>
+<p>
+Tidak. Harga untuk hari tersebut dibuat tetap
+selama hari berjalan, sehingga refresh halaman
+tidak membuat harga berubah-ubah.
+</p>
 
-            <p>
-                Setiap hari pukul 10:00 sampai 22:00 WIB.
-                Status website akan berubah otomatis.
-            </p>
-        </details>
+</details>
 
-        <details>
-            <summary>
-                Apakah perlu memberikan password TikTok?
-            </summary>
 
-            <p>
-                Jangan pernah memberikan password,
-                OTP, atau kode keamanan akun kepada
-                siapa pun.
-            </p>
-        </details>
+<details>
 
-    </div>
+<summary>
+Kapan toko buka?
+</summary>
+
+<p>
+Toko buka otomatis setiap hari pukul
+10:00 WIB sampai 22:00 WIB.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Apa yang terjadi pukul 22:00?
+</summary>
+
+<p>
+Status otomatis berubah menjadi CLOSED dan
+tombol pembelian akan dinonaktifkan.
+Toko kembali OPEN pukul 10:00 WIB.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Apakah harga bisa dikonfirmasi?
+</summary>
+
+<p>
+Bisa. Sebelum pembayaran, selalu konfirmasi
+harga terbaru kepada admin.
+</p>
+
+</details>
+
+</div>
 
 </div>
 
 </section>
 
-<!-- CTA -->
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
 <div class="container">
 
-    <div class="cta">
+<div class="cta">
 
-        <h2>
-            Ready to Grow?
-        </h2>
+<h2>
+Ready to Grow?
+</h2>
 
-        <p>
-            Pilih paket TikTok Followers dan
-            hubungi admin Vann +Follower.
-        </p>
+<p>
+Pilih paket TikTok Followers dan hubungi
+admin Vann +Follower.
+</p>
 
-        <a class="primary-btn"
-           id="ctaButton"
-           href="#">
-           💬 Chat Admin Sekarang
-        </a>
+<a
+class="primary-btn"
+id="ctaButton"
+href="#">
 
-    </div>
+💬 Chat Admin Sekarang
+
+</a>
 
 </div>
 
-<!-- FOOTER -->
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
 
-    <div class="footer-logo">
-        Vann +Follower
-    </div>
+<div class="footer-logo">
+Vann +Follower
+</div>
 
-    <p>
-        TikTok Followers Store • 2026
-    </p>
+<p>
+TikTok Followers • Premium Social Store
+</p>
 
-    <p style="margin-top:8px">
-        🕐 Operasional 10:00 - 22:00 WIB
-    </p>
+<p style="margin-top:8px;">
+🕐 Operasional 10:00 - 22:00 WIB
+</p>
 
-    <p style="margin-top:8px">
-        ⚠️ Harga dapat berubah sewaktu-waktu.
-    </p>
+<p style="margin-top:8px;">
+📅 Harga dapat berubah setiap hari
+</p>
+
+<p style="margin-top:8px;">
+⚠️ Konfirmasi harga terbaru sebelum pembayaran.
+</p>
 
 </footer>
 
-<!-- WHATSAPP -->
-<a class="whatsapp"
-   id="whatsappButton"
-   href="#"
-   aria-label="WhatsApp">
-   ☏
+
+<!-- =====================================================
+     WHATSAPP
+===================================================== -->
+
+<a
+class="whatsapp"
+id="whatsappButton"
+href="#"
+aria-label="WhatsApp">
+
+☏
+
 </a>
+
 
 <script>
 
 /* =====================================================
-   KONFIGURASI
+   CONFIG
 ===================================================== */
 
 const whatsappNumber = "6285191923519";
 
-const openMinutes = 10 * 60;
-const closeMinutes = 22 * 60;
+const openTime = 10 * 60;
 
-/*
-   Harga dasar.
-   Paket 50 Followers sengaja dibuat FIX Rp2.000.
-*/
-
-const basePrices = {
-
-    "50": 2000,
-    "100": 4000,
-    "250": 8000,
-    "500": 15000,
-    "1000": 25000,
-    "2500": 55000
-
-};
-
-/*
-   Pilihan perubahan harga:
-   -2000
-   -1000
-   0
-   +1000
-   +2000
-*/
-
-const priceChanges = [
-    -2000,
-    -1000,
-    0,
-    1000,
-    2000
-];
+const closeTime = 22 * 60;
 
 
 /* =====================================================
@@ -1428,111 +2120,157 @@ function rupiah(number){
 
 
 /* =====================================================
-   TANGGAL WIB
+   WAKTU WIB
 ===================================================== */
 
-function getWIBDate(){
+function getWIB(){
 
     const now = new Date();
 
-    return new Date(
-        now.toLocaleString(
+    const parts =
+        new Intl.DateTimeFormat(
             "en-US",
             {
-                timeZone:"Asia/Jakarta"
+                timeZone:"Asia/Jakarta",
+                weekday:"long",
+                year:"numeric",
+                month:"2-digit",
+                day:"2-digit",
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12:false
             }
-        )
-    );
+        ).formatToParts(now);
 
-}
+    const data = {};
 
-
-/* =====================================================
-   KEY HARGA HARIAN
-===================================================== */
-
-function getTodayKey(){
-
-    const wib = getWIBDate();
-
-    return (
-        wib.getFullYear() +
-        "-" +
-        String(wib.getMonth()+1).padStart(2,"0") +
-        "-" +
-        String(wib.getDate()).padStart(2,"0")
-    );
-
-}
-
-
-/* =====================================================
-   GENERATE HARGA HARIAN
-===================================================== */
-
-function generateDailyPrices(){
-
-    const today = getTodayKey();
-
-    const saved =
-        localStorage.getItem(
-            "vannFollowerPrices_" + today
-        );
-
-    if(saved){
-
-        return JSON.parse(saved);
-
-    }
-
-    const prices = {};
-
-    Object.keys(basePrices).forEach(
-        function(id){
-
-            /*
-              50 Followers selalu Rp2.000
-            */
-
-            if(id === "50"){
-
-                prices[id] = 2000;
-                return;
-
-            }
-
-            const change =
-                priceChanges[
-                    Math.floor(
-                        Math.random() *
-                        priceChanges.length
-                    )
-                ];
-
-            let newPrice =
-                basePrices[id] + change;
-
-            /*
-              Jangan sampai harga terlalu rendah.
-            */
-
-            if(newPrice < 2000){
-
-                newPrice = 2000;
-
-            }
-
-            prices[id] = newPrice;
-
+    parts.forEach(
+        part => {
+            data[part.type] = part.value;
         }
     );
 
-    localStorage.setItem(
-        "vannFollowerPrices_" + today,
-        JSON.stringify(prices)
+    return {
+        year:Number(data.year),
+        month:Number(data.month),
+        day:Number(data.day),
+        hour:Number(data.hour),
+        minute:Number(data.minute),
+        second:Number(data.second),
+        weekday:data.weekday
+    };
+
+}
+
+
+/* =====================================================
+   HARI
+===================================================== */
+
+const dayNames = {
+
+    Sunday:"Minggu",
+
+    Monday:"Senin",
+
+    Tuesday:"Selasa",
+
+    Wednesday:"Rabu",
+
+    Thursday:"Kamis",
+
+    Friday:"Jumat",
+
+    Saturday:"Sabtu"
+
+};
+
+
+/* =====================================================
+   BUAT KEY HARI
+   Agar harga tidak berubah ketika refresh
+===================================================== */
+
+function getDayKey(wib){
+
+    return (
+
+        wib.year +
+        "-" +
+        String(wib.month).padStart(2,"0") +
+        "-" +
+        String(wib.day).padStart(2,"0")
+
     );
 
-    return prices;
+}
+
+
+/* =====================================================
+   RANDOM DETERMINISTIK
+   Setiap tanggal punya perubahan berbeda
+===================================================== */
+
+function createDailyChange(wib){
+
+    const key =
+        getDayKey(wib);
+
+    let hash = 0;
+
+    for(
+        let i = 0;
+        i < key.length;
+        i++
+    ){
+
+        hash =
+            (
+                hash * 31 +
+                key.charCodeAt(i)
+            ) >>> 0;
+
+    }
+
+    const changes = [
+        -2000,
+        -1000,
+        0,
+        1000,
+        2000
+    ];
+
+    return changes[
+        hash % changes.length
+    ];
+
+}
+
+
+/* =====================================================
+   HARGA PRODUK
+===================================================== */
+
+function calculatePrice(
+    basePrice,
+    change
+){
+
+    let price =
+        basePrice + change;
+
+    /*
+       Harga tidak boleh kurang dari Rp2.000
+    */
+
+    if(price < 2000){
+
+        price = 2000;
+
+    }
+
+    return price;
 
 }
 
@@ -1543,21 +2281,98 @@ function generateDailyPrices(){
 
 function updatePrices(){
 
-    const prices =
-        generateDailyPrices();
+    const wib =
+        getWIB();
 
-    Object.keys(prices).forEach(
-        function(id){
+    const change =
+        createDailyChange(wib);
 
-            const element =
-                document.getElementById(
-                    "price" + id
+    const dayName =
+        dayNames[wib.weekday];
+
+    document.getElementById(
+        "dayName"
+    ).textContent =
+        dayName;
+
+
+    let changeText = "";
+
+    if(change > 0){
+
+        changeText =
+            "Naik " +
+            rupiah(change);
+
+    }
+
+    else if(change < 0){
+
+        changeText =
+            "Turun " +
+            rupiah(
+                Math.abs(change)
+            );
+
+    }
+
+    else{
+
+        changeText =
+            "Harga Normal";
+
+    }
+
+    document.getElementById(
+        "priceChange"
+    ).textContent =
+        changeText;
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".buy"
+        );
+
+
+    buttons.forEach(
+        function(button){
+
+            const base =
+                Number(
+                    button.dataset.base
                 );
 
-            if(element){
+            const name =
+                button.dataset.name;
 
-                element.textContent =
-                    rupiah(prices[id]);
+            const finalPrice =
+                calculatePrice(
+                    base,
+                    change
+                );
+
+
+            button.dataset.price =
+                finalPrice;
+
+
+            const priceId =
+                "price" +
+                base;
+
+
+            const priceElement =
+                document.getElementById(
+                    priceId
+                );
+
+
+            if(priceElement){
+
+                priceElement.innerHTML =
+                    rupiah(finalPrice) +
+                    "<small>Harga hari ini</small>";
 
             }
 
@@ -1574,20 +2389,18 @@ function updatePrices(){
 function updateStoreStatus(){
 
     const wib =
-        getWIBDate();
-
-    const hour =
-        wib.getHours();
-
-    const minute =
-        wib.getMinutes();
+        getWIB();
 
     const currentMinutes =
-        (hour * 60) + minute;
+        (
+            wib.hour * 60
+        ) +
+        wib.minute;
+
 
     const isOpen =
-        currentMinutes >= openMinutes &&
-        currentMinutes < closeMinutes;
+        currentMinutes >= openTime &&
+        currentMinutes < closeTime;
 
 
     const status =
@@ -1595,7 +2408,7 @@ function updateStoreStatus(){
             "storeStatus"
         );
 
-    const statusText =
+    const text =
         document.getElementById(
             "statusText"
         );
@@ -1611,10 +2424,12 @@ function updateStoreStatus(){
             "open"
         );
 
-        statusText.textContent =
+        text.textContent =
             "🟢 STORE OPEN • SIAP MELAYANI";
 
-    }else{
+    }
+
+    else{
 
         status.classList.remove(
             "open"
@@ -1624,42 +2439,33 @@ function updateStoreStatus(){
             "closed"
         );
 
-        statusText.textContent =
+        text.textContent =
             "🔴 STORE CLOSED • BUKA 10:00 WIB";
 
     }
 
 
-    updateButtons(isOpen);
-
-}
-
-
-/* =====================================================
-   UPDATE TOMBOL ORDER
-===================================================== */
-
-function updateButtons(isOpen){
-
-    const prices =
-        generateDailyPrices();
+    /*
+       Update semua tombol order
+    */
 
     const buttons =
         document.querySelectorAll(
             ".buy"
         );
 
+
     buttons.forEach(
         function(button){
-
-            const id =
-                button.dataset.id;
 
             const name =
                 button.dataset.name;
 
             const price =
-                prices[id];
+                Number(
+                    button.dataset.price ||
+                    button.dataset.base
+                );
 
 
             if(isOpen){
@@ -1671,36 +2477,35 @@ function updateButtons(isOpen){
                 button.textContent =
                     "Beli Sekarang →";
 
+
+                const message =
+                    "Halo Vann +Follower Store,%0A%0A" +
+
+                    "Saya ingin order TikTok Followers.%0A%0A" +
+
+                    "Paket: " +
+                    encodeURIComponent(name) +
+                    "%0A" +
+
+                    "Harga hari ini: " +
+                    encodeURIComponent(
+                        rupiah(price)
+                    ) +
+
+                    "%0A%0A" +
+
+                    "Mohon konfirmasi harga dan proses order.";
+
+
                 button.href =
                     "https://wa.me/" +
                     whatsappNumber +
                     "?text=" +
-                    encodeURIComponent(
+                    message;
 
-                        "Halo Vann +Follower Store 👋\n\n" +
+            }
 
-                        "Saya ingin order TikTok Followers.\n\n" +
-
-                        "📦 Paket: " +
-                        name +
-                        "\n" +
-
-                        "💰 Harga hari ini: " +
-                        rupiah(price) +
-                        "\n\n" +
-
-                        (
-                            price >= 15000
-                            ?
-                            "🎁 Saya ingin menggunakan kode promo: VANN5K\n"
-                            :
-                            ""
-                        ) +
-
-                        "\nMohon konfirmasi harga dan detail order."
-                    );
-
-            }else{
+            else{
 
                 button.classList.add(
                     "closed"
@@ -1709,8 +2514,9 @@ function updateButtons(isOpen){
                 button.textContent =
                     "🔒 Toko Tutup";
 
-                button.href =
-                    "javascript:void(0)";
+                button.removeAttribute(
+                    "href"
+                );
 
             }
 
@@ -1718,25 +2524,20 @@ function updateButtons(isOpen){
     );
 
 
-    /* CTA */
+    /*
+       CTA
+    */
 
     const cta =
         document.getElementById(
             "ctaButton"
         );
 
+
     if(isOpen){
 
         cta.textContent =
             "💬 Chat Admin Sekarang";
-
-        cta.href =
-            "https://wa.me/" +
-            whatsappNumber +
-            "?text=" +
-            encodeURIComponent(
-                "Halo Vann +Follower Store 👋\n\nSaya ingin order TikTok Followers."
-            );
 
         cta.style.opacity =
             "1";
@@ -1744,49 +2545,54 @@ function updateButtons(isOpen){
         cta.style.pointerEvents =
             "auto";
 
-    }else{
+        cta.href =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(
+                "Halo Vann +Follower Store, saya ingin order TikTok Followers."
+            );
+
+    }
+
+    else{
 
         cta.textContent =
             "🔒 Toko Tutup — Buka 10:00 WIB";
 
-        cta.href =
-            "javascript:void(0)";
+        cta.removeAttribute(
+            "href"
+        );
 
         cta.style.opacity =
-            ".55";
+            ".5";
 
         cta.style.pointerEvents =
             "none";
 
     }
 
+}
 
-    /* WhatsApp floating */
 
-    const whatsapp =
+/* =====================================================
+   WHATSAPP FLOAT
+===================================================== */
+
+function updateWhatsapp(){
+
+    const button =
         document.getElementById(
             "whatsappButton"
         );
 
-    if(isOpen){
-
-        whatsapp.href =
-            "https://wa.me/" +
-            whatsappNumber +
-            "?text=" +
-            encodeURIComponent(
-                "Halo Vann +Follower Store 👋\nSaya ingin bertanya mengenai TikTok Followers."
-            );
-
-    }else{
-
-        whatsapp.href =
-            "javascript:void(0)";
-
-        whatsapp.style.opacity =
-            ".45";
-
-    }
+    button.href =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(
+            "Halo Vann +Follower Store, saya ingin bertanya tentang TikTok Followers."
+        );
 
 }
 
@@ -1802,62 +2608,82 @@ const video =
 
 video.muted = true;
 
+
 function playVideo(){
 
     video.play().catch(
         function(){
+
+            /*
+               Beberapa browser mobile
+               memblokir autoplay.
+            */
 
         }
     );
 
 }
 
+
 window.addEventListener(
     "load",
     playVideo
 );
 
+
 document.addEventListener(
     "touchstart",
     playVideo,
-    {once:true}
+    {
+        once:true
+    }
 );
+
 
 document.addEventListener(
     "click",
     playVideo,
-    {once:true}
+    {
+        once:true
+    }
 );
 
 
 /* =====================================================
-   JALANKAN SISTEM
+   START
 ===================================================== */
 
 updatePrices();
 
 updateStoreStatus();
 
+updateWhatsapp();
 
-/*
-   Cek status setiap 30 detik.
-*/
+
+/* =====================================================
+   UPDATE STATUS SETIAP MENIT
+===================================================== */
 
 setInterval(
-    updateStoreStatus,
-    30000
+    function(){
+
+        updateStoreStatus();
+
+    },
+    60000
 );
 
 
 /*
-   Cek pergantian hari setiap menit.
-   Jika tanggal berubah, harga baru akan dibuat.
+   Update harga setiap pergantian hari.
 */
 
 setInterval(
     function(){
 
         updatePrices();
+
+        updateStoreStatus();
 
     },
     60000
