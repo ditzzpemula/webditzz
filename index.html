@@ -3,48 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#06030d">
 
-<title>Vann +Follower | Premium Social Store</title>
-
-<meta name="description"
-content="Vann +Follower Premium Social Media Store — Website by Fahrisky">
+<title>Vann +Follower — Premium Store V5</title>
 
 <style>
-
-/* =========================================================
-   V4 — VANN +FOLLOWER
-   PREMIUM AI / FUTURISTIC EDITION
-========================================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&display=swap');
 
-
 :root{
-    --bg:#05050a;
-    --card:rgba(14,14,25,.58);
-    --card2:rgba(20,20,35,.72);
-
+    --bg:#05030a;
+    --card:rgba(14,10,25,.68);
     --purple:#8b5cf6;
     --violet:#a855f7;
-    --blue:#06b6d4;
     --cyan:#22d3ee;
-
-    --white:#fff;
-    --muted:#9193a5;
-
+    --pink:#ec4899;
     --green:#22c55e;
     --red:#ef4444;
-
-    --border:rgba(255,255,255,.10);
-
-    --shadow:
-        0 20px 70px rgba(0,0,0,.45);
+    --white:#fff;
+    --muted:#898595;
+    --line:rgba(255,255,255,.09);
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
     margin:0;
@@ -57,26 +35,85 @@ html{
 }
 
 body{
-    background:var(--bg);
+    background:#05030a;
     color:white;
-
-    font-family:
-        Inter,
-        Arial,
-        sans-serif;
-
+    font-family:Inter,Arial,sans-serif;
     overflow-x:hidden;
 }
 
+/* =========================
+   BACKGROUND
+========================= */
 
-/* =========================================================
-   LOADING
-========================================================= */
+#bgVideo{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-10;
+    opacity:.32;
+}
+
+.video-overlay{
+    position:fixed;
+    inset:0;
+    z-index:-9;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(139,92,246,.22),
+            transparent 38%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(4,2,10,.45),
+            rgba(4,2,9,.96)
+        );
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    z-index:-8;
+    opacity:.12;
+
+    background-image:
+        linear-gradient(
+            rgba(168,85,247,.25) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(34,211,238,.18) 1px,
+            transparent 1px
+        );
+
+    background-size:55px 55px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+}
+
+#particles{
+    position:fixed;
+    inset:0;
+    z-index:-7;
+    pointer-events:none;
+}
+
+/* =========================
+   LOADER
+========================= */
 
 #loader{
     position:fixed;
     inset:0;
-
     z-index:99999;
 
     display:flex;
@@ -85,15 +122,12 @@ body{
 
     background:
         radial-gradient(
-            circle at center,
-            #16102b 0%,
-            #05050a 55%,
-            #020207 100%
+            circle,
+            #170d2e,
+            #05030a 65%
         );
 
-    transition:
-        opacity .7s ease,
-        visibility .7s ease;
+    transition:.7s;
 }
 
 #loader.hide{
@@ -101,255 +135,131 @@ body{
     visibility:hidden;
 }
 
-.loader-box{
+.loader-content{
     text-align:center;
 }
 
 .loader-logo{
-    width:70px;
-    height:70px;
-
+    width:78px;
+    height:78px;
     margin:auto;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:20px;
+    border-radius:24px;
 
     font-family:Orbitron;
-
-    font-size:27px;
+    font-size:30px;
     font-weight:900;
 
     background:
         linear-gradient(
             135deg,
             #7c3aed,
-            #06b6d4
+            #06b6d4,
+            #ec4899
         );
 
     box-shadow:
-        0 0 35px rgba(139,92,246,.5),
-        0 0 80px rgba(6,182,212,.18);
+        0 0 30px rgba(139,92,246,.5),
+        0 0 80px rgba(34,211,238,.15);
 
-    animation:
-        loaderPulse 1.4s infinite;
+    animation:pulse 1.2s infinite;
 }
 
 .loader-title{
-    margin-top:18px;
-
+    margin-top:20px;
     font-family:Orbitron;
-
-    font-size:14px;
-
-    letter-spacing:2px;
+    font-size:13px;
+    letter-spacing:3px;
 }
 
-.loader-text{
+.loader-sub{
     margin-top:7px;
-
-    color:#77798b;
-
-    font-size:10px;
+    color:#777182;
+    font-size:9px;
 }
 
-.loader-line{
-    width:180px;
+.loader-bar{
+    width:190px;
     height:3px;
-
-    margin:17px auto 0;
-
+    margin:18px auto 0;
     overflow:hidden;
-
-    border-radius:10px;
-
-    background:#171722;
+    border-radius:20px;
+    background:#1b1724;
 }
 
-.loader-line::after{
-    content:"";
-
+.loader-bar span{
     display:block;
-
-    width:45%;
-
+    width:40%;
     height:100%;
 
     background:
         linear-gradient(
             90deg,
-            var(--purple),
-            var(--cyan)
+            #8b5cf6,
+            #22d3ee
         );
 
-    animation:
-        loading 1s infinite;
+    animation:loading 1s infinite;
 }
 
-@keyframes loaderPulse{
-
+@keyframes pulse{
     0%,100%{
         transform:scale(1);
     }
-
     50%{
-        transform:scale(1.06);
+        transform:scale(1.07);
     }
-
 }
 
 @keyframes loading{
-
     from{
-        transform:translateX(-120%);
+        transform:translateX(-150%);
     }
-
     to{
-        transform:translateX(350%);
+        transform:translateX(400%);
     }
-
 }
 
-
-/* =========================================================
-   VIDEO
-========================================================= */
-
-#bgVideo{
-    position:fixed;
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    z-index:-20;
-
-    opacity:.40;
-}
-
-.video-overlay{
-    position:fixed;
-    inset:0;
-
-    z-index:-19;
-
-    background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(94,48,150,.20),
-            transparent 35%
-        ),
-        linear-gradient(
-            rgba(4,4,9,.58),
-            rgba(4,4,9,.94)
-        );
-}
-
-
-/* =========================================================
-   GRID BACKGROUND
-========================================================= */
-
-.grid-bg{
-    position:fixed;
-    inset:0;
-
-    z-index:-18;
-
-    opacity:.13;
-
-    background-image:
-        linear-gradient(
-            rgba(139,92,246,.18) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(139,92,246,.18) 1px,
-            transparent 1px
-        );
-
-    background-size:
-        55px 55px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 80%
-        );
-}
-
-
-/* =========================================================
-   PARTICLES
-========================================================= */
-
-#particles{
-    position:fixed;
-    inset:0;
-
-    z-index:-15;
-
-    pointer-events:none;
-}
-
-
-/* =========================================================
+/* =========================
    NAVBAR
-========================================================= */
+========================= */
 
 header{
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
-
     z-index:5000;
 
+    border-bottom:1px solid var(--line);
+
     background:
-        rgba(5,5,10,.45);
+        rgba(5,3,10,.55);
 
-    border-bottom:
-        1px solid rgba(255,255,255,.07);
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
 }
 
 .nav{
     width:92%;
     max-width:1200px;
-
     height:74px;
-
     margin:auto;
 
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 }
 
 .logo{
     display:flex;
-
     align-items:center;
-
-    gap:11px;
-
+    gap:10px;
     text-decoration:none;
-
     color:white;
 }
 
@@ -358,16 +268,13 @@ header{
     height:42px;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
     border-radius:13px;
 
     font-family:Orbitron;
-
     font-size:15px;
-
     font-weight:900;
 
     background:
@@ -381,45 +288,34 @@ header{
         0 0 25px rgba(139,92,246,.3);
 }
 
-.logo-text{
+.logo-name{
     font-family:Orbitron;
-
-    font-size:14px;
-
-    font-weight:800;
+    font-size:13px;
+    font-weight:900;
 }
 
-.logo-text span{
-    color:#9b7cff;
+.logo-name span{
+    color:#a78bfa;
 }
 
-.logo-small{
-    margin-top:2px;
-
-    color:#666879;
-
+.logo-mini{
+    margin-top:3px;
+    color:#666270;
     font-size:7px;
-
     letter-spacing:2px;
 }
 
 .nav-links{
     display:flex;
-
     align-items:center;
-
-    gap:24px;
+    gap:22px;
 }
 
 .nav-links a{
-    color:#898b9e;
-
+    color:#85808e;
     text-decoration:none;
-
-    font-size:10px;
-
-    font-weight:700;
-
+    font-size:9px;
+    font-weight:800;
     transition:.25s;
 }
 
@@ -427,12 +323,12 @@ header{
     color:white;
 }
 
-.nav-btn{
-    padding:11px 17px;
-
-    border-radius:10px;
+.nav-order{
+    padding:10px 16px;
 
     color:white !important;
+
+    border-radius:10px;
 
     background:
         linear-gradient(
@@ -440,163 +336,132 @@ header{
             #7c3aed,
             #06b6d4
         );
-
-    box-shadow:
-        0 8px 25px
-        rgba(124,58,237,.18);
 }
 
-
-/* =========================================================
+/* =========================
    HERO
-========================================================= */
+========================= */
 
 .hero{
-    position:relative;
-
     min-height:100vh;
-
     width:92%;
     max-width:1200px;
-
     margin:auto;
 
     display:flex;
-
     align-items:center;
 
     padding:
-        130px 0 80px;
+        125px 0 70px;
+
+    position:relative;
 }
 
 .hero-content{
     max-width:850px;
-
-    position:relative;
-
-    z-index:2;
 }
 
-.hero-badge{
+.eyebrow{
     display:inline-flex;
-
     align-items:center;
-
     gap:9px;
 
     padding:8px 13px;
 
+    border:1px solid rgba(168,85,247,.23);
     border-radius:50px;
 
     background:
-        rgba(139,92,246,.09);
-
-    border:
-        1px solid rgba(139,92,246,.25);
-
-    color:#b29aff;
-
-    font-size:9px;
-
-    font-weight:800;
-
-    box-shadow:
-        0 0 25px
         rgba(139,92,246,.08);
+
+    color:#b7a2ff;
+
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:1px;
 }
 
-.badge-dot{
+.live-dot{
     width:7px;
     height:7px;
-
     border-radius:50%;
-
     background:#a855f7;
-
-    box-shadow:
-        0 0 12px #a855f7;
+    box-shadow:0 0 12px #a855f7;
 }
 
 .hero h1{
-    margin-top:24px;
+    margin-top:25px;
 
     font-family:Orbitron;
 
     font-size:
-        clamp(42px,7vw,78px);
+        clamp(42px,7vw,80px);
 
-    line-height:1.04;
+    line-height:1.03;
 
-    letter-spacing:-3px;
+    letter-spacing:-4px;
 
     font-weight:900;
 }
 
-.hero h1 .gradient{
+.gradient{
     background:
         linear-gradient(
             90deg,
-            #a78bfa,
+            #c4b5fd,
+            #8b5cf6,
             #22d3ee
         );
 
     -webkit-background-clip:text;
-
     -webkit-text-fill-color:transparent;
 
     filter:
         drop-shadow(
-            0 0 25px
-            rgba(139,92,246,.18)
+            0 0 24px
+            rgba(139,92,246,.25)
         );
 }
 
-.hero-description{
+.hero p{
     max-width:650px;
+    margin-top:22px;
 
-    margin-top:23px;
+    color:#9993a2;
 
-    color:#999bab;
-
-    font-size:13px;
-
+    font-size:12px;
     line-height:1.9;
 }
 
 .hero-buttons{
     display:flex;
-
     flex-wrap:wrap;
+    gap:10px;
 
-    gap:11px;
-
-    margin-top:30px;
+    margin-top:29px;
 }
 
 .btn{
-    min-height:46px;
+    min-height:45px;
 
     padding:0 19px;
 
     display:inline-flex;
-
     align-items:center;
     justify-content:center;
-
     gap:8px;
 
     border-radius:11px;
 
     text-decoration:none;
 
-    font-size:10px;
-
+    font-size:9px;
     font-weight:900;
 
     transition:.25s;
 }
 
-.btn-primary{
+.btn-main{
     color:white;
 
     background:
@@ -607,214 +472,173 @@ header{
         );
 
     box-shadow:
-        0 12px 35px
+        0 13px 35px
         rgba(124,58,237,.22);
 }
 
-.btn-primary:hover{
-    transform:
-        translateY(-3px);
-
+.btn-main:hover{
+    transform:translateY(-3px);
     box-shadow:
-        0 16px 40px
+        0 18px 45px
         rgba(124,58,237,.35);
 }
 
-.btn-secondary{
-    color:#c8cad4;
+.btn-dark{
+    color:#d5d1db;
 
     background:
         rgba(255,255,255,.045);
 
-    border:
-        1px solid rgba(255,255,255,.10);
+    border:1px solid var(--line);
 }
 
-.btn-secondary:hover{
-    background:
-        rgba(255,255,255,.08);
-
-    transform:
-        translateY(-3px);
+.btn-dark:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,.08);
 }
 
+/* =========================
+   STORE STATUS
+========================= */
 
-/* =========================================================
-   HERO STATUS
-========================================================= */
-
-.status-card{
-    margin-top:33px;
-
+.status{
     width:max-content;
-
     max-width:100%;
+
+    margin-top:28px;
 
     padding:12px 15px;
 
     display:flex;
-
     align-items:center;
-
     gap:12px;
 
     border-radius:13px;
 
     background:
-        rgba(12,12,22,.60);
+        rgba(12,9,20,.65);
 
-    border:
-        1px solid rgba(255,255,255,.09);
+    border:1px solid var(--line);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(15px);
 }
 
-.status-indicator{
+.status-light{
     width:9px;
     height:9px;
-
     border-radius:50%;
-
-    background:#777;
-
-    transition:.3s;
 }
 
-.status-info strong{
+.status strong{
     display:block;
-
-    font-size:10px;
+    font-size:9px;
 }
 
-.status-info span{
+.status small{
     display:block;
-
     margin-top:3px;
-
-    color:#6f7180;
-
-    font-size:8px;
+    color:#716c79;
+    font-size:7px;
 }
 
-
-/* =========================================================
-   HERO STATS
-========================================================= */
+/* =========================
+   MINI STATS
+========================= */
 
 .stats{
     display:flex;
-
     flex-wrap:wrap;
+    gap:10px;
 
-    gap:12px;
-
-    margin-top:35px;
+    margin-top:27px;
 }
 
 .stat{
-    min-width:135px;
+    min-width:125px;
 
-    padding:14px 16px;
+    padding:13px 15px;
 
     border-radius:13px;
 
     background:
         rgba(255,255,255,.035);
 
-    border:
-        1px solid rgba(255,255,255,.07);
+    border:1px solid var(--line);
 }
 
-.stat strong{
+.stat b{
     display:block;
-
     font-family:Orbitron;
-
-    font-size:17px;
+    font-size:15px;
 }
 
 .stat span{
     display:block;
-
     margin-top:4px;
-
-    color:#6f7180;
-
-    font-size:8px;
+    color:#676270;
+    font-size:7px;
 }
 
-
-/* =========================================================
-   SECTION
-========================================================= */
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
     width:92%;
     max-width:1200px;
-
     margin:auto;
 
-    padding:95px 0;
+    padding:90px 0;
 }
 
-.section-heading{
+.section-head{
     text-align:center;
-
-    margin-bottom:40px;
+    margin-bottom:38px;
 }
 
-.section-heading .eyebrow{
-    color:#9b7cff;
-
+.section-head .label{
+    color:#a78bfa;
     font-family:Orbitron;
-
     font-size:8px;
-
     letter-spacing:3px;
-
-    font-weight:800;
 }
 
-.section-heading h2{
+.section-head h2{
     margin-top:10px;
 
     font-family:Orbitron;
-
     font-size:
         clamp(25px,4vw,38px);
 
     letter-spacing:-1.5px;
 }
 
-.section-heading p{
-    max-width:560px;
-
+.section-head p{
+    max-width:570px;
     margin:11px auto 0;
 
-    color:#707383;
+    color:#716d7a;
 
-    font-size:11px;
-
+    font-size:10px;
     line-height:1.8;
 }
 
+/* =========================
+   NOTICE
+========================= */
 
-/* =========================================================
-   PRICE WARNING
-========================================================= */
-
-.price-warning{
-    margin-bottom:22px;
+.notice{
+    margin-bottom:18px;
 
     padding:14px 17px;
 
     display:flex;
-
     align-items:center;
-
     gap:10px;
 
     border-radius:13px;
+
+    color:#b9a968;
 
     background:
         linear-gradient(
@@ -823,59 +647,49 @@ header{
             rgba(234,179,8,.025)
         );
 
-    border:
-        1px solid rgba(234,179,8,.15);
+    border:1px solid rgba(234,179,8,.14);
 
-    color:#b8a867;
-
-    font-size:10px;
-
+    font-size:9px;
     line-height:1.7;
 }
 
-
-/* =========================================================
-   PRODUCT GRID
-========================================================= */
+/* =========================
+   PRODUCTS
+========================= */
 
 .products{
     display:grid;
-
     grid-template-columns:
         repeat(3,1fr);
-
-    gap:17px;
+    gap:16px;
 }
 
 .product{
     position:relative;
-
-    min-height:370px;
-
-    padding:24px;
-
-    display:flex;
-
-    flex-direction:column;
-
     overflow:hidden;
 
-    border-radius:19px;
+    padding:23px;
+
+    min-height:380px;
+
+    display:flex;
+    flex-direction:column;
+
+    border-radius:20px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(25,20,42,.68),
-            rgba(10,11,19,.68)
+            rgba(26,18,42,.72),
+            rgba(9,8,16,.78)
         );
 
-    border:
-        1px solid rgba(255,255,255,.09);
+    border:1px solid var(--line);
 
     box-shadow:
-        var(--shadow);
+        0 20px 60px rgba(0,0,0,.38);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(18px);
 
     transition:
         transform .3s,
@@ -883,27 +697,13 @@ header{
         box-shadow .3s;
 }
 
-.product:hover{
-    transform:
-        translateY(-7px);
-
-    border-color:
-        rgba(139,92,246,.38);
-
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.55),
-        0 0 35px
-        rgba(124,58,237,.08);
-}
-
-.product::before{
+.product::after{
     content:"";
 
     position:absolute;
 
-    width:180px;
-    height:180px;
+    width:170px;
+    height:170px;
 
     right:-90px;
     top:-90px;
@@ -912,31 +712,45 @@ header{
 
     background:#8b5cf6;
 
-    filter:blur(75px);
+    filter:blur(80px);
 
-    opacity:.11;
+    opacity:.13;
 }
 
-.product.popular{
+.product:hover{
+    transform:translateY(-8px);
+
     border-color:
         rgba(139,92,246,.38);
 
     box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.5),
-        0 0 45px
-        rgba(139,92,246,.12);
+        0 28px 80px rgba(0,0,0,.5),
+        0 0 35px rgba(139,92,246,.08);
 }
 
-.popular-label{
+.product.featured{
+    border-color:
+        rgba(168,85,247,.42);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(38,22,64,.80),
+            rgba(10,8,18,.82)
+        );
+}
+
+.badge{
     position:absolute;
 
-    top:17px;
-    right:17px;
+    top:15px;
+    right:15px;
 
     padding:6px 9px;
 
     border-radius:7px;
+
+    color:white;
 
     background:
         linear-gradient(
@@ -946,18 +760,14 @@ header{
         );
 
     font-size:7px;
-
     font-weight:900;
-
-    letter-spacing:.5px;
 }
 
-.product-icon{
-    width:47px;
-    height:47px;
+.icon{
+    width:48px;
+    height:48px;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
@@ -966,83 +776,72 @@ header{
     background:
         linear-gradient(
             135deg,
-            rgba(124,58,237,.17),
-            rgba(6,182,212,.10)
+            rgba(139,92,246,.17),
+            rgba(34,211,238,.08)
         );
 
-    border:
-        1px solid rgba(139,92,246,.18);
+    border:1px solid rgba(168,85,247,.18);
 
-    font-size:20px;
+    font-size:19px;
 }
 
 .product h3{
-    margin-top:20px;
-
-    font-family:Orbitron;
-
-    font-size:15px;
-}
-
-.product-desc{
-    margin-top:6px;
-
-    color:#666979;
-
-    font-size:9px;
-}
-
-.product-price{
     margin-top:19px;
 
     font-family:Orbitron;
+    font-size:14px;
+}
 
+.product .desc{
+    margin-top:5px;
+
+    color:#66616f;
+    font-size:8px;
+    letter-spacing:1px;
+}
+
+.price{
+    margin-top:19px;
+
+    font-family:Orbitron;
     font-size:27px;
-
     font-weight:900;
 }
 
-.product-price small{
-    color:#646777;
-
+.price small{
+    color:#65606d;
     font-family:Inter;
-
-    font-size:9px;
-
+    font-size:8px;
     font-weight:500;
 }
 
-.product-list{
+.product ul{
     list-style:none;
 
-    margin:19px 0;
-
     flex:1;
+
+    margin:17px 0;
 }
 
-.product-list li{
+.product li{
     padding:6px 0;
 
-    color:#858797;
+    color:#85808d;
 
     font-size:9px;
 }
 
-.product-list li::before{
+.product li::before{
     content:"✦";
-
     margin-right:8px;
-
-    color:#8b5cf6;
+    color:#9b7cff;
 }
 
 .order{
     width:100%;
-
-    min-height:42px;
+    min-height:43px;
 
     border:0;
-
     border-radius:10px;
 
     color:white;
@@ -1050,12 +849,11 @@ header{
     background:
         linear-gradient(
             135deg,
-            rgba(124,58,237,.95),
-            rgba(6,182,212,.90)
+            #7c3aed,
+            #06b6d4
         );
 
     font-size:9px;
-
     font-weight:900;
 
     cursor:pointer;
@@ -1064,30 +862,23 @@ header{
 }
 
 .order:hover{
-    transform:
-        translateY(-2px);
+    transform:translateY(-2px);
 
     box-shadow:
-        0 10px 25px
-        rgba(124,58,237,.22);
+        0 12px 30px
+        rgba(124,58,237,.24);
 }
 
 .order.closed{
-    background:#20212a;
-
-    color:#686a78;
-
+    background:#211f28;
+    color:#66616d;
     cursor:not-allowed;
-
     box-shadow:none;
-
-    transform:none;
 }
 
-
-/* =========================================================
+/* =========================
    FEATURES
-========================================================= */
+========================= */
 
 .feature-grid{
     display:grid;
@@ -1099,31 +890,26 @@ header{
 }
 
 .feature{
-    position:relative;
-
-    padding:23px;
-
-    min-height:180px;
+    padding:22px;
+    min-height:185px;
 
     border-radius:17px;
 
     background:
-        rgba(15,15,25,.60);
+        rgba(14,10,23,.65);
 
-    border:
-        1px solid rgba(255,255,255,.08);
+    border:1px solid var(--line);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(15px);
 
     transition:.25s;
 }
 
 .feature:hover{
-    transform:
-        translateY(-4px);
+    transform:translateY(-5px);
 
     border-color:
-        rgba(139,92,246,.25);
+        rgba(139,92,246,.3);
 }
 
 .feature-icon{
@@ -1131,7 +917,6 @@ header{
     height:43px;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
@@ -1145,126 +930,24 @@ header{
 
 .feature h3{
     margin-top:15px;
-
-    font-size:12px;
+    font-size:11px;
 }
 
 .feature p{
     margin-top:7px;
-
-    color:#6d7080;
-
+    color:#6e6977;
     font-size:9px;
-
     line-height:1.8;
 }
 
-
-/* =========================================================
-   TESTIMONIAL
-========================================================= */
-
-.reviews{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-}
-
-.review{
-    padding:23px;
-
-    border-radius:17px;
-
-    background:
-        rgba(15,15,25,.61);
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
-    backdrop-filter:blur(12px);
-}
-
-.stars{
-    color:#fbbf24;
-
-    letter-spacing:2px;
-
-    font-size:10px;
-}
-
-.review-text{
-    margin-top:15px;
-
-    color:#858797;
-
-    font-size:10px;
-
-    line-height:1.8;
-}
-
-.customer{
-    margin-top:19px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-}
-
-.customer-avatar{
-    width:34px;
-    height:34px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #06b6d4
-        );
-
-    font-size:9px;
-
-    font-weight:900;
-}
-
-.customer strong{
-    display:block;
-
-    font-size:9px;
-}
-
-.customer span{
-    display:block;
-
-    margin-top:3px;
-
-    color:#606371;
-
-    font-size:7px;
-}
-
-
-/* =========================================================
-   HOW TO ORDER
-========================================================= */
+/* =========================
+   STEPS
+========================= */
 
 .steps{
     display:grid;
-
     grid-template-columns:
         repeat(4,1fr);
-
     gap:13px;
 }
 
@@ -1276,165 +959,121 @@ header{
     border-radius:17px;
 
     background:
-        rgba(15,15,25,.61);
+        rgba(14,10,23,.64);
 
-    border:
-        1px solid rgba(255,255,255,.08);
+    border:1px solid var(--line);
 }
 
 .step-number{
     font-family:Orbitron;
-
-    color:#9b7cff;
-
+    color:#a78bfa;
     font-size:10px;
 }
 
 .step h3{
     margin-top:14px;
-
-    font-size:12px;
+    font-size:11px;
 }
 
 .step p{
     margin-top:7px;
-
-    color:#696c7b;
-
+    color:#6d6876;
     font-size:9px;
-
-    line-height:1.75;
+    line-height:1.8;
 }
 
-
-/* =========================================================
+/* =========================
    FAQ
-========================================================= */
+========================= */
 
 .faq{
     max-width:850px;
-
     margin:auto;
 }
 
 details{
-    margin-bottom:10px;
+    margin-bottom:9px;
 
-    padding:17px 18px;
+    padding:17px;
 
     border-radius:13px;
 
     background:
-        rgba(15,15,25,.60);
+        rgba(14,10,23,.65);
 
-    border:
-        1px solid rgba(255,255,255,.08);
+    border:1px solid var(--line);
 }
 
 summary{
     cursor:pointer;
 
-    color:#dedee5;
+    color:#ded9e4;
 
-    font-size:10px;
-
+    font-size:9px;
     font-weight:800;
 }
 
 details p{
-    margin-top:11px;
+    margin-top:10px;
 
-    color:#707383;
+    color:#716c79;
 
     font-size:9px;
-
     line-height:1.8;
 }
 
-
-/* =========================================================
+/* =========================
    CTA
-========================================================= */
+========================= */
 
 .cta{
-    position:relative;
-
     width:92%;
     max-width:1200px;
 
     margin:
-        20px auto 100px;
+        20px auto 90px;
 
-    padding:65px 25px;
-
-    overflow:hidden;
+    padding:65px 22px;
 
     text-align:center;
+
+    position:relative;
+    overflow:hidden;
 
     border-radius:25px;
 
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(139,92,246,.22),
-            transparent 52%
+            rgba(139,92,246,.24),
+            transparent 55%
         ),
-        rgba(14,13,25,.75);
+        rgba(14,10,24,.76);
 
-    border:
-        1px solid rgba(139,92,246,.18);
+    border:1px solid rgba(139,92,246,.18);
 
     box-shadow:
-        var(--shadow);
-}
-
-.cta::before{
-    content:"";
-
-    position:absolute;
-
-    width:250px;
-    height:250px;
-
-    left:-100px;
-    bottom:-170px;
-
-    border-radius:50%;
-
-    background:#7c3aed;
-
-    filter:blur(100px);
-
-    opacity:.12;
+        0 30px 90px rgba(0,0,0,.45);
 }
 
 .cta h2{
-    position:relative;
-
     font-family:Orbitron;
-
     font-size:
-        clamp(24px,4vw,38px);
+        clamp(25px,4vw,39px);
 }
 
 .cta p{
-    position:relative;
+    max-width:540px;
+    margin:12px auto 24px;
 
-    max-width:530px;
-
-    margin:12px auto 25px;
-
-    color:#747687;
-
+    color:#746f7d;
     font-size:10px;
-
     line-height:1.8;
 }
 
-
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 footer{
     padding:40px 20px;
@@ -1442,107 +1081,232 @@ footer{
     text-align:center;
 
     background:
-        rgba(2,2,6,.80);
+        rgba(2,1,5,.9);
 
-    border-top:
-        1px solid rgba(255,255,255,.07);
+    border-top:1px solid var(--line);
 
-    color:#555866;
+    color:#55515d;
 
     font-size:8px;
 }
 
 .footer-logo{
     font-family:Orbitron;
-
-    color:#e4e4eb;
-
     font-size:13px;
-
     font-weight:900;
+    color:#eeeaf4;
 }
 
 .footer-logo span{
-    color:#9b7cff;
-}
-
-.footer-line{
-    margin-top:8px;
-}
-
-.by{
-    margin-top:12px;
-
-    color:#707383;
-}
-
-.by b{
     color:#a78bfa;
 }
 
+.footer-by{
+    margin-top:10px;
+}
 
-/* =========================================================
-   FLOATING WHATSAPP
-========================================================= */
+.footer-by b{
+    color:#a78bfa;
+}
+
+/* =========================
+   WHATSAPP
+========================= */
 
 .whatsapp{
     position:fixed;
 
-    right:18px;
-    bottom:18px;
+    right:17px;
+    bottom:17px;
 
-    z-index:8000;
+    z-index:7000;
 
-    width:54px;
-    height:54px;
+    width:55px;
+    height:55px;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
     border-radius:50%;
 
-    color:white;
-
     background:#25d366;
+
+    color:white;
 
     text-decoration:none;
 
     font-size:22px;
 
     box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.5);
+        0 10px 35px rgba(0,0,0,.5);
 
     animation:
-        whatsappPulse 2.2s infinite;
+        waPulse 2s infinite;
 }
 
-@keyframes whatsappPulse{
-
+@keyframes waPulse{
     0%,100%{
         box-shadow:
-            0 10px 35px
-            rgba(0,0,0,.5),
-            0 0 0 0
-            rgba(37,211,102,.25);
+            0 10px 35px rgba(0,0,0,.5),
+            0 0 0 0 rgba(37,211,102,.25);
     }
 
     50%{
         box-shadow:
-            0 10px 35px
-            rgba(0,0,0,.5),
-            0 0 0 10px
-            rgba(37,211,102,0);
+            0 10px 35px rgba(0,0,0,.5),
+            0 0 0 10px rgba(37,211,102,0);
     }
-
 }
 
+/* =========================
+   MODAL
+========================= */
 
-/* =========================================================
+.modal{
+    position:fixed;
+    inset:0;
+
+    z-index:9000;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.72);
+
+    backdrop-filter:blur(12px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:430px;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191126,
+            #090711
+        );
+
+    border:1px solid rgba(168,85,247,.25);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.65);
+
+    animation:
+        modalIn .25s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.modal-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.modal-top h3{
+    font-family:Orbitron;
+    font-size:14px;
+}
+
+.close{
+    width:30px;
+    height:30px;
+
+    border:0;
+    border-radius:9px;
+
+    color:#aaa4b2;
+
+    background:
+        rgba(255,255,255,.06);
+
+    cursor:pointer;
+}
+
+.selected{
+    margin-top:18px;
+
+    padding:15px;
+
+    border-radius:13px;
+
+    background:
+        rgba(139,92,246,.08);
+
+    border:1px solid rgba(139,92,246,.16);
+}
+
+.selected small{
+    color:#77717f;
+    font-size:7px;
+}
+
+.selected strong{
+    display:block;
+    margin-top:5px;
+    font-size:12px;
+}
+
+.modal-note{
+    margin-top:13px;
+
+    color:#706a78;
+
+    font-size:8px;
+    line-height:1.7;
+}
+
+.modal-action{
+    width:100%;
+    min-height:43px;
+
+    margin-top:18px;
+
+    border:0;
+    border-radius:10px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+    font-size:9px;
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
 @media(max-width:950px){
 
@@ -1560,44 +1324,33 @@ footer{
             repeat(2,1fr);
     }
 
-    .reviews{
-        grid-template-columns:
-            1fr;
-    }
-
     .steps{
         grid-template-columns:
             repeat(2,1fr);
     }
-
 }
-
 
 @media(max-width:600px){
 
     #bgVideo{
-        opacity:.28;
+        opacity:.23;
     }
 
     .hero{
-        min-height:100vh;
-
         padding-top:120px;
     }
 
     .hero h1{
         font-size:43px;
-
         letter-spacing:-2.5px;
     }
 
-    .hero-description{
-        font-size:11px;
+    .hero p{
+        font-size:10px;
     }
 
     .stats{
         display:grid;
-
         grid-template-columns:
             repeat(2,1fr);
     }
@@ -1606,58 +1359,40 @@ footer{
         min-width:0;
     }
 
-    .products{
-        grid-template-columns:1fr;
-    }
-
-    .feature-grid{
-        grid-template-columns:1fr;
-    }
-
+    .products,
+    .feature-grid,
     .steps{
         grid-template-columns:1fr;
     }
 
     .section{
-        padding:75px 0;
+        padding:70px 0;
     }
 
     .cta{
         padding:50px 20px;
     }
-
 }
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
 
 @media(prefers-reduced-motion:reduce){
 
     *,
     *::before,
     *::after{
-        animation:none !important;
-        transition:none !important;
+        animation:none!important;
+        transition:none!important;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =======================================================
-     LOADING SCREEN
-======================================================= -->
+<!-- LOADER -->
 
 <div id="loader">
 
-    <div class="loader-box">
+    <div class="loader-content">
 
         <div class="loader-logo">
             V
@@ -1667,20 +1402,20 @@ footer{
             VANN +FOLLOWER
         </div>
 
-        <div class="loader-text">
-            Preparing your experience...
+        <div class="loader-sub">
+            PREMIUM STORE V5
         </div>
 
-        <div class="loader-line"></div>
+        <div class="loader-bar">
+            <span></span>
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- =======================================================
-     BACKGROUND
-======================================================= -->
+<!-- BACKGROUND VIDEO -->
 
 <video
     id="bgVideo"
@@ -1697,72 +1432,61 @@ footer{
 </video>
 
 <div class="video-overlay"></div>
-
-<div class="grid-bg"></div>
+<div class="grid"></div>
 
 <canvas id="particles"></canvas>
 
 
-<!-- =======================================================
-     NAVBAR
-======================================================= -->
+<!-- NAVBAR -->
 
 <header>
 
 <nav class="nav">
 
-<a
-href="#"
-class="logo">
+<a href="#" class="logo">
 
-<div class="logo-icon">
-V
-</div>
+    <div class="logo-icon">
+        V
+    </div>
 
-<div>
+    <div>
 
-<div class="logo-text">
-Vann <span>+Follower</span>
-</div>
+        <div class="logo-name">
+            Vann <span>+Follower</span>
+        </div>
 
-<div class="logo-small">
-SOCIAL MEDIA STORE
-</div>
+        <div class="logo-mini">
+            PREMIUM SOCIAL STORE
+        </div>
 
-</div>
+    </div>
 
 </a>
 
 
 <div class="nav-links">
 
-<a href="#paket">
-Paket
-</a>
+    <a href="#paket">
+        Paket
+    </a>
 
-<a href="#fitur">
-Fitur
-</a>
+    <a href="#fitur">
+        Fitur
+    </a>
 
-<a href="#testimoni">
-Testimoni
-</a>
+    <a href="#cara">
+        Cara Order
+    </a>
 
-<a href="#cara">
-Cara Order
-</a>
+    <a href="#faq">
+        FAQ
+    </a>
 
-<a href="#faq">
-FAQ
-</a>
-
-<a
-href="#paket"
-class="nav-btn">
-
-ORDER NOW
-
-</a>
+    <a
+        href="#paket"
+        class="nav-order">
+        ORDER
+    </a>
 
 </div>
 
@@ -1771,1133 +1495,992 @@ ORDER NOW
 </header>
 
 
-<!-- =======================================================
-     HERO
-======================================================= -->
+<!-- HERO -->
 
 <section class="hero">
 
 <div class="hero-content">
 
+    <div class="eyebrow">
 
-<div class="hero-badge">
+        <span class="live-dot"></span>
 
-<span
-class="badge-dot">
-</span>
+        PREMIUM SOCIAL MEDIA STORE
 
-PREMIUM SOCIAL MEDIA STORE
-
-</div>
+    </div>
 
 
-<h1>
+    <h1>
 
-Make Your
+        Level Up Your
 
-<br>
+        <br>
 
-<span class="gradient">
-Social Presence
-</span>
+        <span class="gradient">
+            Social Presence.
+        </span>
 
-Bigger.
-
-</h1>
+    </h1>
 
 
-<p class="hero-description">
+    <p>
 
-Bangun tampilan akun yang lebih menarik dengan
-Vann +Follower. Pilih paket yang sesuai,
-lakukan order melalui WhatsApp, dan biarkan
-admin membantu proses selanjutnya.
+        Vann +Follower hadir dengan pengalaman
+        order yang simpel, cepat, dan modern.
+        Pilih paket yang kamu inginkan lalu
+        hubungi admin melalui WhatsApp.
 
-</p>
-
-
-<div class="hero-buttons">
-
-<a
-href="#paket"
-class="btn btn-primary">
-
-✦ LIHAT PAKET
-
-</a>
+    </p>
 
 
-<a
-href="https://wa.me/6285191923519"
-class="btn btn-secondary">
+    <div class="hero-buttons">
 
-◉ CHAT ADMIN
+        <a
+            href="#paket"
+            class="btn btn-main">
 
-</a>
+            ✦ EXPLORE PACKAGE
 
-</div>
-
-
-<!-- STATUS -->
-
-<div class="status-card">
-
-<div
-id="statusIndicator"
-class="status-indicator">
-</div>
-
-<div class="status-info">
-
-<strong id="statusText">
-MEMERIKSA STATUS...
-</strong>
-
-<span id="statusSub">
-Menghubungkan ke sistem toko
-</span>
-
-</div>
-
-</div>
+        </a>
 
 
-<!-- STATS -->
+        <a
+            href="https://wa.me/6285191923519"
+            class="btn btn-dark">
 
-<div class="stats">
+            ◉ CHAT ADMIN
 
-<div class="stat">
+        </a>
 
-<strong>
-50+
-</strong>
-
-<span>
-Paket Followers
-</span>
-
-</div>
+    </div>
 
 
-<div class="stat">
+    <div class="status">
 
-<strong>
-24/7
-</strong>
+        <div
+            id="statusLight"
+            class="status-light">
+        </div>
 
-<span>
-Website Online
-</span>
+        <div>
 
-</div>
+            <strong id="statusText">
+                CHECKING STORE...
+            </strong>
 
+            <small id="statusSub">
+                Mengecek jam operasional WIB
+            </small>
 
-<div class="stat">
+        </div>
 
-<strong>
-10–22
-</strong>
-
-<span>
-Jam Layanan WIB
-</span>
-
-</div>
+    </div>
 
 
-</div>
+    <div class="stats">
 
+        <div class="stat">
+
+            <b>
+                50+
+            </b>
+
+            <span>
+                Starting Followers
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <b>
+                10:00
+            </b>
+
+            <span>
+                Open WIB
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <b>
+                22:00
+            </b>
+
+            <span>
+                Close WIB
+            </span>
+
+        </div>
+
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- =======================================================
-     PACKAGES
-======================================================= -->
+<!-- PACKAGE -->
 
 <section
-class="section"
-id="paket">
+    class="section"
+    id="paket">
 
+    <div class="section-head">
 
-<div class="section-heading">
+        <div class="label">
+            PREMIUM PACKAGES
+        </div>
 
-<div class="eyebrow">
-OUR PACKAGES
-</div>
+        <h2>
+            Pick Your Package.
+        </h2>
 
-<h2>
-Choose Your Growth.
-</h2>
+        <p>
+            Paket mulai dari 50 followers.
+            Harga dapat berubah sewaktu-waktu,
+            jadi konfirmasi harga terbaru
+            kepada admin sebelum pembayaran.
+        </p>
 
-<p>
-Pilih paket followers sesuai kebutuhan kamu.
-Harga yang ditampilkan merupakan harga awal
-dan dapat berubah sewaktu-waktu.
-</p>
+    </div>
 
-</div>
 
+    <div class="notice">
 
-<div class="price-warning">
+        ⚠️
 
-⚠️
+        <span>
+            <b>Important:</b>
+            Harga dapat berubah sewaktu-waktu.
+            Pastikan cek harga terbaru melalui
+            WhatsApp admin.
+        </span>
 
-<div>
+    </div>
 
-<strong>
-Catatan harga:
-</strong>
 
-Harga dapat berubah sewaktu-waktu.
-Silakan konfirmasi harga terbaru kepada admin
-sebelum pembayaran.
+    <div class="products">
 
-</div>
 
-</div>
+        <!-- 50 -->
 
+        <div class="product">
 
-<div class="products">
+            <div class="icon">
+                👤
+            </div>
 
+            <h3>
+                50 Followers
+            </h3>
 
-<!-- PACKAGE 1 -->
+            <div class="desc">
+                STARTER
+            </div>
 
-<div class="product">
+            <div class="price">
+                Rp2.000
+                <small>
+                    / paket
+                </small>
+            </div>
 
-<div class="product-icon">
-👤
-</div>
+            <ul>
 
-<h3>
-50 Followers
-</h3>
+                <li>
+                    50 Followers
+                </li>
 
-<div class="product-desc">
-STARTER PACKAGE
-</div>
+                <li>
+                    Admin Support
+                </li>
 
-<div class="product-price">
-Rp2.000
-<small>
-/ paket
-</small>
-</div>
+                <li>
+                    Fast Order
+                </li>
 
-<ul class="product-list">
+                <li>
+                    Konfirmasi harga terbaru
+                </li>
 
-<li>
-50 Followers
-</li>
+            </ul>
 
-<li>
-Order WhatsApp
-</li>
+            <button
+                class="order"
+                data-package="50 Followers — Rp2.000">
 
-<li>
-Admin Support
-</li>
+                ORDER NOW
 
-<li>
-Harga dapat berubah
-</li>
+            </button>
 
-</ul>
+        </div>
 
-<button
-class="order"
-data-package="50 Followers — Rp2.000">
 
-ORDER NOW
+        <!-- 100 -->
 
-</button>
+        <div class="product">
 
-</div>
+            <div class="icon">
+                👥
+            </div>
 
+            <h3>
+                100 Followers
+            </h3>
 
-<!-- PACKAGE 2 -->
+            <div class="desc">
+                BASIC
+            </div>
 
-<div class="product">
+            <div class="price">
+                Rp4.000
+                <small>
+                    / paket
+                </small>
+            </div>
 
-<div class="product-icon">
-👥
-</div>
+            <ul>
 
-<h3>
-100 Followers
-</h3>
+                <li>
+                    100 Followers
+                </li>
 
-<div class="product-desc">
-BASIC PACKAGE
-</div>
+                <li>
+                    Admin Support
+                </li>
 
-<div class="product-price">
-Rp4.000
-<small>
-/ paket
-</small>
-</div>
+                <li>
+                    Fast Order
+                </li>
 
-<ul class="product-list">
+                <li>
+                    Konfirmasi harga terbaru
+                </li>
 
-<li>
-100 Followers
-</li>
+            </ul>
 
-<li>
-Order WhatsApp
-</li>
+            <button
+                class="order"
+                data-package="100 Followers — Rp4.000">
 
-<li>
-Admin Support
-</li>
+                ORDER NOW
 
-<li>
-Harga dapat berubah
-</li>
+            </button>
 
-</ul>
+        </div>
 
-<button
-class="order"
-data-package="100 Followers — Rp4.000">
 
-ORDER NOW
+        <!-- 250 -->
 
-</button>
+        <div class="product">
 
-</div>
+            <div class="icon">
+                🔥
+            </div>
 
+            <h3>
+                250 Followers
+            </h3>
 
-<!-- PACKAGE 3 -->
+            <div class="desc">
+                GROWTH
+            </div>
 
-<div class="product">
+            <div class="price">
+                Rp8.000
+                <small>
+                    / paket
+                </small>
+            </div>
 
-<div class="product-icon">
-🔥
-</div>
+            <ul>
 
-<h3>
-250 Followers
-</h3>
+                <li>
+                    250 Followers
+                </li>
 
-<div class="product-desc">
-GROWTH PACKAGE
-</div>
+                <li>
+                    Admin Support
+                </li>
 
-<div class="product-price">
-Rp8.000
-<small>
-/ paket
-</small>
-</div>
+                <li>
+                    Fast Order
+                </li>
 
-<ul class="product-list">
+                <li>
+                    Konfirmasi harga terbaru
+                </li>
 
-<li>
-250 Followers
-</li>
+            </ul>
 
-<li>
-Order WhatsApp
-</li>
+            <button
+                class="order"
+                data-package="250 Followers — Rp8.000">
 
-<li>
-Admin Support
-</li>
+                ORDER NOW
 
-<li>
-Harga dapat berubah
-</li>
+            </button>
 
-</ul>
+        </div>
 
-<button
-class="order"
-data-package="250 Followers — Rp8.000">
 
-ORDER NOW
+        <!-- 500 -->
 
-</button>
+        <div class="product featured">
 
-</div>
+            <div class="badge">
+                BEST SELLER
+            </div>
 
+            <div class="icon">
+                🚀
+            </div>
 
-<!-- PACKAGE 4 -->
+            <h3>
+                500 Followers
+            </h3>
 
-<div
-class="product popular">
+            <div class="desc">
+                POPULAR
+            </div>
 
-<div class="popular-label">
-BEST SELLER
-</div>
+            <div class="price">
+                Rp15.000
+                <small>
+                    / paket
+                </small>
+            </div>
 
-<div class="product-icon">
-🚀
-</div>
+            <ul>
 
-<h3>
-500 Followers
-</h3>
+                <li>
+                    500 Followers
+                </li>
 
-<div class="product-desc">
-POPULAR PACKAGE
-</div>
+                <li>
+                    Admin Support
+                </li>
 
-<div class="product-price">
-Rp15.000
-<small>
-/ paket
-</small>
-</div>
+                <li>
+                    Fast Order
+                </li>
 
-<ul class="product-list">
+                <li>
+                    Konfirmasi harga terbaru
+                </li>
 
-<li>
-500 Followers
-</li>
+            </ul>
 
-<li>
-Order WhatsApp
-</li>
+            <button
+                class="order"
+                data-package="500 Followers — Rp15.000">
 
-<li>
-Admin Support
-</li>
+                ORDER NOW
 
-<li>
-Harga dapat berubah
-</li>
+            </button>
 
-</ul>
+        </div>
 
-<button
-class="order"
-data-package="500 Followers — Rp15.000">
 
-ORDER NOW
+        <!-- 1000 -->
 
-</button>
+        <div class="product">
 
-</div>
+            <div class="icon">
+                💎
+            </div>
 
+            <h3>
+                1.000 Followers
+            </h3>
 
-<!-- PACKAGE 5 -->
+            <div class="desc">
+                PREMIUM
+            </div>
 
-<div class="product">
+            <div class="price">
+                Rp25.000
+                <small>
+                    / paket
+                </small>
+            </div>
 
-<div class="product-icon">
-💎
-</div>
+            <ul>
 
-<h3>
-1.000 Followers
-</h3>
+                <li>
+                    1.000 Followers
+                </li>
 
-<div class="product-desc">
-PREMIUM PACKAGE
-</div>
+                <li>
+                    Admin Support
+                </li>
 
-<div class="product-price">
-Rp25.000
-<small>
-/ paket
-</small>
-</div>
+                <li>
+                    Fast Order
+                </li>
 
-<ul class="product-list">
+                <li>
+                    Konfirmasi harga terbaru
+                </li>
 
-<li>
-1.000 Followers
-</li>
+            </ul>
 
-<li>
-Order WhatsApp
-</li>
+            <button
+                class="order"
+                data-package="1.000 Followers — Rp25.000">
 
-<li>
-Admin Support
-</li>
+                ORDER NOW
 
-<li>
-Harga dapat berubah
-</li>
+            </button>
 
-</ul>
+        </div>
 
-<button
-class="order"
-data-package="1.000 Followers — Rp25.000">
 
-ORDER NOW
+        <!-- 2500 -->
 
-</button>
+        <div class="product">
 
-</div>
+            <div class="icon">
+                👑
+            </div>
 
+            <h3>
+                2.500 Followers
+            </h3>
 
-<!-- PACKAGE 6 -->
+            <div class="desc">
+                ELITE
+            </div>
 
-<div class="product">
+            <div class="price">
+                Rp55.000
+                <small>
+                    / paket
+                </small>
+            </div>
 
-<div class="product-icon">
-👑
-</div>
+            <ul>
 
-<h3>
-2.500 Followers
-</h3>
+                <li>
+                    2.500 Followers
+                </li>
 
-<div class="product-desc">
-ELITE PACKAGE
-</div>
+                <li>
+                    Admin Support
+                </li>
 
-<div class="product-price">
-Rp55.000
-<small>
-/ paket
-</small>
-</div>
+                <li>
+                    Fast Order
+                </li>
 
-<ul class="product-list">
+                <li>
+                    Konfirmasi harga terbaru
+                </li>
 
-<li>
-2.500 Followers
-</li>
+            </ul>
 
-<li>
-Order WhatsApp
-</li>
+            <button
+                class="order"
+                data-package="2.500 Followers — Rp55.000">
 
-<li>
-Admin Support
-</li>
+                ORDER NOW
 
-<li>
-Harga dapat berubah
-</li>
+            </button>
 
-</ul>
+        </div>
 
-<button
-class="order"
-data-package="2.500 Followers — Rp55.000">
-
-ORDER NOW
-
-</button>
-
-</div>
-
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- =======================================================
-     FEATURES
-======================================================= -->
+<!-- FEATURES -->
 
 <section
-class="section"
-id="fitur">
+    class="section"
+    id="fitur">
+
+    <div class="section-head">
+
+        <div class="label">
+            WHY CHOOSE US
+        </div>
+
+        <h2>
+            Simple. Fast. Premium.
+        </h2>
+
+        <p>
+            Dibuat supaya pengalaman order
+            terasa lebih modern dan tidak ribet.
+        </p>
+
+    </div>
 
 
-<div class="section-heading">
-
-<div class="eyebrow">
-WHY VANN +FOLLOWER
-</div>
-
-<h2>
-Made For Simplicity.
-</h2>
-
-<p>
-Semua dibuat sederhana supaya kamu bisa
-langsung fokus ke kebutuhan akunmu.
-</p>
-
-</div>
+    <div class="feature-grid">
 
 
-<div class="feature-grid">
+        <div class="feature">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Quick Order
+            </h3>
+
+            <p>
+                Klik paket dan langsung
+                diarahkan ke WhatsApp admin.
+            </p>
+
+        </div>
 
 
-<div class="feature">
+        <div class="feature">
 
-<div class="feature-icon">
-⚡
-</div>
+            <div class="feature-icon">
+                🕐
+            </div>
 
-<h3>
-Fast Order
-</h3>
+            <h3>
+                Auto Schedule
+            </h3>
 
-<p>
-Pilih paket dan langsung terhubung
-ke WhatsApp admin tanpa form panjang.
-</p>
+            <p>
+                Sistem otomatis membaca
+                jam 10:00–22:00 WIB.
+            </p>
 
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">
-💬
-</div>
-
-<h3>
-Admin Support
-</h3>
-
-<p>
-Ada pertanyaan sebelum order?
-Chat admin untuk mendapatkan informasi terbaru.
-</p>
-
-</div>
+        </div>
 
 
-<div class="feature">
+        <div class="feature">
 
-<div class="feature-icon">
-🕐
-</div>
+            <div class="feature-icon">
+                ✨
+            </div>
 
-<h3>
-Jam Jelas
-</h3>
+            <h3>
+                Premium UI
+            </h3>
 
-<p>
-Layanan order aktif pukul 10:00 sampai
-22:00 WIB dan status website berubah otomatis.
-</p>
+            <p>
+                Tampilan futuristic dengan
+                glass effect, glow, dan video.
+            </p>
 
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">
-🔐
-</div>
-
-<h3>
-Privacy First
-</h3>
-
-<p>
-Jangan berikan password, OTP, atau
-kode keamanan akun kepada siapa pun.
-</p>
-
-</div>
+        </div>
 
 
-</div>
+        <div class="feature">
+
+            <div class="feature-icon">
+                🔐
+            </div>
+
+            <h3>
+                Account Safety
+            </h3>
+
+            <p>
+                Jangan pernah memberikan password,
+                OTP, atau recovery code akun.
+            </p>
+
+        </div>
+
+
+    </div>
 
 </section>
 
 
-<!-- =======================================================
-     TESTIMONIAL
-======================================================= -->
+<!-- HOW TO ORDER -->
 
 <section
-class="section"
-id="testimoni">
+    class="section"
+    id="cara">
+
+    <div class="section-head">
+
+        <div class="label">
+            HOW TO ORDER
+        </div>
+
+        <h2>
+            Order In 4 Steps.
+        </h2>
+
+    </div>
 
 
-<div class="section-heading">
-
-<div class="eyebrow">
-CUSTOMER EXPERIENCE
-</div>
-
-<h2>
-What They Say.
-</h2>
-
-<p>
-Contoh tampilan review pelanggan di V4.
-</p>
-
-</div>
+    <div class="steps">
 
 
-<div class="reviews">
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Pilih Paket
+            </h3>
+
+            <p>
+                Pilih jumlah followers
+                sesuai kebutuhan.
+            </p>
+
+        </div>
 
 
-<div class="review">
+        <div class="step">
 
-<div class="stars">
-★★★★★
-</div>
+            <div class="step-number">
+                02
+            </div>
 
-<div class="review-text">
+            <h3>
+                Klik Order
+            </h3>
 
-“Ordernya gampang banget.
-Tinggal pilih paket terus chat admin.
-Desain websitenya juga keren.”
+            <p>
+                Tekan tombol order
+                pada paket pilihan.
+            </p>
 
-</div>
-
-<div class="customer">
-
-<div class="customer-avatar">
-AR
-</div>
-
-<div>
-
-<strong>
-Ardi
-</strong>
-
-<span>
-Customer Vann
-
-</span>
-
-</div>
-
-</div>
-
-</div>
+        </div>
 
 
-<div class="review">
+        <div class="step">
 
-<div class="stars">
-★★★★★
-</div>
+            <div class="step-number">
+                03
+            </div>
 
-<div class="review-text">
+            <h3>
+                WhatsApp Admin
+            </h3>
 
-“Informasi paketnya jelas dan
-langsung bisa order lewat WhatsApp.
-Tidak ribet.”
+            <p>
+                Detail paket akan
+                otomatis masuk ke WhatsApp.
+            </p>
 
-</div>
-
-<div class="customer">
-
-<div class="customer-avatar">
-DN
-</div>
-
-<div>
-
-<strong>
-Dino
-</strong>
-
-<span>
-Customer Vann
-
-</span>
-
-</div>
-
-</div>
-
-</div>
+        </div>
 
 
-<div class="review">
+        <div class="step">
 
-<div class="stars">
-★★★★★
-</div>
+            <div class="step-number">
+                04
+            </div>
 
-<div class="review-text">
+            <h3>
+                Konfirmasi
+            </h3>
 
-“Website kelihatan premium.
-Paketnya juga gampang dicari.
-Mantap.”
+            <p>
+                Tanyakan harga terbaru
+                lalu lanjutkan order.
+            </p>
 
-</div>
-
-<div class="customer">
-
-<div class="customer-avatar">
-RA
-</div>
-
-<div>
-
-<strong>
-Raka
-</strong>
-
-<span>
-Customer Vann
-
-</span>
-
-</div>
-
-</div>
-
-</div>
+        </div>
 
 
-</div>
+    </div>
 
 </section>
 
 
-<!-- =======================================================
-     HOW TO ORDER
-======================================================= -->
+<!-- FAQ -->
 
 <section
-class="section"
-id="cara">
+    class="section"
+    id="faq">
+
+    <div class="section-head">
+
+        <div class="label">
+            FAQ
+        </div>
+
+        <h2>
+            Need To Know.
+        </h2>
+
+    </div>
 
 
-<div class="section-heading">
-
-<div class="eyebrow">
-HOW IT WORKS
-</div>
-
-<h2>
-Four Simple Steps.
-</h2>
-
-<p>
-Tidak perlu proses panjang.
-</p>
-
-</div>
+    <div class="faq">
 
 
-<div class="steps">
+        <details>
+
+            <summary>
+                Jam buka Vann +Follower?
+            </summary>
+
+            <p>
+                Jam layanan adalah 10:00 sampai
+                22:00 WIB. Status toko akan
+                berubah otomatis berdasarkan
+                waktu Asia/Jakarta.
+            </p>
+
+        </details>
 
 
-<div class="step">
+        <details>
 
-<div class="step-number">
-01
-</div>
+            <summary>
+                Apakah harga bisa berubah?
+            </summary>
 
-<h3>
-Pilih Paket
-</h3>
+            <p>
+                Bisa. Harga dapat berubah sewaktu-waktu.
+                Konfirmasi harga terbaru kepada admin
+                sebelum melakukan pembayaran.
+            </p>
 
-<p>
-Tentukan jumlah followers
-yang kamu butuhkan.
-</p>
-
-</div>
+        </details>
 
 
-<div class="step">
+        <details>
 
-<div class="step-number">
-02
-</div>
+            <summary>
+                Bagaimana cara order?
+            </summary>
 
-<h3>
-Klik Order
-</h3>
+            <p>
+                Pilih paket lalu tekan ORDER NOW.
+                Website akan membuat pesan WhatsApp
+                otomatis untuk admin.
+            </p>
 
-<p>
-Tekan tombol ORDER NOW
-pada paket pilihanmu.
-</p>
-
-</div>
+        </details>
 
 
-<div class="step">
+        <details>
 
-<div class="step-number">
-03
-</div>
+            <summary>
+                Apakah password akun diperlukan?
+            </summary>
 
-<h3>
-Chat Admin
-</h3>
+            <p>
+                Jangan memberikan password, OTP,
+                recovery code, atau kode keamanan
+                akun kepada pihak lain.
+            </p>
 
-<p>
-WhatsApp akan terbuka
-dengan pesan otomatis.
-</p>
-
-</div>
+        </details>
 
 
-<div class="step">
+        <details>
 
-<div class="step-number">
-04
-</div>
+            <summary>
+                Apa yang terjadi saat toko tutup?
+            </summary>
 
-<h3>
-Konfirmasi
-</h3>
+            <p>
+                Tombol order otomatis menjadi CLOSED
+                dan aktif kembali ketika jam layanan
+                dimulai pukul 10:00 WIB.
+            </p>
 
-<p>
-Konfirmasi harga terbaru
-dan proses order kepada admin.
-</p>
-
-</div>
+        </details>
 
 
-</div>
+    </div>
 
 </section>
 
 
-<!-- =======================================================
-     FAQ
-======================================================= -->
-
-<section
-class="section"
-id="faq">
-
-
-<div class="section-heading">
-
-<div class="eyebrow">
-FREQUENTLY ASKED
-</div>
-
-<h2>
-Questions?
-</h2>
-
-<p>
-Beberapa hal yang perlu kamu ketahui.
-</p>
-
-</div>
-
-
-<div class="faq">
-
-
-<details>
-
-<summary>
-Kapan Vann +Follower buka?
-</summary>
-
-<p>
-Jam layanan adalah 10:00 sampai 22:00 WIB.
-Website akan mengecek waktu secara otomatis.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-Apa yang terjadi ketika toko tutup?
-</summary>
-
-<p>
-Status akan berubah menjadi CLOSED dan tombol
-ORDER NOW dinonaktifkan. Tombol akan aktif
-kembali pukul 10:00 WIB.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-Apakah harga bisa berubah?
-</summary>
-
-<p>
-Ya. Harga dapat berubah sewaktu-waktu.
-Selalu konfirmasi harga terbaru kepada admin
-sebelum melakukan pembayaran.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-Bagaimana cara order?
-</summary>
-
-<p>
-Pilih paket, klik ORDER NOW, kemudian WhatsApp
-akan terbuka dengan detail paket yang kamu pilih.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-Apakah saya harus memberikan password akun?
-</summary>
-
-<p>
-Tidak. Jangan memberikan password, OTP,
-kode login, recovery code, atau informasi
-keamanan akun kepada pihak lain.
-</p>
-
-</details>
-
-
-</div>
-
-</section>
-
-
-<!-- =======================================================
-     CTA
-======================================================= -->
+<!-- CTA -->
 
 <div class="cta">
 
-<h2>
-Ready To Grow?
-</h2>
+    <h2>
+        Ready To Level Up?
+    </h2>
 
-<p>
-Pilih paket yang kamu inginkan dan mulai order
-melalui WhatsApp Vann +Follower.
-</p>
+    <p>
+        Pilih paket favoritmu dan hubungi admin
+        Vann +Follower sekarang.
+    </p>
 
-<a
-href="https://wa.me/6285191923519"
-class="btn btn-primary">
+    <a
+        href="https://wa.me/6285191923519"
+        class="btn btn-main">
 
-✦ CHAT ADMIN
+        ✦ CHAT ADMIN
 
-</a>
+    </a>
 
 </div>
 
 
-<!-- =======================================================
-     FOOTER
-======================================================= -->
+<!-- FOOTER -->
 
 <footer>
 
-<div class="footer-logo">
+    <div class="footer-logo">
+        Vann <span>+Follower</span>
+    </div>
 
-Vann <span>+Follower</span>
+    <div style="margin-top:8px;">
+        Premium Social Media Store
+    </div>
 
-</div>
+    <div style="margin-top:5px;">
+        Open 10:00 — 22:00 WIB
+    </div>
 
-<div class="footer-line">
-Premium Social Media Store
-</div>
+    <div style="margin-top:5px;">
+        Harga dapat berubah sewaktu-waktu.
+    </div>
 
-<div class="footer-line">
-Jam layanan 10:00 — 22:00 WIB
-</div>
-
-<div class="footer-line">
-Harga dapat berubah sewaktu-waktu.
-</div>
-
-<div class="by">
-Website by <b>Fahrisky</b>
-</div>
+    <div class="footer-by">
+        Website by <b>Fahrisky</b>
+    </div>
 
 </footer>
 
 
-<!-- =======================================================
-     WHATSAPP
-======================================================= -->
+<!-- WHATSAPP -->
 
 <a
-href="https://wa.me/6285191923519"
-class="whatsapp"
-aria-label="WhatsApp">
+    class="whatsapp"
+    href="https://wa.me/6285191923519"
+    aria-label="WhatsApp">
 
-☏
+    ☏
 
 </a>
 
 
+<!-- ORDER MODAL -->
+
+<div
+    id="orderModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h3>
+                CONFIRM PACKAGE
+            </h3>
+
+            <button
+                id="closeModal"
+                class="close">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="selected">
+
+            <small>
+                SELECTED PACKAGE
+            </small>
+
+            <strong id="selectedPackage">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="modal-note">
+
+            Harga yang tertera merupakan harga awal
+            dan dapat berubah sewaktu-waktu.
+            Konfirmasi harga terbaru kepada admin
+            sebelum pembayaran.
+
+        </div>
+
+
+        <button
+            id="continueOrder"
+            class="modal-action">
+
+            CONTINUE TO WHATSAPP
+
+        </button>
+
+    </div>
+
+</div>
+
+
 <script>
 
-/* =========================================================
-   CONFIGURATION
-========================================================= */
+/* ==========================================
+   CONFIG
+========================================== */
 
-const WA_NUMBER =
-"6285191923519";
+const WHATSAPP =
+    "6285191923519";
 
-const OPEN_MINUTES =
-10 * 60;
+const OPEN =
+    10 * 60;
 
-const CLOSE_MINUTES =
-22 * 60;
-
-
-/* =========================================================
-   STORE STATUS
-========================================================= */
-
-function updateStoreStatus(){
-
-    const now =
-        new Date();
+const CLOSE =
+    22 * 60;
 
 
-    /*
-       Convert browser time
-       to Asia/Jakarta
-    */
+/* ==========================================
+   STATUS TOKO
+========================================== */
 
-    const wib =
-        new Date(
-            now.toLocaleString(
-                "en-US",
-                {
-                    timeZone:
-                        "Asia/Jakarta"
-                }
-            )
-        );
+function getWIB(){
 
+    return new Date(
+        new Date().toLocaleString(
+            "en-US",
+            {
+                timeZone:
+                    "Asia/Jakarta"
+            }
+        )
+    );
 
-    const hour =
-        wib.getHours();
-
-    const minute =
-        wib.getMinutes();
+}
 
 
-    const currentMinutes =
-        hour * 60 + minute;
+function updateStore(){
+
+    const time =
+        getWIB();
+
+    const minutes =
+        time.getHours() * 60 +
+        time.getMinutes();
+
+    const isOpen =
+        minutes >= OPEN &&
+        minutes < CLOSE;
 
 
-    const open =
-        currentMinutes >= OPEN_MINUTES &&
-        currentMinutes < CLOSE_MINUTES;
-
-
-    const indicator =
+    const light =
         document.getElementById(
-            "statusIndicator"
+            "statusLight"
         );
 
     const text =
@@ -2911,16 +2494,18 @@ function updateStoreStatus(){
         );
 
 
-    /* =====================================================
-       OPEN
-    ===================================================== */
+    const buttons =
+        document.querySelectorAll(
+            ".order"
+        );
 
-    if(open){
 
-        indicator.style.background =
+    if(isOpen){
+
+        light.style.background =
             "#22c55e";
 
-        indicator.style.boxShadow =
+        light.style.boxShadow =
             "0 0 15px #22c55e";
 
         text.style.color =
@@ -2930,53 +2515,11 @@ function updateStoreStatus(){
             "STORE OPEN";
 
         sub.textContent =
-            "Order sedang tersedia • 10:00–22:00 WIB";
-
-    }
+            "Order tersedia • 10:00–22:00 WIB";
 
 
-    /* =====================================================
-       CLOSED
-    ===================================================== */
-
-    else{
-
-        indicator.style.background =
-            "#ef4444";
-
-        indicator.style.boxShadow =
-            "0 0 15px #ef4444";
-
-        text.style.color =
-            "#ff7777";
-
-        text.textContent =
-            "STORE CLOSED";
-
-        sub.textContent =
-            "Buka kembali pukul 10:00 WIB";
-
-    }
-
-
-    /* =====================================================
-       ORDER BUTTON
-    ===================================================== */
-
-    const buttons =
-        document.querySelectorAll(
-            ".order"
-        );
-
-
-    buttons.forEach(
-        button => {
-
-            const packageName =
-                button.dataset.package;
-
-
-            if(open){
+        buttons.forEach(
+            button => {
 
                 button.disabled =
                     false;
@@ -2988,37 +2531,29 @@ function updateStoreStatus(){
                 button.textContent =
                     "ORDER NOW";
 
-
-                button.onclick =
-                    function(){
-
-                        const message =
-                            "Halo Vann +Follower 👋\n\n" +
-                            "Saya ingin order:\n" +
-                            "📦 " +
-                            packageName +
-                            "\n\n" +
-                            "Mohon info harga terbaru dan proses ordernya.";
-
-                        const whatsappURL =
-                            "https://wa.me/" +
-                            WA_NUMBER +
-                            "?text=" +
-                            encodeURIComponent(
-                                message
-                            );
-
-
-                        window.open(
-                            whatsappURL,
-                            "_blank"
-                        );
-
-                    };
-
             }
+        );
 
-            else{
+    }else{
+
+        light.style.background =
+            "#ef4444";
+
+        light.style.boxShadow =
+            "0 0 15px #ef4444";
+
+        text.style.color =
+            "#ff7777";
+
+        text.textContent =
+            "STORE CLOSED";
+
+        sub.textContent =
+            "Buka kembali pukul 10:00 WIB";
+
+
+        buttons.forEach(
+            button => {
 
                 button.disabled =
                     true;
@@ -3030,20 +2565,135 @@ function updateStoreStatus(){
                 button.textContent =
                     "STORE CLOSED";
 
-                button.onclick =
-                    null;
-
             }
+        );
 
-        }
-    );
+    }
 
 }
 
 
-/* =========================================================
+/* ==========================================
+   ORDER MODAL
+========================================== */
+
+const modal =
+    document.getElementById(
+        "orderModal"
+    );
+
+const selected =
+    document.getElementById(
+        "selectedPackage"
+    );
+
+const closeModal =
+    document.getElementById(
+        "closeModal"
+    );
+
+const continueOrder =
+    document.getElementById(
+        "continueOrder"
+    );
+
+let currentPackage =
+    "";
+
+
+document.querySelectorAll(
+    ".order"
+).forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                if(button.disabled)
+                    return;
+
+
+                currentPackage =
+                    button.dataset.package;
+
+                selected.textContent =
+                    currentPackage;
+
+                modal.classList.add(
+                    "show"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+closeModal.addEventListener(
+    "click",
+    function(){
+
+        modal.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+modal.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === modal){
+
+            modal.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+continueOrder.addEventListener(
+    "click",
+    function(){
+
+        const message =
+`Halo Vann +Follower 👋
+
+Saya ingin order:
+
+📦 ${currentPackage}
+
+Mohon info harga terbaru dan proses ordernya.
+
+Terima kasih.`;
+
+        const url =
+            "https://wa.me/" +
+            WHATSAPP +
+            "?text=" +
+            encodeURIComponent(
+                message
+            );
+
+        window.open(
+            url,
+            "_blank"
+        );
+
+    }
+);
+
+
+/* ==========================================
    PARTICLES
-========================================================= */
+========================================== */
 
 const canvas =
     document.getElementById(
@@ -3055,11 +2705,10 @@ const ctx =
         "2d"
     );
 
-
 let particles = [];
 
 
-function resizeCanvas(){
+function resize(){
 
     canvas.width =
         window.innerWidth;
@@ -3072,51 +2721,49 @@ function resizeCanvas(){
 
 window.addEventListener(
     "resize",
-    resizeCanvas
+    resize
 );
 
-
-resizeCanvas();
+resize();
 
 
 function createParticles(){
 
     particles = [];
 
-
-    const count =
+    const amount =
         window.innerWidth < 600
         ? 35
-        : 70;
+        : 75;
 
 
     for(
         let i = 0;
-        i < count;
+        i < amount;
         i++
     ){
 
         particles.push({
 
             x:
-                Math.random()
-                * canvas.width,
+                Math.random() *
+                canvas.width,
 
             y:
-                Math.random()
-                * canvas.height,
+                Math.random() *
+                canvas.height,
 
             size:
-                Math.random()
-                * 1.7 + .4,
+                Math.random() *
+                1.6 + .3,
 
             speed:
-                Math.random()
-                * .25 + .08,
+                Math.random() *
+                .28 + .06,
 
-            opacity:
-                Math.random()
-                * .5 + .15
+            alpha:
+                Math.random() *
+                .5 + .1
 
         });
 
@@ -3128,7 +2775,7 @@ function createParticles(){
 createParticles();
 
 
-function animateParticles(){
+function animate(){
 
     ctx.clearRect(
         0,
@@ -3144,7 +2791,9 @@ function animateParticles(){
             p.y -= p.speed;
 
 
-            if(p.y < -10){
+            if(
+                p.y < -10
+            ){
 
                 p.y =
                     canvas.height + 10;
@@ -3162,9 +2811,8 @@ function animateParticles(){
                 Math.PI * 2
             );
 
-
             ctx.fillStyle =
-                `rgba(150,120,255,${p.opacity})`;
+                `rgba(167,139,250,${p.alpha})`;
 
             ctx.fill();
 
@@ -3173,18 +2821,18 @@ function animateParticles(){
 
 
     requestAnimationFrame(
-        animateParticles
+        animate
     );
 
 }
 
 
-animateParticles();
+animate();
 
 
-/* =========================================================
-   VIDEO AUTOPLAY
-========================================================= */
+/* ==========================================
+   VIDEO
+========================================== */
 
 const video =
     document.getElementById(
@@ -3193,44 +2841,34 @@ const video =
 
 video.muted = true;
 
-
-function startVideo(){
-
-    video.play().catch(
-        () => {}
-    );
-
-}
-
-
-window.addEventListener(
-    "load",
-    startVideo
+video.play().catch(
+    () => {}
 );
+
 
 document.addEventListener(
     "click",
-    startVideo,
+    () => {
+
+        video.play().catch(
+            () => {}
+        );
+
+    },
     {once:true}
 );
 
-document.addEventListener(
-    "touchstart",
-    startVideo,
-    {once:true}
-);
 
-
-/* =========================================================
+/* ==========================================
    LOADER
-========================================================= */
+========================================== */
 
 window.addEventListener(
     "load",
-    function(){
+    () => {
 
         setTimeout(
-            function(){
+            () => {
 
                 document
                     .getElementById(
@@ -3241,29 +2879,28 @@ window.addEventListener(
                     );
 
             },
-            900
+            850
         );
 
     }
 );
 
 
-/* =========================================================
-   INITIAL STATUS
-========================================================= */
+/* ==========================================
+   START STATUS
+========================================== */
 
-updateStoreStatus();
+updateStore();
 
 
 /*
-   Check status every 30 seconds.
-   This means the site does not need
-   to be refreshed when 10:00 / 22:00
-   is reached.
+   Cek setiap 30 detik.
+   Tidak perlu refresh ketika
+   jam toko berubah.
 */
 
 setInterval(
-    updateStoreStatus,
+    updateStore,
     30000
 );
 
