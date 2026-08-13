@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flowers Vann • Login</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,Arial,sans-serif;min-height:100vh;display:grid;place-items:center;color:#fff;background:#05070d;overflow:hidden}
+body:before{content:"";position:fixed;width:420px;height:420px;left:-120px;top:-100px;background:#695cff;filter:blur(150px);opacity:.25}
+body:after{content:"";position:fixed;width:420px;height:420px;right:-120px;bottom:-100px;background:#00d9ff;filter:blur(160px);opacity:.14}
+.box{width:min(430px,92%);padding:30px;border:1px solid #ffffff14;border-radius:25px;background:#0c1019dd;backdrop-filter:blur(22px);box-shadow:0 30px 100px #0008}
+.logo{text-align:center;font-size:25px;font-weight:900}.logo span{background:linear-gradient(90deg,#8c6cff,#00d9ff);-webkit-background-clip:text;color:transparent}
+.sub{text-align:center;color:#7f899b;font-size:12px;margin:8px 0 24px}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{flex:1;padding:12px;border:0;border-radius:10px;background:#ffffff08;color:#8992a4;font-weight:800;cursor:pointer}.tabs .active{color:#fff;background:linear-gradient(135deg,#695cff,#00bfff)}
+label{display:block;color:#929bad;font-size:11px;margin:12px 0 7px}input{width:100%;padding:14px;border-radius:11px;border:1px solid #ffffff12;background:#ffffff07;color:#fff;outline:none}input:focus{border-color:#695cff}
+button.submit{width:100%;margin-top:18px;padding:14px;border:0;border-radius:11px;color:#fff;font-weight:900;background:linear-gradient(135deg,#695cff,#00bfff);cursor:pointer}
+.msg{display:none;margin-top:12px;padding:11px;border-radius:9px;font-size:11px;line-height:1.5}.msg.show{display:block}.error{background:#ff454512;color:#ff9999}.ok{background:#00e18a12;color:#7dffc2}
+.note{text-align:center;color:#596274;font-size:10px;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">Vann <span>+Follower</span></div>
+  <div class="sub">TikTok Premium Store • Akun Member</div>
+
+  <div class="tabs">
+    <button id="lt" class="active" onclick="loginTab()">LOGIN</button>
+    <button id="rt" onclick="registerTab()">REGISTER</button>
+  </div>
+
+  <form id="loginForm">
+    <label>Email</label><input id="le" type="email" required placeholder="Email kamu">
+    <label>Password</label><input id="lp" type="password" required placeholder="Password">
+    <button class="submit" id="lb">MASUK KE STORE</button>
+  </form>
+
+  <form id="registerForm" style="display:none">
+    <label>Username</label><input id="un" required minlength="3" maxlength="30" placeholder="Username">
+    <label>Email</label><input id="re" type="email" required placeholder="Email kamu">
+    <label>Password</label><input id="rp" type="password" minlength="6" required placeholder="Minimal 6 karakter">
+    <label>Konfirmasi Password</label><input id="rc" type="password" minlength="6" required placeholder="Ulangi password">
+    <button class="submit" id="rb">BUAT AKUN & MASUK</button>
+  </form>
+
+  <div id="msg" class="msg"></div>
+  <div class="note">Akun disimpan menggunakan Supabase Auth.</div>
+</div>
+
+<script>
+const SUPABASE_URL="https://ljrcgfggpxhbsutjpgnc.supabase.co";
+const SUPABASE_KEY="sb_publishable_vN17pp8W1-SYiOSgqJrF4Q_5kHShMJW";
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const msg=document.getElementById("msg");
+function show(t,c){msg.textContent=t;msg.className="msg show "+c}
+function loginTab(){lt.classList.add("active");rt.classList.remove("active");loginForm.style.display="block";registerForm.style.display="none";msg.className="msg"}
+function registerTab(){rt.classList.add("active");lt.classList.remove("active");loginForm.style.display="none";registerForm.style.display="block";msg.className="msg"}
+
+async function goIfLogged(){
+ const {data}=await sb.auth.getSession();
+ if(data.session) location.href="store.html";
+}
+goIfLogged();
+
+loginForm.onsubmit=async e=>{
+ e.preventDefault(); lb.disabled=true; lb.textContent="LOGIN...";
+ const {error}=await sb.auth.signInWithPassword({email:le.value.trim(),password:lp.value});
+ if(error){show(error.message,"error");lb.disabled=false;lb.textContent="MASUK KE STORE";return}
+ location.href="store.html";
+};
+
+registerForm.onsubmit=async e=>{
+ e.preventDefault();
+ if(rp.value!==rc.value){show("Konfirmasi password tidak sama.","error");return}
+ rb.disabled=true;rb.textContent="MEMBUAT AKUN...";
+ const {data,error}=await sb.auth.signUp({
+   email:re.value.trim(),password:rp.value,
+   options:{data:{username:un.value.trim()}}
+ });
+ if(error){show(error.message,"error");rb.disabled=false;rb.textContent="BUAT AKUN & MASUK";return}
+ if(data.session){location.href="store.html"}
+ else{show("Akun dibuat. Jika verifikasi email aktif, cek email lalu login.","ok");rb.disabled=false;rb.textContent="BUAT AKUN & MASUK"}
+};
+</script>
+</body>
+</html>

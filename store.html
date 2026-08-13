@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vann +Follower — TikTok Premium Store</title>
+<meta name="description" content="Vann +Follower TikTok Followers Premium Store">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,Arial,sans-serif;color:#fff;background:#05070d;overflow-x:hidden}
+#bgVideo{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-20;pointer-events:none}.video-overlay{position:fixed;inset:0;background:linear-gradient(180deg,#03050aad,#03050af0);z-index:-19}
+body:before{content:"";position:fixed;width:500px;height:500px;background:#695cff;filter:blur(180px);opacity:.13;top:-200px;left:-150px;z-index:-18}body:after{content:"";position:fixed;width:450px;height:450px;background:#00d9ff;filter:blur(180px);opacity:.08;right:-150px;bottom:-150px;z-index:-18}
+.navbar{position:sticky;top:0;z-index:1000;background:#05070da8;backdrop-filter:blur(20px);border-bottom:1px solid #ffffff14}.nav-container{width:92%;max-width:1150px;height:70px;margin:auto;display:flex;align-items:center;justify-content:space-between}.logo{font-size:20px;font-weight:900}.logo span,.gradient-text{background:linear-gradient(90deg,#8c6cff,#00d9ff);-webkit-background-clip:text;color:transparent}.nav-links{display:flex;gap:25px}.nav-links a{color:#9da5b7;text-decoration:none;font-size:13px;font-weight:600}.nav-btn,.primary-btn,.buy{color:#fff;background:linear-gradient(135deg,#695cff,#00bfff);border:0}.nav-btn{padding:10px 17px;border-radius:10px;text-decoration:none;font-size:12px;font-weight:800;cursor:pointer}
+.hero{min-height:620px;display:grid;place-items:center;text-align:center;padding:90px 20px}.hero-content{max-width:850px}.status{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:50px;background:#00e18a12;border:1px solid #00e18a40;color:#72ffc2;font-size:11px;font-weight:800}.status-dot{width:8px;height:8px;border-radius:50%;background:#00e18a;box-shadow:0 0 12px #00e18a}.status.closed{color:#ff8f8f;background:#ff454512;border-color:#ff454540}.status.closed .status-dot{background:#ff4545;box-shadow:0 0 12px #ff4545}.operating-time{margin-top:12px;color:#7f8899;font-size:11px}.hero h1{margin-top:25px;font-size:clamp(45px,8vw,82px);line-height:1;letter-spacing:-4px;font-weight:900}.hero p{max-width:650px;margin:25px auto;color:#959daf;line-height:1.8;font-size:15px}.hero-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}.primary-btn,.secondary-btn{display:inline-block;padding:14px 22px;border-radius:12px;text-decoration:none;font-size:13px;font-weight:800}.secondary-btn{color:#c6ccda;background:#ffffff0b;border:1px solid #ffffff19}.stats{width:92%;max-width:900px;margin:-35px auto 70px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#ffffff14;border:1px solid #ffffff14;border-radius:18px;overflow:hidden}.stat{padding:24px;text-align:center;background:#0a0e16c7}.stat strong{display:block;font-size:25px}.stat span{display:block;margin-top:5px;color:#7e8799;font-size:11px}
+.container{width:92%;max-width:1150px;margin:auto}.section{padding:50px 0 80px}.section-heading{text-align:center;margin-bottom:40px}.section-heading small{color:#00d9ff;font-size:11px;font-weight:800;letter-spacing:2px}.section-heading h2{margin-top:10px;font-size:35px}.section-heading p{margin-top:10px;color:#858d9f;font-size:13px}.warning{max-width:850px;margin:0 auto 30px;padding:15px 20px;border-radius:14px;background:#ffb80012;border:1px solid #ffbe0033;color:#dcc77f;text-align:center;font-size:12px;line-height:1.7}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}.card{position:relative;padding:26px;border-radius:20px;background:linear-gradient(145deg,#ffffff10,#ffffff05);border:1px solid #ffffff17;transition:.3s;overflow:hidden;backdrop-filter:blur(12px)}.card:hover{transform:translateY(-7px);border-color:#695cffa6}.popular-card{border-color:#00d2ff61}.popular{position:absolute;top:16px;right:16px;padding:6px 9px;border-radius:7px;background:linear-gradient(135deg,#695cff,#00bfff);font-size:9px;font-weight:900}.product-icon{width:52px;height:52px;display:grid;place-items:center;font-size:24px;border-radius:15px;background:#ffffff0e;border:1px solid #ffffff14;margin-bottom:20px}.card h3{font-size:18px}.card-desc{color:#747e91;font-size:11px;margin-top:5px}.price{margin:18px 0 5px;font-size:28px;font-weight:900}.price-change{display:inline-block;margin-top:7px;padding:5px 9px;border-radius:7px;font-size:9px;font-weight:800;background:#ffffff0f;color:#aab2c2}.price-change.up{color:#69ffc0;background:#00e18a14}.price-change.down{color:#ff8c8c;background:#ff3c3c14}.features{list-style:none;margin:18px 0 22px}.features li{color:#969eae;font-size:12px;padding:6px 0}.features li:before{content:"✓";color:#00d99a;font-weight:900;margin-right:8px}.buy{display:block;text-align:center;padding:12px;border-radius:11px;text-decoration:none;font-size:12px;font-weight:800}.buy.closed{background:#ffffff0b;color:#777f90;pointer-events:none}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature,.step,details{padding:25px;border-radius:17px;background:#0c1019c7;border:1px solid #ffffff14;backdrop-filter:blur(12px)}.feature-icon{font-size:26px;margin-bottom:15px}.feature h3,.step h3{font-size:15px}.feature p,.step p,details p{color:#7e8799;font-size:12px;line-height:1.7;margin-top:8px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.step{padding:23px}.step-number{color:#00d9ff;font-size:11px;font-weight:900}.faq{max-width:800px;margin:auto}details{margin-bottom:10px;padding:17px}summary{cursor:pointer;font-size:13px;font-weight:700}.cta{margin:30px auto 80px;max-width:900px;padding:55px 25px;text-align:center;border-radius:25px;background:#0c1019c7;border:1px solid #ffffff17}.cta h2{font-size:30px}.cta p{color:#81899b;margin:12px auto 25px;font-size:13px}footer{border-top:1px solid #ffffff14;padding:30px 20px;text-align:center;color:#646d7e;font-size:11px;background:#03050a73}.footer-logo{color:#fff;font-weight:900;margin-bottom:7px}.whatsapp{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25d366;color:#fff;text-decoration:none;font-size:26px;z-index:2000}
+.account{position:fixed;right:20px;bottom:90px;z-index:2001;padding:9px 13px;border-radius:10px;background:#111827e8;border:1px solid #ffffff18;font-size:10px;color:#fff;cursor:pointer}
+@media(max-width:800px){.nav-links{display:none}.stats,.features-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}}@media(max-width:500px){.hero h1{letter-spacing:-2px}.steps{grid-template-columns:1fr}.section-heading h2{font-size:28px}}
+</style>
+</head>
+<body>
+
+<video id="bgVideo" autoplay muted loop playsinline preload="auto"><source src="bg.mp4" type="video/mp4"></video>
+<div class="video-overlay"></div>
+
+<nav class="navbar"><div class="nav-container">
+<div class="logo">Vann <span>+Follower</span></div>
+<div class="nav-links"><a href="#paket">Paket</a><a href="#keunggulan">Keunggulan</a><a href="#cara">Cara Order</a><a href="#faq">FAQ</a></div>
+<button class="nav-btn" onclick="logout()">Logout</button>
+</div></nav>
+
+<section class="hero"><div class="hero-content">
+<div class="status" id="storeStatus"><span class="status-dot"></span><span id="statusText">MEMERIKSA...</span></div>
+<div class="operating-time">🕐 Jam Operasional: <b>10:00 - 22:00 WIB</b></div>
+<h1>Grow Your<br><span class="gradient-text">TikTok Presence.</span></h1>
+<p>Vann +Follower menyediakan layanan TikTok Followers dengan proses order yang praktis dan mudah. Pilih paket sesuai kebutuhan kamu dan hubungi admin untuk melakukan pemesanan.</p>
+<div class="hero-buttons"><a class="primary-btn" href="#paket">🚀 Lihat Paket</a><a class="secondary-btn" href="https://wa.me/6285191923519">💬 Hubungi Admin</a></div>
+</div></section>
+
+<div class="stats"><div class="stat"><strong>TikTok</strong><span>Platform</span></div><div class="stat"><strong>10:00</strong><span>Jam Buka</span></div><div class="stat"><strong>22:00</strong><span>Jam Tutup</span></div></div>
+
+<section class="section" id="paket"><div class="container">
+<div class="section-heading"><small>TIKTOK FOLLOWERS</small><h2>Paket Followers</h2><p>Harga dapat berubah otomatis setiap hari.</p></div>
+<div class="warning">⚠️ <b>INFORMASI HARGA</b><br>Harga mengikuti sistem perubahan harian. Harga dapat naik atau turun otomatis. Silakan cek harga terbaru sebelum pembayaran.<br><span id="priceUpdateInfo"></span></div>
+<div class="products" id="products"></div>
+</div></section>
+
+<section class="section" id="keunggulan"><div class="container"><div class="section-heading"><small>WHY VANN +FOLLOWER</small><h2>Kenapa Pilih Kami?</h2></div><div class="features-grid">
+<div class="feature"><div class="feature-icon">⚡</div><h3>Proses Praktis</h3><p>Order dilakukan melalui WhatsApp sehingga mudah melakukan konfirmasi.</p></div>
+<div class="feature"><div class="feature-icon">🛡️</div><h3>Admin Support</h3><p>Admin siap membantu menjawab pertanyaan mengenai paket dan order.</p></div>
+<div class="feature"><div class="feature-icon">💎</div><h3>Harga Dinamis</h3><p>Harga dapat naik atau turun otomatis sesuai perubahan harian.</p></div>
+</div></div></section>
+
+<section class="section" id="cara"><div class="container"><div class="section-heading"><small>HOW IT WORKS</small><h2>Cara Order</h2></div><div class="steps">
+<div class="step"><div class="step-number">01</div><h3>Pilih Paket</h3><p>Pilih jumlah followers sesuai kebutuhan.</p></div>
+<div class="step"><div class="step-number">02</div><h3>Cek Harga</h3><p>Pastikan harga terbaru pada website.</p></div>
+<div class="step"><div class="step-number">03</div><h3>Klik Beli</h3><p>Klik tombol Beli Sekarang.</p></div>
+<div class="step"><div class="step-number">04</div><h3>Konfirmasi</h3><p>Lanjutkan komunikasi dengan admin.</p></div>
+</div></div></section>
+
+<section class="section" id="faq"><div class="container"><div class="section-heading"><small>FAQ</small><h2>Pertanyaan Umum</h2></div><div class="faq">
+<details><summary>Kapan toko buka?</summary><p>Toko buka setiap hari mulai 10:00 WIB sampai 22:00 WIB.</p></details>
+<details><summary>Kenapa harga bisa berubah?</summary><p>Harga dibuat dinamis dan dapat berubah naik atau turun setiap hari.</p></details>
+<details><summary>Apakah paket Rp2.000 bisa turun?</summary><p>Tidak. Paket dasar memiliki batas minimum Rp2.000.</p></details>
+<details><summary>Apakah harus memberikan password?</summary><p>Tidak. Jangan pernah memberikan password, OTP, atau kode keamanan akun.</p></details>
+</div></div></section>
+
+<div class="container"><div class="cta"><h2>Ready to Grow?</h2><p>Pilih paket TikTok Followers dan hubungi admin Vann +Follower.</p><a class="primary-btn" id="ctaButton" href="#">💬 Chat Admin Sekarang</a></div></div>
+
+<footer><div class="footer-logo">Vann +Follower</div><p>TikTok Premium Social Store • 2026</p><p style="margin-top:8px">🕐 Operasional 10:00 - 22:00 WIB</p></footer>
+<a class="account" id="accountName" onclick="logout()">Loading...</a>
+<a class="whatsapp" href="https://wa.me/6285191923519">☏</a>
+
+<script>
+const SUPABASE_URL="https://ljrcgfggpxhbsutjpgnc.supabase.co";
+const SUPABASE_KEY="sb_publishable_vN17pp8W1-SYiOSgqJrF4Q_5kHShMJW";
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const whatsappNumber="6285191923519", OPEN=600, CLOSE=1320;
+
+async function guard(){
+ const {data}=await sb.auth.getSession();
+ if(!data.session){location.href="index.html";return}
+ const u=data.session.user;
+ document.getElementById("accountName").textContent="👤 "+(u.user_metadata?.username||u.email.split("@")[0]);
+}
+async function logout(){await sb.auth.signOut();location.href="index.html"}
+
+function rupiah(n){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n)}
+function seed(){let d=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Jakarta",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());let x=Number(d.replaceAll("-",""));return ((x*9301+49297)%233280)/233280}
+function change(){let x=seed();return x<.25?1000:x<.5?2000:x<.75?-1000:-2000}
+const packages=[
+ ["50 Followers",2000,"👤","Starter Package"],
+ ["100 Followers",4000,"👥","Basic Package"],
+ ["250 Followers",8000,"🔥","Growth Package"],
+ ["500 Followers",15000,"🚀","Popular Package"],
+ ["1.000 Followers",25000,"💎","Premium Package"],
+ ["2.500 Followers",55000,"👑","Elite Package"]
+];
+function render(){
+ const ch=change(), wrap=document.getElementById("products");
+ wrap.innerHTML=packages.map((p,i)=>{
+   let price=Math.max(2000,p[1]+(p[1]===2000&&ch<0?0:ch));
+   return `<div class="card ${i===3?"popular-card":""}">
+   ${i===3?'<div class="popular">BEST SELLER</div>':''}
+   <div class="product-icon">${p[2]}</div><h3>${p[0]}</h3><div class="card-desc">${p[3]}</div>
+   <div class="price">${rupiah(price)}</div>
+   <div class="price-change ${ch>0?"up":ch<0?"down":""}">${ch>0?"↗ Hari ini +"+rupiah(ch):ch<0?"↘ Hari ini -"+rupiah(Math.abs(ch)):"Harga tetap"}</div>
+   <ul class="features"><li>${p[0]} TikTok Followers</li><li>Order mudah</li><li>Support admin</li><li>Konfirmasi melalui WhatsApp</li></ul>
+   <a class="buy" data-package="${p[0]}" data-price="${price}" href="#">Beli Sekarang →</a></div>`;
+ }).join("");
+ document.getElementById("priceUpdateInfo").textContent=ch>0?"📈 Harga naik "+rupiah(ch):ch<0?"📉 Harga turun "+rupiah(Math.abs(ch)):"Harga tetap hari ini";
+ updateStatus();
+}
+function isOpen(){
+ const s=new Date().toLocaleString("en-US",{timeZone:"Asia/Jakarta"});
+ const d=new Date(s), m=d.getHours()*60+d.getMinutes();return m>=OPEN&&m<CLOSE;
+}
+function updateStatus(){
+ const open=isOpen(), el=document.getElementById("storeStatus"), tx=document.getElementById("statusText");
+ el.classList.toggle("closed",!open);tx.textContent=open?"🟢 STORE OPEN • SIAP MELAYANI":"🔴 STORE CLOSED • BUKA 10:00 WIB";
+ document.querySelectorAll(".buy").forEach(b=>{
+   if(open){
+    b.classList.remove("closed");b.textContent="Beli Sekarang →";
+    b.href="https://wa.me/"+whatsappNumber+"?text="+encodeURIComponent("Halo Vann +Follower Store,\n\nSaya ingin order TikTok Followers.\nPaket: "+b.dataset.package+"\nHarga website hari ini: "+rupiah(Number(b.dataset.price))+"\n\nMohon konfirmasi harga dan proses order.");
+   }else{b.classList.add("closed");b.textContent="🔒 Toko Tutup";b.removeAttribute("href")}
+ });
+ const c=document.getElementById("ctaButton");
+ c.textContent=open?"💬 Chat Admin Sekarang":"🔒 Toko Tutup — Buka 10:00 WIB";
+ c.href=open?"https://wa.me/"+whatsappNumber:"";
+ c.style.opacity=open?"1":".55";
+}
+guard();render();setInterval(updateStatus,60000);
+</script>
+</body>
+</html>
