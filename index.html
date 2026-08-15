@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAHRI CLOUD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<section id="authPage" class="auth-page">
+  <div class="auth-card">
+    <div class="cloud-logo"><i class="fa-solid fa-cloud"></i></div>
+    <h1>FAHRI CLOUD</h1>
+    <p class="subtitle">Penyimpanan file online pribadi kamu</p>
+
+    <div id="loginBox">
+      <h2>Selamat Datang</h2>
+      <input id="loginEmail" type="email" placeholder="Email">
+      <input id="loginPassword" type="password" placeholder="Password">
+      <button onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      <p class="switch">Belum punya akun? <span onclick="showRegister()">Daftar</span></p>
+    </div>
+
+    <div id="registerBox" class="hidden">
+      <h2>Buat Akun</h2>
+      <input id="registerName" type="text" placeholder="Nama">
+      <input id="registerEmail" type="email" placeholder="Email">
+      <input id="registerPassword" type="password" placeholder="Password minimal 6 karakter">
+      <button onclick="register()"><i class="fa-solid fa-user-plus"></i> Daftar</button>
+      <p class="switch">Sudah punya akun? <span onclick="showLogin()">Login</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="dashboard" class="hidden">
+<header>
+  <div class="brand">
+    <div class="brand-icon"><i class="fa-solid fa-cloud"></i></div>
+    <div><b>FAHRI CLOUD</b><small>Cloud Storage</small></div>
+  </div>
+  <div class="user-area">
+    <span id="userName">User</span>
+    <button onclick="logout()" class="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+  </div>
+</header>
+
+<main>
+  <div class="welcome">
+    <div>
+      <span>Cloud Storage</span>
+      <h1>Halo, <strong id="welcomeName">User</strong> 👋</h1>
+      <p>Kelola semua file kamu di satu tempat.</p>
+    </div>
+    <label class="upload-button">
+      <i class="fa-solid fa-cloud-arrow-up"></i> Upload File
+      <input type="file" id="fileInput" multiple onchange="uploadFiles()">
+    </label>
+  </div>
+
+  <div class="storage-card">
+    <div class="storage-info">
+      <div class="storage-icon"><i class="fa-solid fa-hard-drive"></i></div>
+      <div><h3>Penyimpanan</h3><p id="storageText">0 MB digunakan</p></div>
+      <strong id="storagePercent">0%</strong>
+    </div>
+    <div class="progress"><div id="storageProgress" class="progress-bar"></div></div>
+    <small>Kapasitas tampilan: 1 GB</small>
+  </div>
+
+  <div class="tools">
+    <div class="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="searchInput" type="text" placeholder="Cari file..." oninput="renderFiles()">
+    </div>
+  </div>
+
+  <div class="files-card">
+    <div class="files-header">
+      <div><h2>File Saya</h2><p id="fileCount">0 file</p></div>
+    </div>
+    <div id="fileList"></div>
+  </div>
+</main>
+
+<footer>FAHRI CLOUD • Personal Cloud Storage</footer>
+</section>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
