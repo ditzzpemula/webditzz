@@ -7,12 +7,12 @@ import{getStorage,ref,uploadBytes,getDownloadURL,deleteObject}from"https://www.g
    MASUKKAN CONFIG FIREBASE DI SINI
    ================================ */
 const firebaseConfig={
- apiKey:"MASUKKAN_API_KEY",
- authDomain:"PROJECT-ID.firebaseapp.com",
- projectId:"PROJECT-ID",
- storageBucket:"PROJECT-ID.firebasestorage.app",
- messagingSenderId:"MESSAGING-SENDER-ID",
- appId:"APP-ID"
+ apiKey:"AIzaSyCrZM88r3c6W8IE0eyb9POfrN7OZiIN",
+ authDomain:"fahristorage-40303.firebaseapp.com",
+ projectId:"fahristorage-40303",
+ storageBucket:"fahristorage-40303.firebasestorage.app",
+ messagingSenderId:"938557970517",
+ appId:"57970517:web:bdb0de89c04a04a03f5cdc"
 };
 
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),storage=getStorage(app);
