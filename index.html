@@ -2,85 +2,940 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Flowers Vann • Login</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FAHRI STORAGE</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,Arial,sans-serif;min-height:100vh;display:grid;place-items:center;color:#fff;background:#05070d;overflow:hidden}
-body:before{content:"";position:fixed;width:420px;height:420px;left:-120px;top:-100px;background:#695cff;filter:blur(150px);opacity:.25}
-body:after{content:"";position:fixed;width:420px;height:420px;right:-120px;bottom:-100px;background:#00d9ff;filter:blur(160px);opacity:.14}
-.box{width:min(430px,92%);padding:30px;border:1px solid #ffffff14;border-radius:25px;background:#0c1019dd;backdrop-filter:blur(22px);box-shadow:0 30px 100px #0008}
-.logo{text-align:center;font-size:25px;font-weight:900}.logo span{background:linear-gradient(90deg,#8c6cff,#00d9ff);-webkit-background-clip:text;color:transparent}
-.sub{text-align:center;color:#7f899b;font-size:12px;margin:8px 0 24px}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{flex:1;padding:12px;border:0;border-radius:10px;background:#ffffff08;color:#8992a4;font-weight:800;cursor:pointer}.tabs .active{color:#fff;background:linear-gradient(135deg,#695cff,#00bfff)}
-label{display:block;color:#929bad;font-size:11px;margin:12px 0 7px}input{width:100%;padding:14px;border-radius:11px;border:1px solid #ffffff12;background:#ffffff07;color:#fff;outline:none}input:focus{border-color:#695cff}
-button.submit{width:100%;margin-top:18px;padding:14px;border:0;border-radius:11px;color:#fff;font-weight:900;background:linear-gradient(135deg,#695cff,#00bfff);cursor:pointer}
-.msg{display:none;margin-top:12px;padding:11px;border-radius:9px;font-size:11px;line-height:1.5}.msg.show{display:block}.error{background:#ff454512;color:#ff9999}.ok{background:#00e18a12;color:#7dffc2}
-.note{text-align:center;color:#596274;font-size:10px;margin-top:18px}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top left,#168cff33,transparent 35%),
+        radial-gradient(circle at bottom right,#0066ff22,transparent 35%),
+        #07111f;
+    color:white;
+}
+
+header{
+    height:75px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #ffffff12;
+    background:#07111fcc;
+    backdrop-filter:blur(20px);
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#168cff,#005eff);
+    box-shadow:0 8px 30px #168cff55;
+    font-size:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:35px auto;
+}
+
+.hero{
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:clamp(28px,5vw,46px);
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#9caec4;
+}
+
+.storage-card{
+    background:linear-gradient(145deg,#102139cc,#0a1728dd);
+    border:1px solid #ffffff12;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 20px 60px #00000030;
+    margin-bottom:25px;
+}
+
+.storage-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:18px;
+}
+
+.storage-title{
+    font-size:18px;
+    font-weight:700;
+}
+
+.storage-size{
+    color:#91a4bb;
+    font-size:13px;
+}
+
+.progress{
+    width:100%;
+    height:10px;
+    background:#ffffff0d;
+    border-radius:50px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    border-radius:50px;
+    background:linear-gradient(90deg,#168cff,#00c6ff);
+    box-shadow:0 0 20px #168cff88;
+    transition:.4s;
+}
+
+.actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.upload-btn{
+    border:0;
+    cursor:pointer;
+    padding:14px 20px;
+    border-radius:14px;
+    color:white;
+    font-weight:700;
+    background:linear-gradient(135deg,#168cff,#005eff);
+    box-shadow:0 10px 30px #168cff35;
+    transition:.25s;
+}
+
+.upload-btn:hover{
+    transform:translateY(-2px);
+}
+
+input[type=file]{
+    display:none;
+}
+
+.search{
+    flex:1;
+    min-width:220px;
+    padding:14px 17px;
+    border:1px solid #ffffff12;
+    border-radius:14px;
+    outline:none;
+    background:#ffffff08;
+    color:white;
+}
+
+.search::placeholder{
+    color:#72859c;
+}
+
+.files-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.files-header h2{
+    font-size:20px;
+}
+
+.file-count{
+    color:#7f93aa;
+    font-size:13px;
+}
+
+.file-list{
+    display:grid;
+    gap:12px;
+}
+
+.file-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:16px;
+    border-radius:18px;
+    background:#ffffff06;
+    border:1px solid #ffffff0b;
+    transition:.25s;
+}
+
+.file-item:hover{
+    background:#168cff0d;
+    border-color:#168cff30;
+}
+
+.file-icon{
+    width:48px;
+    height:48px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    background:#168cff18;
+    color:#36a2ff;
+    font-size:21px;
+}
+
+.file-info{
+    flex:1;
+    min-width:0;
+}
+
+.file-name{
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.file-meta{
+    margin-top:5px;
+    color:#758aa1;
+    font-size:12px;
+}
+
+.file-actions{
+    display:flex;
+    gap:8px;
+}
+
+.icon-btn{
+    width:40px;
+    height:40px;
+    border:1px solid #ffffff10;
+    border-radius:12px;
+    background:#ffffff08;
+    color:white;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.icon-btn:hover{
+    background:#168cff22;
+}
+
+.delete:hover{
+    background:#ff304522;
+    color:#ff6575;
+}
+
+.empty{
+    text-align:center;
+    padding:60px 20px;
+    border:1px dashed #ffffff18;
+    border-radius:20px;
+    color:#71859b;
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    padding:14px 18px;
+    background:#102139;
+    border:1px solid #ffffff12;
+    border-radius:14px;
+    box-shadow:0 15px 40px #0008;
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+    z-index:99;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#64778e;
+    font-size:12px;
+}
+
+@media(max-width:600px){
+    header{
+        padding:0 5%;
+    }
+
+    .container{
+        width:92%;
+        margin-top:25px;
+    }
+
+    .storage-card{
+        padding:18px;
+    }
+
+    .storage-top{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:7px;
+    }
+
+    .file-item{
+        padding:12px;
+    }
+
+    .file-icon{
+        width:42px;
+        height:42px;
+    }
+
+    .icon-btn{
+        width:36px;
+        height:36px;
+    }
+}
 </style>
 </head>
+
 <body>
-<div class="box">
-  <div class="logo">Vann <span>+Follower</span></div>
-  <div class="sub">TikTok Premium Store • Akun Member</div>
 
-  <div class="tabs">
-    <button id="lt" class="active" onclick="loginTab()">LOGIN</button>
-    <button id="rt" onclick="registerTab()">REGISTER</button>
-  </div>
+<header>
+    <div class="logo">
+        <div class="logo-icon">☁</div>
+        FAHRI STORAGE
+    </div>
+</header>
 
-  <form id="loginForm">
-    <label>Email</label><input id="le" type="email" required placeholder="Email kamu">
-    <label>Password</label><input id="lp" type="password" required placeholder="Password">
-    <button class="submit" id="lb">MASUK KE STORE</button>
-  </form>
+<div class="container">
 
-  <form id="registerForm" style="display:none">
-    <label>Username</label><input id="un" required minlength="3" maxlength="30" placeholder="Username">
-    <label>Email</label><input id="re" type="email" required placeholder="Email kamu">
-    <label>Password</label><input id="rp" type="password" minlength="6" required placeholder="Minimal 6 karakter">
-    <label>Konfirmasi Password</label><input id="rc" type="password" minlength="6" required placeholder="Ulangi password">
-    <button class="submit" id="rb">BUAT AKUN & MASUK</button>
-  </form>
+    <div class="hero">
+        <h1>My Storage</h1>
+        <p>Simpan dan kelola file kamu dengan mudah.</p>
+    </div>
 
-  <div id="msg" class="msg"></div>
-  <div class="note">Akun disimpan menggunakan Supabase Auth.</div>
+    <div class="storage-card">
+
+        <div class="storage-top">
+            <div>
+                <div class="storage-title">Penyimpanan Browser</div>
+                <div class="storage-size" id="storageText">
+                    0 B digunakan
+                </div>
+            </div>
+
+            <strong id="percentText">0%</strong>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+    </div>
+
+    <div class="actions">
+
+        <label class="upload-btn">
+            ＋ Upload File
+            <input type="file" id="fileInput" multiple>
+        </label>
+
+        <input
+            type="text"
+            class="search"
+            id="searchInput"
+            placeholder="🔍 Cari file..."
+        >
+
+    </div>
+
+    <div class="storage-card">
+
+        <div class="files-header">
+            <h2>File Saya</h2>
+            <div class="file-count" id="fileCount">
+                0 file
+            </div>
+        </div>
+
+        <div class="file-list" id="fileList"></div>
+
+    </div>
+
 </div>
 
+<footer>
+    FAHRI STORAGE • Personal File Manager
+</footer>
+
+<div class="toast" id="toast"></div>
+
 <script>
-const SUPABASE_URL="https://ljrcgfggpxhbsutjpgnc.supabase.co";
-const SUPABASE_KEY="sb_publishable_vN17pp8W1-SYiOSgqJrF4Q_5kHShMJW";
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-const msg=document.getElementById("msg");
-function show(t,c){msg.textContent=t;msg.className="msg show "+c}
-function loginTab(){lt.classList.add("active");rt.classList.remove("active");loginForm.style.display="block";registerForm.style.display="none";msg.className="msg"}
-function registerTab(){rt.classList.add("active");lt.classList.remove("active");loginForm.style.display="none";registerForm.style.display="block";msg.className="msg"}
+const DB_NAME = "FahriStorageDB";
+const STORE_NAME = "files";
 
-async function goIfLogged(){
- const {data}=await sb.auth.getSession();
- if(data.session) location.href="store.html";
+let db;
+
+const fileInput = document.getElementById("fileInput");
+const fileList = document.getElementById("fileList");
+const searchInput = document.getElementById("searchInput");
+const fileCount = document.getElementById("fileCount");
+const storageText = document.getElementById("storageText");
+const progressBar = document.getElementById("progressBar");
+const percentText = document.getElementById("percentText");
+const toast = document.getElementById("toast");
+
+
+/* =========================
+   DATABASE
+========================= */
+
+function openDB(){
+
+    return new Promise((resolve,reject)=>{
+
+        const request = indexedDB.open(DB_NAME,1);
+
+        request.onupgradeneeded = function(e){
+
+            const database = e.target.result;
+
+            if(!database.objectStoreNames.contains(STORE_NAME)){
+
+                database.createObjectStore(STORE_NAME,{
+                    keyPath:"id",
+                    autoIncrement:true
+                });
+
+            }
+
+        };
+
+        request.onsuccess = function(e){
+
+            db = e.target.result;
+
+            resolve(db);
+
+        };
+
+        request.onerror = function(){
+
+            reject(request.error);
+
+        };
+
+    });
+
 }
-goIfLogged();
 
-loginForm.onsubmit=async e=>{
- e.preventDefault(); lb.disabled=true; lb.textContent="LOGIN...";
- const {error}=await sb.auth.signInWithPassword({email:le.value.trim(),password:lp.value});
- if(error){show(error.message,"error");lb.disabled=false;lb.textContent="MASUK KE STORE";return}
- location.href="store.html";
-};
 
-registerForm.onsubmit=async e=>{
- e.preventDefault();
- if(rp.value!==rc.value){show("Konfirmasi password tidak sama.","error");return}
- rb.disabled=true;rb.textContent="MEMBUAT AKUN...";
- const {data,error}=await sb.auth.signUp({
-   email:re.value.trim(),password:rp.value,
-   options:{data:{username:un.value.trim()}}
- });
- if(error){show(error.message,"error");rb.disabled=false;rb.textContent="BUAT AKUN & MASUK";return}
- if(data.session){location.href="store.html"}
- else{show("Akun dibuat. Jika verifikasi email aktif, cek email lalu login.","ok");rb.disabled=false;rb.textContent="BUAT AKUN & MASUK"}
-};
+/* =========================
+   ADD FILE
+========================= */
+
+function saveFile(file){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction = db.transaction(
+            STORE_NAME,
+            "readwrite"
+        );
+
+        const store = transaction.objectStore(STORE_NAME);
+
+        const data = {
+
+            name:file.name,
+
+            type:file.type || "application/octet-stream",
+
+            size:file.size,
+
+            date:new Date().toISOString(),
+
+            file:file
+
+        };
+
+        const request = store.add(data);
+
+        request.onsuccess = ()=>resolve();
+
+        request.onerror = ()=>reject(request.error);
+
+    });
+
+}
+
+
+/* =========================
+   GET FILES
+========================= */
+
+function getFiles(){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction = db.transaction(
+            STORE_NAME,
+            "readonly"
+        );
+
+        const store = transaction.objectStore(STORE_NAME);
+
+        const request = store.getAll();
+
+        request.onsuccess = ()=>resolve(request.result);
+
+        request.onerror = ()=>reject(request.error);
+
+    });
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteFile(id){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction = db.transaction(
+            STORE_NAME,
+            "readwrite"
+        );
+
+        const store = transaction.objectStore(STORE_NAME);
+
+        const request = store.delete(id);
+
+        request.onsuccess = ()=>resolve();
+
+        request.onerror = ()=>reject(request.error);
+
+    });
+
+}
+
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+function downloadFile(data){
+
+    const url = URL.createObjectURL(data.file);
+
+    const a = document.createElement("a");
+
+    a.href = url;
+
+    a.download = data.name;
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    setTimeout(()=>{
+        URL.revokeObjectURL(url);
+    },1000);
+
+}
+
+
+/* =========================
+   FORMAT SIZE
+========================= */
+
+function formatSize(bytes){
+
+    if(bytes === 0) return "0 B";
+
+    const units = [
+        "B",
+        "KB",
+        "MB",
+        "GB"
+    ];
+
+    const i = Math.floor(
+        Math.log(bytes) / Math.log(1024)
+    );
+
+    return (
+        bytes / Math.pow(1024,i)
+    ).toFixed(i === 0 ? 0 : 2)
+    + " "
+    + units[i];
+
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+function getIcon(type){
+
+    if(type.includes("image"))
+        return "🖼️";
+
+    if(type.includes("video"))
+        return "🎬";
+
+    if(type.includes("audio"))
+        return "🎵";
+
+    if(type.includes("pdf"))
+        return "📕";
+
+    if(
+        type.includes("zip") ||
+        type.includes("rar") ||
+        type.includes("compressed")
+    )
+        return "📦";
+
+    if(
+        type.includes("text") ||
+        type.includes("document")
+    )
+        return "📄";
+
+    return "📁";
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+async function render(){
+
+    const files = await getFiles();
+
+    const search = searchInput.value
+        .toLowerCase()
+        .trim();
+
+    const filtered = files.filter(file =>
+        file.name.toLowerCase().includes(search)
+    );
+
+    fileList.innerHTML = "";
+
+    fileCount.textContent =
+        files.length + " file";
+
+    if(files.length !== 1)
+        fileCount.textContent =
+            files.length + " file";
+
+
+    if(filtered.length === 0){
+
+        fileList.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">📂</div>
+                <div>
+                    ${
+                        files.length === 0
+                        ? "Belum ada file"
+                        : "File tidak ditemukan"
+                    }
+                </div>
+            </div>
+        `;
+
+    }
+
+    filtered.forEach(data=>{
+
+        const item = document.createElement("div");
+
+        item.className = "file-item";
+
+        const date = new Date(data.date);
+
+        item.innerHTML = `
+
+            <div class="file-icon">
+                ${getIcon(data.type)}
+            </div>
+
+            <div class="file-info">
+
+                <div class="file-name">
+                    ${escapeHTML(data.name)}
+                </div>
+
+                <div class="file-meta">
+                    ${formatSize(data.size)}
+                    •
+                    ${date.toLocaleDateString("id-ID")}
+                </div>
+
+            </div>
+
+            <div class="file-actions">
+
+                <button
+                    class="icon-btn download"
+                    title="Download"
+                >
+                    ↓
+                </button>
+
+                <button
+                    class="icon-btn delete"
+                    title="Hapus"
+                >
+                    ×
+                </button>
+
+            </div>
+        `;
+
+
+        item.querySelector(".download")
+            .onclick = ()=>{
+                downloadFile(data);
+            };
+
+
+        item.querySelector(".delete")
+            .onclick = async ()=>{
+
+                const yakin = confirm(
+                    `Hapus "${data.name}"?`
+                );
+
+                if(!yakin) return;
+
+                await deleteFile(data.id);
+
+                showToast("File berhasil dihapus");
+
+                render();
+
+            };
+
+
+        fileList.appendChild(item);
+
+    });
+
+
+    updateStorage(files);
+
+}
+
+
+/* =========================
+   STORAGE INFO
+========================= */
+
+function updateStorage(files){
+
+    let total = 0;
+
+    files.forEach(file=>{
+        total += file.size;
+    });
+
+    /*
+       Batas tampilan 500 MB.
+       IndexedDB sebenarnya tidak memiliki
+       batas tetap 500 MB; ini hanya indikator UI.
+    */
+
+    const maxStorage =
+        500 * 1024 * 1024;
+
+    let percent =
+        (total / maxStorage) * 100;
+
+    if(percent > 100)
+        percent = 100;
+
+    progressBar.style.width =
+        percent + "%";
+
+    percentText.textContent =
+        Math.round(percent) + "%";
+
+    storageText.textContent =
+        formatSize(total)
+        + " digunakan";
+
+}
+
+
+/* =========================
+   UPLOAD
+========================= */
+
+fileInput.addEventListener(
+    "change",
+    async function(){
+
+        const files = [...this.files];
+
+        if(files.length === 0)
+            return;
+
+        showToast("Mengupload file...");
+
+        try{
+
+            for(const file of files){
+
+                await saveFile(file);
+
+            }
+
+            showToast(
+                files.length +
+                " file berhasil disimpan"
+            );
+
+            render();
+
+        }catch(error){
+
+            console.error(error);
+
+            showToast(
+                "Gagal menyimpan file"
+            );
+
+        }
+
+        this.value = "";
+
+    }
+);
+
+
+/* =========================
+   SEARCH
+========================= */
+
+searchInput.addEventListener(
+    "input",
+    render
+);
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text){
+
+    return text
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+(async function(){
+
+    try{
+
+        await openDB();
+
+        await render();
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Browser tidak mendukung storage"
+        );
+
+    }
+
+})();
+
 </script>
+
 </body>
 </html>
