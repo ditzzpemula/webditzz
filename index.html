@@ -2,84 +2,1141 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VEXLIY AI — Your Intelligent AI Assistant</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="stars"></div>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<header class="navbar">
-  <a class="brand" href="#"><span class="brand-icon">V</span><span>VEXLIY <b>AI</b></span></a>
-  <nav>
-    <a class="active" href="#home">Home</a><a href="#chat">Chat AI</a><a href="#features">Features</a>
-    <a href="#pricing">Pricing</a><a href="#docs">Docs</a><a href="#about">About</a>
-  </nav>
-  <div class="nav-actions"><button class="theme" id="themeBtn">☾</button><button class="login">Login</button><button class="primary small">Get Started</button></div>
+<title>PKL Report Generator - SMK</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#0f172a;
+}
+
+header{
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+    color:white;
+    padding:30px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+header p{
+    opacity:.9;
+}
+
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.card h2{
+    margin-bottom:20px;
+    color:#2563eb;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.input-group label{
+    font-weight:bold;
+    font-size:14px;
+}
+
+input, textarea, select{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    outline:none;
+    font-size:14px;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#2563eb;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+button{
+    border:0;
+    padding:13px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    margin:5px;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-dark{
+    background:#0f172a;
+    color:white;
+}
+
+button:hover{
+    opacity:.85;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #cbd5e1;
+    padding:10px;
+    text-align:left;
+    font-size:13px;
+}
+
+th{
+    background:#eff6ff;
+}
+
+.report{
+    background:white;
+    padding:50px;
+    line-height:1.7;
+    min-height:500px;
+}
+
+.report h1,
+.report h2,
+.report h3{
+    text-align:center;
+}
+
+.report h1{
+    font-size:24px;
+    margin-bottom:25px;
+}
+
+.report h2{
+    font-size:20px;
+    margin:35px 0 20px;
+}
+
+.report h3{
+    font-size:17px;
+    margin:20px 0 10px;
+}
+
+.cover{
+    min-height:750px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.cover h1{
+    font-size:28px;
+}
+
+.cover .school{
+    font-size:22px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.info-table{
+    width:80%;
+    margin:20px auto;
+}
+
+.info-table td{
+    border:0;
+    padding:5px;
+}
+
+.signature{
+    display:flex;
+    justify-content:space-around;
+    margin-top:80px;
+    text-align:center;
+}
+
+.signature div{
+    width:220px;
+}
+
+.hidden{
+    display:none;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#64748b;
+}
+
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .report{
+        padding:25px 18px;
+    }
+
+    .signature{
+        flex-direction:column;
+        align-items:center;
+        gap:50px;
+    }
+
+    .info-table{
+        width:100%;
+    }
+
+    table{
+        font-size:11px;
+    }
+}
+
+@media print{
+    body{
+        background:white;
+    }
+
+    header,
+    .form-section,
+    .actions,
+    .no-print{
+        display:none !important;
+    }
+
+    .container{
+        margin:0;
+        max-width:none;
+        padding:0;
+    }
+
+    .card{
+        box-shadow:none;
+        padding:0;
+    }
+
+    .report{
+        padding:20mm;
+    }
+
+    .page-break{
+        page-break-before:always;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📘 PKL REPORT GENERATOR</h1>
+    <p>Pembuat Laporan PKL SMK Otomatis</p>
 </header>
 
-<main id="home">
-<section class="hero">
-  <div class="hero-copy">
-    <div class="pill">✦ &nbsp; Next-Gen AI Experience</div>
-    <h1>VEXLIY <span>AI</span></h1>
-    <h2>Your Intelligent <em>AI Assistant</em></h2>
-    <p>VEXLIY AI adalah asisten cerdas generasi baru yang siap membantu kamu dalam belajar, bekerja, brainstorming, koding, menulis, dan banyak lagi.</p>
-    <div class="hero-buttons"><button class="primary" onclick="scrollToChat()">✦ &nbsp; Mulai Chat Sekarang</button><button class="ghost" onclick="scrollToChat()">▷ &nbsp; Pelajari Lebih Lanjut</button></div>
-    <div class="benefits">
-      <div><strong>🤖</strong><b>AI Canggih</b><small>Respons cepat & akurat</small></div>
-      <div><strong>♙</strong><b>Privasi Terjamin</b><small>Data aman & terenkripsi</small></div>
-      <div><strong>ϟ</strong><b>24/7 Online</b><small>Siap membantu kapan saja</small></div>
-    </div>
-  </div>
-  <div class="hero-art">
-    <div class="orb"></div>
-    <div class="ai-character">
-      <div class="hair"></div><div class="face"><div class="eye e1"></div><div class="eye e2"></div><div class="visor">V</div></div>
-      <div class="body"></div>
-      <div class="headphones"><i>V</i></div>
-    </div>
-    <div class="float-card c1"><b>Halo! 👋</b><br><span>Ada yang bisa<br>VEXLIY bantu hari ini?</span></div>
-    <div class="float-card c2"><b>◈ &nbsp; Powered by</b><br><span>Advanced AI<br>Technology</span></div>
-    <div class="float-card c3"><b>Analyzing...</b><div class="progress"><i></i></div><small>100%</small></div>
-  </div>
+<div class="container">
+
+<section class="card form-section">
+
+<h2>👨‍🎓 Data Siswa</h2>
+
+<div class="grid">
+
+<div class="input-group">
+<label>Nama Lengkap</label>
+<input id="nama" placeholder="Contoh: Muhammad Fahri">
+</div>
+
+<div class="input-group">
+<label>NIS / NISN</label>
+<input id="nis" placeholder="Contoh: 123456789">
+</div>
+
+<div class="input-group">
+<label>Kelas</label>
+<input id="kelas" placeholder="Contoh: XII TPTU 1">
+</div>
+
+<div class="input-group">
+<label>Jurusan</label>
+<input id="jurusan" placeholder="Contoh: Teknik Pendinginan dan Tata Udara">
+</div>
+
+<div class="input-group">
+<label>Nama Sekolah</label>
+<input id="sekolah" placeholder="Contoh: SMK Negeri 2 ...">
+</div>
+
+<div class="input-group">
+<label>Kota</label>
+<input id="kota" placeholder="Contoh: Indramayu">
+</div>
+
+</div>
+
 </section>
 
-<section class="chat-shell" id="chat">
-  <aside class="sidebar">
-    <div class="side-brand"><span class="brand-icon">V</span> VEXLIY AI</div>
-    <button class="newchat" onclick="newChat()">＋ &nbsp; New Chat</button>
-    <div class="menu"><a class="sel">▣ &nbsp; Chat</a><a>◷ &nbsp; Riwayat</a><a>☆ &nbsp; Favorit</a><a>⚙ &nbsp; Pengaturan</a></div>
-    <div class="history"><label>RIWAYAT CHAT</label><a>Cara kerja AI <time>14:32</time></a><a>Bantu membuat website <time>Kemarin</time></a><a>Jelaskan tentang ruang angkasa <time>2 hari lalu</time></a><a>Tips belajar efektif <time>3 hari lalu</time></a><a>Buatkan ide konten YouTube <time>3 hari lalu</time></a><a class="see">Lihat semua</a></div>
-    <div class="upgrade"><b>Upgrade to VEXLIY Pro</b><p>Dapatkan akses ke model AI tercanggih & fitur premium.</p><button>Upgrade Sekarang</button></div>
-    <div class="user"><div class="avatar">F</div><div><b>Fahri Aditya</b><small>Free user</small></div><span>⋮</span></div>
-  </aside>
-  <section class="chat">
-    <div class="chat-head"><div class="bot-avatar">V</div><div><b>VEXLIY AI</b><small><i></i> Online • Siap membantu</small></div><div class="chat-tools">☆ &nbsp; ↗ &nbsp; ⋮</div></div>
-    <div class="messages" id="messages">
-      <div class="msg ai"><div class="bot-avatar">V</div><div class="bubble">Halo! 👋<br>Saya VEXLIY AI, asisten cerdas siap membantu kamu.<br>Tanyakan apa saja yang ingin kamu ketahui!<small>14:30</small></div></div>
-      <div class="msg user"><div class="bubble">Buatkan ide bisnis online untuk pemula dengan modal kecil<small>14:31 ✓✓</small></div></div>
-      <div class="msg ai"><div class="bot-avatar">V</div><div class="bubble"><b>Tentu! Berikut beberapa ide bisnis online untuk pemula dengan modal kecil:</b><br><br>
-        <b>1. Dropshipping</b><br>Menjual produk tanpa perlu stok barang. Cukup promosikan dan supplier yang akan mengirim ke pelanggan.<br><br>
-        <b>2. Jasa Desain Grafis</b><br>Tawarkan jasa desain logo, banner, atau konten media sosial.<br><br>
-        <b>3. Affiliate Marketing</b><br>Promosikan produk orang lain dan dapatkan komisi dari setiap penjualan.<br><br>
-        <b>4. Jualan Produk Digital</b><br>Seperti e-book, template, preset, atau kursus online.<br><br>
-        <b>5. Reseller Produk</b><br>Menjual kembali produk dengan harga lebih tinggi.<br><br>Semua bisa dimulai dari rumah dan cocok untuk pemula. 🚀
-        <div class="bubble-actions">▢ &nbsp; ♡ &nbsp; ♧ &nbsp; ♡</div><small>14:31</small></div></div>
+
+<section class="card form-section">
+
+<h2>🏢 Data Tempat PKL</h2>
+
+<div class="grid">
+
+<div class="input-group">
+<label>Nama Perusahaan / Bengkel</label>
+<input id="perusahaan" placeholder="Nama tempat PKL">
+</div>
+
+<div class="input-group">
+<label>Alamat Tempat PKL</label>
+<input id="alamat" placeholder="Alamat lengkap">
+</div>
+
+<div class="input-group">
+<label>Pembimbing Sekolah</label>
+<input id="pembimbingSekolah">
+</div>
+
+<div class="input-group">
+<label>Pembimbing Industri</label>
+<input id="pembimbingIndustri">
+</div>
+
+<div class="input-group">
+<label>Tanggal Mulai</label>
+<input type="date" id="mulai">
+</div>
+
+<div class="input-group">
+<label>Tanggal Selesai</label>
+<input type="date" id="selesai">
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card form-section">
+
+<h2>📚 Data Laporan</h2>
+
+<div class="grid">
+
+<div class="input-group full">
+<label>Judul Laporan</label>
+<input id="judul"
+value="LAPORAN PRAKTIK KERJA LAPANGAN">
+</div>
+
+<div class="input-group full">
+<label>Deskripsi Singkat Kegiatan PKL</label>
+<textarea id="deskripsi"
+placeholder="Jelaskan secara singkat kegiatan yang dilakukan selama PKL..."></textarea>
+</div>
+
+<div class="input-group full">
+<label>Profil Perusahaan</label>
+<textarea id="profil"
+placeholder="Tuliskan profil singkat perusahaan/tempat PKL..."></textarea>
+</div>
+
+<div class="input-group full">
+<label>Kesimpulan</label>
+<textarea id="kesimpulan"
+placeholder="Tuliskan kesimpulan dari kegiatan PKL..."></textarea>
+</div>
+
+<div class="input-group full">
+<label>Saran</label>
+<textarea id="saran"
+placeholder="Tuliskan saran untuk sekolah dan tempat PKL..."></textarea>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card form-section">
+
+<h2>📅 Jurnal Kegiatan PKL</h2>
+
+<div class="grid">
+
+<div class="input-group">
+<label>Tanggal</label>
+<input type="date" id="tglKegiatan">
+</div>
+
+<div class="input-group">
+<label>Kegiatan</label>
+<input id="kegiatan" placeholder="Contoh: Membersihkan AC Split">
+</div>
+
+<div class="input-group full">
+<label>Hasil / Keterangan</label>
+<input id="hasil" placeholder="Contoh: AC berhasil dibersihkan">
+</div>
+
+</div>
+
+<button class="btn-primary" onclick="tambahKegiatan()">
++ Tambah Kegiatan
+</button>
+
+<div id="tabelKegiatan"></div>
+
+</section>
+
+
+<section class="card form-section">
+
+<div class="actions">
+
+<button class="btn-success" onclick="buatLaporan()">
+🚀 Buat Laporan Otomatis
+</button>
+
+<button class="btn-dark" onclick="window.print()">
+🖨️ Cetak / PDF
+</button>
+
+<button class="btn-danger" onclick="hapusData()">
+🗑️ Reset
+</button>
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+<div id="laporan" class="report">
+
+<div class="empty">
+    <h2>📄 Preview Laporan</h2>
+    <p>Isi data di atas lalu tekan <b>Buat Laporan Otomatis</b>.</p>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+let kegiatanList =
+JSON.parse(localStorage.getItem("kegiatanPKL") || "[]");
+
+
+function $(id){
+    return document.getElementById(id);
+}
+
+
+function escapeHTML(text){
+    return String(text || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function tambahKegiatan(){
+
+    const tanggal = $("tglKegiatan").value;
+    const kegiatan = $("kegiatan").value.trim();
+    const hasil = $("hasil").value.trim();
+
+    if(!tanggal || !kegiatan){
+        alert("Tanggal dan kegiatan wajib diisi.");
+        return;
+    }
+
+    kegiatanList.push({
+        tanggal,
+        kegiatan,
+        hasil
+    });
+
+    localStorage.setItem(
+        "kegiatanPKL",
+        JSON.stringify(kegiatanList)
+    );
+
+    $("tglKegiatan").value="";
+    $("kegiatan").value="";
+    $("hasil").value="";
+
+    tampilkanKegiatan();
+}
+
+
+function hapusKegiatan(index){
+
+    if(confirm("Hapus kegiatan ini?")){
+
+        kegiatanList.splice(index,1);
+
+        localStorage.setItem(
+            "kegiatanPKL",
+            JSON.stringify(kegiatanList)
+        );
+
+        tampilkanKegiatan();
+    }
+}
+
+
+function formatTanggal(tanggal){
+
+    if(!tanggal) return "-";
+
+    const d = new Date(tanggal);
+
+    return d.toLocaleDateString("id-ID",{
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
+    });
+}
+
+
+function tampilkanKegiatan(){
+
+    const area = $("tabelKegiatan");
+
+    if(kegiatanList.length === 0){
+
+        area.innerHTML = `
+        <div class="empty">
+        Belum ada kegiatan.
+        </div>
+        `;
+
+        return;
+    }
+
+    let html = `
+    <table>
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Tanggal</th>
+        <th>Kegiatan</th>
+        <th>Hasil</th>
+        <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+    `;
+
+    kegiatanList.forEach((item,index)=>{
+
+        html += `
+        <tr>
+            <td>${index+1}</td>
+            <td>${escapeHTML(formatTanggal(item.tanggal))}</td>
+            <td>${escapeHTML(item.kegiatan)}</td>
+            <td>${escapeHTML(item.hasil)}</td>
+            <td>
+                <button
+                class="btn-danger"
+                onclick="hapusKegiatan(${index})">
+                Hapus
+                </button>
+            </td>
+        </tr>
+        `;
+    });
+
+    html += `
+    </tbody>
+    </table>
+    `;
+
+    area.innerHTML = html;
+}
+
+
+function ambilData(){
+
+    return {
+
+        nama:$("nama").value,
+        nis:$("nis").value,
+        kelas:$("kelas").value,
+        jurusan:$("jurusan").value,
+        sekolah:$("sekolah").value,
+        kota:$("kota").value,
+
+        perusahaan:$("perusahaan").value,
+        alamat:$("alamat").value,
+        pembimbingSekolah:$("pembimbingSekolah").value,
+        pembimbingIndustri:$("pembimbingIndustri").value,
+
+        mulai:$("mulai").value,
+        selesai:$("selesai").value,
+
+        judul:$("judul").value,
+        deskripsi:$("deskripsi").value,
+        profil:$("profil").value,
+        kesimpulan:$("kesimpulan").value,
+        saran:$("saran").value
+    };
+}
+
+
+function simpanData(){
+
+    const data = ambilData();
+
+    localStorage.setItem(
+        "dataPKL",
+        JSON.stringify(data)
+    );
+}
+
+
+function muatData(){
+
+    const data =
+    JSON.parse(localStorage.getItem("dataPKL") || "null");
+
+    if(!data) return;
+
+    Object.keys(data).forEach(key=>{
+
+        if($(key)){
+            $(key).value = data[key];
+        }
+
+    });
+}
+
+
+function buatLaporan(){
+
+    const d = ambilData();
+
+    if(!d.nama || !d.sekolah || !d.perusahaan){
+
+        alert(
+        "Minimal isi Nama, Sekolah, dan Tempat PKL."
+        );
+
+        return;
+    }
+
+    simpanData();
+
+    let jurnal = "";
+
+    kegiatanList.forEach((item,index)=>{
+
+        jurnal += `
+        <tr>
+            <td>${index+1}</td>
+            <td>${escapeHTML(formatTanggal(item.tanggal))}</td>
+            <td>${escapeHTML(item.kegiatan)}</td>
+            <td>${escapeHTML(item.hasil)}</td>
+        </tr>
+        `;
+    });
+
+
+    const laporan = `
+
+    <div class="cover">
+
+        <h1>${escapeHTML(d.judul)}</h1>
+
+        <p><b>PROGRAM KEAHLIAN</b></p>
+
+        <p class="school">
+        ${escapeHTML(d.jurusan)}
+        </p>
+
+        <br>
+
+        <p>Disusun oleh:</p>
+
+        <h2>
+        ${escapeHTML(d.nama)}
+        </h2>
+
+        <p>NIS/NISN: ${escapeHTML(d.nis)}</p>
+
+        <br><br>
+
+        <p class="school">
+        ${escapeHTML(d.sekolah)}
+        </p>
+
+        <p>
+        ${escapeHTML(d.kota)}
+        </p>
+
+        <p>
+        ${formatTanggal(d.mulai)}
+        -
+        ${formatTanggal(d.selesai)}
+        </p>
+
     </div>
-    <div class="composer"><button>＋</button><button>⌕</button><button>☻ &nbsp; Cari</button><input id="input" placeholder="Ketik pesan kamu di sini..." onkeydown="if(event.key==='Enter')sendMessage()"><button class="send" onclick="sendMessage()">➤</button></div>
-  </section>
-</section>
 
-<section class="stats" id="features">
-  <div><strong>🤖<br>50K+</strong><span>Pengguna Aktif</span></div><div><strong>▣<br>1M+</strong><span>Chat Terkirim</span></div><div><strong>ϟ<br>99.9%</strong><span>Uptime</span></div><div><strong>◉<br>100+</strong><span>Negara</span></div><div><strong>♙<br>100%</strong><span>Privasi Aman</span></div>
-</section>
-</main>
 
-<footer id="about"><a class="brand"><span class="brand-icon">V</span> VEXLIY <b>AI</b></a><span>© 2026 VEXLIY AI. All rights reserved.</span><div><a>Privacy Policy</a><a>Terms of Service</a><a>Contact</a></div></footer>
-<script src="script.js"></script>
+    <div class="page-break"></div>
+
+    <h2>LEMBAR PENGESAHAN</h2>
+
+    <p>
+    Laporan Praktik Kerja Lapangan ini telah diperiksa
+    dan disahkan sebagai salah satu bukti pelaksanaan
+    kegiatan Praktik Kerja Lapangan.
+    </p>
+
+    <table class="info-table">
+
+    <tr>
+        <td>Nama</td>
+        <td>: ${escapeHTML(d.nama)}</td>
+    </tr>
+
+    <tr>
+        <td>NIS/NISN</td>
+        <td>: ${escapeHTML(d.nis)}</td>
+    </tr>
+
+    <tr>
+        <td>Kelas</td>
+        <td>: ${escapeHTML(d.kelas)}</td>
+    </tr>
+
+    <tr>
+        <td>Jurusan</td>
+        <td>: ${escapeHTML(d.jurusan)}</td>
+    </tr>
+
+    <tr>
+        <td>Tempat PKL</td>
+        <td>: ${escapeHTML(d.perusahaan)}</td>
+    </tr>
+
+    </table>
+
+
+    <div class="signature">
+
+        <div>
+            Mengetahui,<br>
+            Pembimbing Industri
+            <br><br><br><br>
+            <b>${escapeHTML(d.pembimbingIndustri)}</b>
+        </div>
+
+        <div>
+            Mengetahui,<br>
+            Pembimbing Sekolah
+            <br><br><br><br>
+            <b>${escapeHTML(d.pembimbingSekolah)}</b>
+        </div>
+
+    </div>
+
+
+    <div class="page-break"></div>
+
+    <h2>KATA PENGANTAR</h2>
+
+    <p>
+    Puji syukur kehadirat Tuhan Yang Maha Esa atas rahmat
+    dan karunia-Nya sehingga penulis dapat menyelesaikan
+    laporan Praktik Kerja Lapangan ini dengan baik.
+    </p>
+
+    <p>
+    Laporan ini disusun sebagai bentuk dokumentasi dan
+    pertanggungjawaban atas pelaksanaan Praktik Kerja
+    Lapangan yang dilaksanakan di
+    <b>${escapeHTML(d.perusahaan)}</b>.
+    </p>
+
+    <p>
+    Selama kegiatan PKL, penulis memperoleh berbagai
+    pengalaman dan pengetahuan yang berkaitan dengan
+    bidang keahlian ${escapeHTML(d.jurusan)}.
+    </p>
+
+    <p>
+    Penulis mengucapkan terima kasih kepada semua pihak
+    yang telah memberikan bimbingan dan dukungan selama
+    pelaksanaan kegiatan PKL.
+    </p>
+
+
+    <div class="page-break"></div>
+
+    <h2>DAFTAR ISI</h2>
+
+    <p>LEMBAR PENGESAHAN</p>
+    <p>KATA PENGANTAR</p>
+    <p>BAB I PENDAHULUAN</p>
+    <p>BAB II GAMBARAN UMUM TEMPAT PKL</p>
+    <p>BAB III PELAKSANAAN PKL</p>
+    <p>BAB IV HASIL DAN PEMBAHASAN</p>
+    <p>BAB V PENUTUP</p>
+    <p>JURNAL KEGIATAN PKL</p>
+
+
+    <div class="page-break"></div>
+
+    <h2>BAB I<br>PENDAHULUAN</h2>
+
+    <h3>1.1 Latar Belakang</h3>
+
+    <p>
+    Praktik Kerja Lapangan merupakan kegiatan pembelajaran
+    yang memberikan kesempatan kepada peserta didik untuk
+    memperoleh pengalaman langsung di dunia kerja.
+    </p>
+
+    <p>
+    Kegiatan PKL juga bertujuan untuk meningkatkan
+    keterampilan, kedisiplinan, tanggung jawab, serta
+    kemampuan peserta didik dalam menerapkan ilmu yang
+    diperoleh di sekolah.
+    </p>
+
+    <p>
+    ${escapeHTML(d.deskripsi)}
+    </p>
+
+
+    <h3>1.2 Tujuan PKL</h3>
+
+    <p>
+    Tujuan pelaksanaan Praktik Kerja Lapangan antara lain:
+    </p>
+
+    <ol>
+        <li>Meningkatkan keterampilan peserta didik.</li>
+        <li>Mengenal lingkungan dunia kerja.</li>
+        <li>Menerapkan ilmu yang telah dipelajari di sekolah.</li>
+        <li>Meningkatkan sikap disiplin dan tanggung jawab.</li>
+        <li>Menambah pengalaman kerja secara langsung.</li>
+    </ol>
+
+
+    <h3>1.3 Manfaat PKL</h3>
+
+    <p>
+    Pelaksanaan PKL memberikan manfaat bagi peserta didik,
+    sekolah, maupun dunia industri. Peserta didik dapat
+    memperoleh pengalaman nyata dan memahami prosedur kerja
+    yang berlaku di dunia industri.
+    </p>
+
+
+    <div class="page-break"></div>
+
+    <h2>BAB II<br>GAMBARAN UMUM TEMPAT PKL</h2>
+
+    <h3>2.1 Identitas Tempat PKL</h3>
+
+    <table>
+
+    <tr>
+        <td>Nama</td>
+        <td>${escapeHTML(d.perusahaan)}</td>
+    </tr>
+
+    <tr>
+        <td>Alamat</td>
+        <td>${escapeHTML(d.alamat)}</td>
+    </tr>
+
+    </table>
+
+
+    <h3>2.2 Profil Perusahaan</h3>
+
+    <p>
+    ${escapeHTML(d.profil)}
+    </p>
+
+
+    <h3>2.3 Tata Tertib</h3>
+
+    <ol>
+        <li>Datang tepat waktu.</li>
+        <li>Menggunakan pakaian kerja sesuai ketentuan.</li>
+        <li>Menjaga kebersihan lingkungan kerja.</li>
+        <li>Menjaga keselamatan kerja.</li>
+        <li>Mematuhi arahan pembimbing.</li>
+    </ol>
+
+
+    <div class="page-break"></div>
+
+    <h2>BAB III<br>PELAKSANAAN PKL</h2>
+
+    <h3>3.1 Waktu dan Tempat</h3>
+
+    <p>
+    Praktik Kerja Lapangan dilaksanakan di
+    <b>${escapeHTML(d.perusahaan)}</b>
+    yang beralamat di
+    <b>${escapeHTML(d.alamat)}</b>.
+    </p>
+
+    <p>
+    Kegiatan dilaksanakan mulai
+    <b>${formatTanggal(d.mulai)}</b>
+    sampai dengan
+    <b>${formatTanggal(d.selesai)}</b>.
+    </p>
+
+
+    <h3>3.2 Kegiatan Selama PKL</h3>
+
+    <p>
+    Selama mengikuti kegiatan PKL, penulis melaksanakan
+    berbagai kegiatan sesuai dengan bidang keahlian dan
+    arahan pembimbing industri.
+    </p>
+
+    <ol>
+    ${
+        kegiatanList.map(x =>
+        `<li>${escapeHTML(x.kegiatan)}</li>`
+        ).join("")
+    }
+    </ol>
+
+
+    <div class="page-break"></div>
+
+    <h2>BAB IV<br>HASIL DAN PEMBAHASAN</h2>
+
+    <h3>4.1 Hasil yang Diperoleh</h3>
+
+    <p>
+    Selama melaksanakan Praktik Kerja Lapangan, penulis
+    memperoleh pengalaman dalam melaksanakan pekerjaan
+    secara langsung di lingkungan industri.
+    </p>
+
+    <p>
+    Penulis juga memperoleh pengetahuan mengenai
+    kedisiplinan, keselamatan kerja, penggunaan peralatan,
+    komunikasi, serta tanggung jawab dalam menyelesaikan
+    pekerjaan.
+    </p>
+
+
+    <h3>4.2 Pembahasan Kegiatan</h3>
+
+    <p>
+    Setiap kegiatan dilaksanakan berdasarkan arahan
+    pembimbing. Dalam pelaksanaannya, penulis berusaha
+    mengikuti prosedur kerja dan memperhatikan aspek
+    keselamatan kerja.
+    </p>
+
+
+    <div class="page-break"></div>
+
+    <h2>BAB V<br>PENUTUP</h2>
+
+    <h3>5.1 Kesimpulan</h3>
+
+    <p>
+    ${escapeHTML(d.kesimpulan)}
+    </p>
+
+    <p>
+    Secara keseluruhan, kegiatan Praktik Kerja Lapangan
+    memberikan pengalaman yang bermanfaat bagi penulis
+    dalam mengenal dunia kerja dan menerapkan pengetahuan
+    yang telah dipelajari di sekolah.
+    </p>
+
+
+    <h3>5.2 Saran</h3>
+
+    <p>
+    ${escapeHTML(d.saran)}
+    </p>
+
+
+    <div class="page-break"></div>
+
+    <h2>JURNAL KEGIATAN PKL</h2>
+
+    <table>
+
+    <thead>
+
+    <tr>
+        <th>No</th>
+        <th>Tanggal</th>
+        <th>Kegiatan</th>
+        <th>Hasil/Keterangan</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    ${
+        jurnal ||
+        `
+        <tr>
+            <td colspan="4">
+            Belum ada data kegiatan.
+            </td>
+        </tr>
+        `
+    }
+
+    </tbody>
+
+    </table>
+
+
+    <div class="signature">
+
+        <div>
+            ${escapeHTML(d.kota)},
+            ${formatTanggal(new Date().toISOString().split("T")[0])}
+            <br>
+            Peserta PKL
+            <br><br><br><br>
+            <b>${escapeHTML(d.nama)}</b>
+        </div>
+
+    </div>
+
+    `;
+
+
+    $("laporan").innerHTML = laporan;
+
+    window.scrollTo({
+        top:document.body.scrollHeight,
+        behavior:"smooth"
+    });
+}
+
+
+function hapusData(){
+
+    if(!confirm("Hapus semua data laporan?")){
+        return;
+    }
+
+    localStorage.removeItem("dataPKL");
+    localStorage.removeItem("kegiatanPKL");
+
+    kegiatanList=[];
+
+    document
+    .querySelectorAll("input, textarea")
+    .forEach(el=>{
+
+        if(el.id !== "judul"){
+            el.value="";
+        }
+
+    });
+
+    $("judul").value =
+    "LAPORAN PRAKTIK KERJA LAPANGAN";
+
+    tampilkanKegiatan();
+
+    $("laporan").innerHTML = `
+        <div class="empty">
+            <h2>📄 Preview Laporan</h2>
+            <p>Data telah direset.</p>
+        </div>
+    `;
+}
+
+
+muatData();
+tampilkanKegiatan();
+
+</script>
+
 </body>
 </html>
