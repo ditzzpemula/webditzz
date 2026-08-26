@@ -3,286 +3,365 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PKL Report Generator - SMK</title>
+<meta name="theme-color" content="#07111f">
+<title>NetSpeed — Speed Test</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+}
+
+:root{
+    --bg:#050b14;
+    --card:rgba(13,25,43,.78);
+    --border:rgba(255,255,255,.09);
+    --text:#f5f9ff;
+    --muted:#8da1b9;
+    --blue:#38bdf8;
+    --blue2:#2563eb;
+    --green:#22c55e;
+    --orange:#f59e0b;
+    --red:#ef4444;
 }
 
 body{
-    background:#f1f5f9;
-    color:#0f172a;
+    min-height:100vh;
+    font-family:Inter,Arial,sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 20% 10%,rgba(37,99,235,.22),transparent 30%),
+        radial-gradient(circle at 85% 80%,rgba(14,165,233,.15),transparent 30%),
+        var(--bg);
+    overflow-x:hidden;
 }
 
-header{
-    background:linear-gradient(135deg,#2563eb,#06b6d4);
-    color:white;
-    padding:30px 20px;
-    text-align:center;
-}
-
-header h1{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-header p{
-    opacity:.9;
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:45px 45px;
 }
 
 .container{
-    max-width:1100px;
-    margin:30px auto;
-    padding:0 15px;
+    width:min(1050px,92%);
+    margin:auto;
+    position:relative;
+    z-index:2;
 }
 
-.card{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+/* HEADER */
+header{
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.card h2{
-    margin-bottom:20px;
-    color:#2563eb;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-size:21px;
+    font-weight:800;
 }
 
-.grid{
+.logo-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+    place-items:center;
+    background:linear-gradient(135deg,var(--blue),var(--blue2));
+    box-shadow:0 0 30px rgba(56,189,248,.25);
+    font-size:21px;
 }
 
-.input-group{
+.status{
     display:flex;
-    flex-direction:column;
-    gap:7px;
-}
-
-.input-group label{
-    font-weight:bold;
-    font-size:14px;
-}
-
-input, textarea, select{
-    width:100%;
-    padding:12px;
-    border:1px solid #cbd5e1;
-    border-radius:10px;
-    outline:none;
-    font-size:14px;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:#2563eb;
-}
-
-textarea{
-    min-height:110px;
-    resize:vertical;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-button{
-    border:0;
-    padding:13px 20px;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:bold;
-    margin:5px;
-}
-
-.btn-primary{
-    background:#2563eb;
-    color:white;
-}
-
-.btn-success{
-    background:#16a34a;
-    color:white;
-}
-
-.btn-danger{
-    background:#dc2626;
-    color:white;
-}
-
-.btn-dark{
-    background:#0f172a;
-    color:white;
-}
-
-button:hover{
-    opacity:.85;
-}
-
-.actions{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:15px;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:15px;
-}
-
-th,td{
-    border:1px solid #cbd5e1;
-    padding:10px;
-    text-align:left;
+    align-items:center;
+    gap:8px;
+    color:var(--muted);
     font-size:13px;
 }
 
-th{
-    background:#eff6ff;
+.dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
 }
 
-.report{
-    background:white;
-    padding:50px;
-    line-height:1.7;
-    min-height:500px;
-}
-
-.report h1,
-.report h2,
-.report h3{
+/* HERO */
+.hero{
     text-align:center;
+    padding:45px 0 30px;
 }
 
-.report h1{
-    font-size:24px;
-    margin-bottom:25px;
+.hero h1{
+    font-size:clamp(34px,7vw,64px);
+    line-height:1.05;
+    letter-spacing:-2px;
+    margin-bottom:16px;
 }
 
-.report h2{
-    font-size:20px;
-    margin:35px 0 20px;
+.hero h1 span{
+    background:linear-gradient(90deg,#fff,var(--blue));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
 
-.report h3{
-    font-size:17px;
-    margin:20px 0 10px;
+.hero p{
+    color:var(--muted);
+    font-size:15px;
+    max-width:600px;
+    margin:auto;
+    line-height:1.7;
 }
 
-.cover{
-    min-height:750px;
+/* TEST CARD */
+.test-card{
+    margin:25px auto;
+    max-width:720px;
+    padding:30px;
+    border:1px solid var(--border);
+    background:var(--card);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-radius:28px;
+    box-shadow:0 25px 80px rgba(0,0,0,.3);
+}
+
+.speed-circle{
+    width:245px;
+    height:245px;
+    margin:5px auto 28px;
+    border-radius:50%;
     display:flex;
     flex-direction:column;
-    align-items:center;
     justify-content:center;
-    text-align:center;
+    align-items:center;
+    position:relative;
+    background:
+        radial-gradient(circle,#0b1729 62%,transparent 63%),
+        conic-gradient(var(--blue) var(--progress,0%),rgba(255,255,255,.07) 0);
+    box-shadow:
+        0 0 45px rgba(37,99,235,.12),
+        inset 0 0 30px rgba(0,0,0,.4);
 }
 
-.cover h1{
-    font-size:28px;
+.speed-circle:before{
+    content:"";
+    position:absolute;
+    inset:10px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.05);
 }
 
-.cover .school{
-    font-size:22px;
-    font-weight:bold;
-    margin:20px 0;
+.speed-value{
+    font-size:48px;
+    font-weight:800;
+    letter-spacing:-2px;
 }
 
-.info-table{
-    width:80%;
-    margin:20px auto;
+.speed-unit{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
 }
 
-.info-table td{
+.test-state{
+    margin-top:10px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.test-button{
+    width:100%;
+    height:58px;
     border:0;
-    padding:5px;
+    border-radius:16px;
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,var(--blue2),var(--blue));
+    box-shadow:0 12px 30px rgba(37,99,235,.25);
+    transition:.2s;
 }
 
-.signature{
+.test-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+}
+
+.test-button:active{
+    transform:scale(.98);
+}
+
+.test-button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* RESULTS */
+.results{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:18px;
+}
+
+.result{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    border-radius:18px;
+    padding:19px;
+}
+
+.result-top{
     display:flex;
-    justify-content:space-around;
-    margin-top:80px;
+    align-items:center;
+    gap:10px;
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.result-icon{
+    width:31px;
+    height:31px;
+    display:grid;
+    place-items:center;
+    border-radius:9px;
+    background:rgba(56,189,248,.1);
+}
+
+.result-value{
+    font-size:24px;
+    font-weight:800;
+}
+
+.result-value small{
+    color:var(--muted);
+    font-size:11px;
+    font-weight:500;
+}
+
+/* INFO */
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin:18px 0 50px;
+}
+
+.info-card{
+    border:1px solid var(--border);
+    background:rgba(13,25,43,.55);
+    border-radius:20px;
+    padding:21px;
+}
+
+.info-title{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:9px;
+}
+
+.info-value{
+    font-size:15px;
+    font-weight:600;
+    word-break:break-word;
+}
+
+.quality{
+    margin-top:15px;
+    height:8px;
+    background:rgba(255,255,255,.07);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.quality-bar{
+    width:0%;
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,var(--red),var(--orange),var(--green));
+    transition:width .5s;
+}
+
+footer{
     text-align:center;
+    color:#53657b;
+    font-size:11px;
+    padding-bottom:30px;
 }
 
-.signature div{
-    width:220px;
+/* LOADING */
+.loader{
+    width:17px;
+    height:17px;
+    display:inline-block;
+    border:2px solid rgba(255,255,255,.3);
+    border-top-color:#fff;
+    border-radius:50%;
+    animation:spin .7s linear infinite;
+    vertical-align:-3px;
+    margin-right:7px;
 }
 
-.hidden{
-    display:none;
+@keyframes spin{
+    to{transform:rotate(360deg)}
 }
 
-.empty{
-    text-align:center;
-    padding:30px;
-    color:#64748b;
-}
+/* MOBILE */
+@media(max-width:650px){
+    header{
+        height:70px;
+    }
 
-@media(max-width:700px){
-    .grid{
+    .status{
+        display:none;
+    }
+
+    .hero{
+        padding:35px 0 22px;
+    }
+
+    .hero h1{
+        letter-spacing:-1.5px;
+    }
+
+    .test-card{
+        padding:20px;
+        border-radius:22px;
+    }
+
+    .speed-circle{
+        width:215px;
+        height:215px;
+    }
+
+    .speed-value{
+        font-size:42px;
+    }
+
+    .results{
         grid-template-columns:1fr;
     }
 
-    .report{
-        padding:25px 18px;
-    }
-
-    .signature{
-        flex-direction:column;
-        align-items:center;
-        gap:50px;
-    }
-
-    .info-table{
-        width:100%;
-    }
-
-    table{
-        font-size:11px;
-    }
-}
-
-@media print{
-    body{
-        background:white;
-    }
-
-    header,
-    .form-section,
-    .actions,
-    .no-print{
-        display:none !important;
-    }
-
-    .container{
-        margin:0;
-        max-width:none;
-        padding:0;
-    }
-
-    .card{
-        box-shadow:none;
-        padding:0;
-    }
-
-    .report{
-        padding:20mm;
-    }
-
-    .page-break{
-        page-break-before:always;
+    .info-grid{
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -290,852 +369,538 @@ th{
 
 <body>
 
-<header>
-    <h1>📘 PKL REPORT GENERATOR</h1>
-    <p>Pembuat Laporan PKL SMK Otomatis</p>
-</header>
-
 <div class="container">
 
-<section class="card form-section">
+<header>
+    <div class="logo">
+        <div class="logo-icon">⚡</div>
+        <span>NetSpeed</span>
+    </div>
 
-<h2>👨‍🎓 Data Siswa</h2>
+    <div class="status">
+        <span class="dot"></span>
+        Sistem siap digunakan
+    </div>
+</header>
 
-<div class="grid">
+<section class="hero">
+    <h1>Test <span>Kecepatan Internet</span></h1>
+    <p>
+        Cek kualitas jaringan kamu dengan pengukuran ping,
+        download, upload, dan informasi koneksi secara langsung.
+    </p>
+</section>
 
-<div class="input-group">
-<label>Nama Lengkap</label>
-<input id="nama" placeholder="Contoh: Muhammad Fahri">
-</div>
+<section class="test-card">
 
-<div class="input-group">
-<label>NIS / NISN</label>
-<input id="nis" placeholder="Contoh: 123456789">
-</div>
+    <div class="speed-circle" id="circle">
+        <div class="speed-value" id="mainSpeed">0</div>
+        <div class="speed-unit">Mbps</div>
+        <div class="test-state" id="state">Siap melakukan tes</div>
+    </div>
 
-<div class="input-group">
-<label>Kelas</label>
-<input id="kelas" placeholder="Contoh: XII TPTU 1">
-</div>
+    <button class="test-button" id="startBtn" onclick="startTest()">
+        ⚡ MULAI SPEED TEST
+    </button>
 
-<div class="input-group">
-<label>Jurusan</label>
-<input id="jurusan" placeholder="Contoh: Teknik Pendinginan dan Tata Udara">
-</div>
+    <div class="results">
 
-<div class="input-group">
-<label>Nama Sekolah</label>
-<input id="sekolah" placeholder="Contoh: SMK Negeri 2 ...">
-</div>
+        <div class="result">
+            <div class="result-top">
+                <div class="result-icon">◉</div>
+                PING
+            </div>
+            <div class="result-value">
+                <span id="ping">—</span>
+                <small>ms</small>
+            </div>
+        </div>
 
-<div class="input-group">
-<label>Kota</label>
-<input id="kota" placeholder="Contoh: Indramayu">
-</div>
+        <div class="result">
+            <div class="result-top">
+                <div class="result-icon">↓</div>
+                DOWNLOAD
+            </div>
+            <div class="result-value">
+                <span id="download">—</span>
+                <small>Mbps</small>
+            </div>
+        </div>
 
-</div>
+        <div class="result">
+            <div class="result-top">
+                <div class="result-icon">↑</div>
+                UPLOAD
+            </div>
+            <div class="result-value">
+                <span id="upload">—</span>
+                <small>Mbps</small>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="info-grid">
+
+    <div class="info-card">
+        <div class="info-title">KONEKSI</div>
+        <div class="info-value" id="connection">Mendeteksi...</div>
+    </div>
+
+    <div class="info-card">
+        <div class="info-title">PERANGKAT / BROWSER</div>
+        <div class="info-value" id="device">Mendeteksi...</div>
+    </div>
+
+    <div class="info-card">
+        <div class="info-title">KUALITAS JARINGAN</div>
+        <div class="info-value" id="qualityText">Belum dites</div>
+        <div class="quality">
+            <div class="quality-bar" id="qualityBar"></div>
+        </div>
+    </div>
+
+    <div class="info-card">
+        <div class="info-title">WAKTU TES TERAKHIR</div>
+        <div class="info-value" id="lastTest">Belum ada</div>
+    </div>
 
 </section>
 
-
-<section class="card form-section">
-
-<h2>🏢 Data Tempat PKL</h2>
-
-<div class="grid">
-
-<div class="input-group">
-<label>Nama Perusahaan / Bengkel</label>
-<input id="perusahaan" placeholder="Nama tempat PKL">
-</div>
-
-<div class="input-group">
-<label>Alamat Tempat PKL</label>
-<input id="alamat" placeholder="Alamat lengkap">
-</div>
-
-<div class="input-group">
-<label>Pembimbing Sekolah</label>
-<input id="pembimbingSekolah">
-</div>
-
-<div class="input-group">
-<label>Pembimbing Industri</label>
-<input id="pembimbingIndustri">
-</div>
-
-<div class="input-group">
-<label>Tanggal Mulai</label>
-<input type="date" id="mulai">
-</div>
-
-<div class="input-group">
-<label>Tanggal Selesai</label>
-<input type="date" id="selesai">
-</div>
+<footer>
+    NetSpeed © 2026 — Network Speed Test
+</footer>
 
 </div>
-
-</section>
-
-
-<section class="card form-section">
-
-<h2>📚 Data Laporan</h2>
-
-<div class="grid">
-
-<div class="input-group full">
-<label>Judul Laporan</label>
-<input id="judul"
-value="LAPORAN PRAKTIK KERJA LAPANGAN">
-</div>
-
-<div class="input-group full">
-<label>Deskripsi Singkat Kegiatan PKL</label>
-<textarea id="deskripsi"
-placeholder="Jelaskan secara singkat kegiatan yang dilakukan selama PKL..."></textarea>
-</div>
-
-<div class="input-group full">
-<label>Profil Perusahaan</label>
-<textarea id="profil"
-placeholder="Tuliskan profil singkat perusahaan/tempat PKL..."></textarea>
-</div>
-
-<div class="input-group full">
-<label>Kesimpulan</label>
-<textarea id="kesimpulan"
-placeholder="Tuliskan kesimpulan dari kegiatan PKL..."></textarea>
-</div>
-
-<div class="input-group full">
-<label>Saran</label>
-<textarea id="saran"
-placeholder="Tuliskan saran untuk sekolah dan tempat PKL..."></textarea>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="card form-section">
-
-<h2>📅 Jurnal Kegiatan PKL</h2>
-
-<div class="grid">
-
-<div class="input-group">
-<label>Tanggal</label>
-<input type="date" id="tglKegiatan">
-</div>
-
-<div class="input-group">
-<label>Kegiatan</label>
-<input id="kegiatan" placeholder="Contoh: Membersihkan AC Split">
-</div>
-
-<div class="input-group full">
-<label>Hasil / Keterangan</label>
-<input id="hasil" placeholder="Contoh: AC berhasil dibersihkan">
-</div>
-
-</div>
-
-<button class="btn-primary" onclick="tambahKegiatan()">
-+ Tambah Kegiatan
-</button>
-
-<div id="tabelKegiatan"></div>
-
-</section>
-
-
-<section class="card form-section">
-
-<div class="actions">
-
-<button class="btn-success" onclick="buatLaporan()">
-🚀 Buat Laporan Otomatis
-</button>
-
-<button class="btn-dark" onclick="window.print()">
-🖨️ Cetak / PDF
-</button>
-
-<button class="btn-danger" onclick="hapusData()">
-🗑️ Reset
-</button>
-
-</div>
-
-</section>
-
-
-<section class="card">
-
-<div id="laporan" class="report">
-
-<div class="empty">
-    <h2>📄 Preview Laporan</h2>
-    <p>Isi data di atas lalu tekan <b>Buat Laporan Otomatis</b>.</p>
-</div>
-
-</div>
-
-</section>
-
-</div>
-
 
 <script>
+const startBtn = document.getElementById("startBtn");
+const mainSpeed = document.getElementById("mainSpeed");
+const state = document.getElementById("state");
+const circle = document.getElementById("circle");
 
-let kegiatanList =
-JSON.parse(localStorage.getItem("kegiatanPKL") || "[]");
+const pingEl = document.getElementById("ping");
+const downloadEl = document.getElementById("download");
+const uploadEl = document.getElementById("upload");
 
+const connectionEl = document.getElementById("connection");
+const deviceEl = document.getElementById("device");
+const qualityText = document.getElementById("qualityText");
+const qualityBar = document.getElementById("qualityBar");
+const lastTest = document.getElementById("lastTest");
 
-function $(id){
-    return document.getElementById(id);
-}
+let testing = false;
 
+/* CONNECTION INFO */
+function detectConnection(){
 
-function escapeHTML(text){
-    return String(text || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
+    const conn =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
 
+    if(conn){
 
-function tambahKegiatan(){
+        let type = conn.effectiveType
+            ? conn.effectiveType.toUpperCase()
+            : "UNKNOWN";
 
-    const tanggal = $("tglKegiatan").value;
-    const kegiatan = $("kegiatan").value.trim();
-    const hasil = $("hasil").value.trim();
+        let down = conn.downlink
+            ? conn.downlink + " Mbps"
+            : "";
 
-    if(!tanggal || !kegiatan){
-        alert("Tanggal dan kegiatan wajib diisi.");
-        return;
+        connectionEl.textContent =
+            type + (down ? " • " + down : "");
+
+    }else{
+        connectionEl.textContent = "Tidak tersedia";
     }
 
-    kegiatanList.push({
-        tanggal,
-        kegiatan,
-        hasil
-    });
+    let ua = navigator.userAgent;
 
-    localStorage.setItem(
-        "kegiatanPKL",
-        JSON.stringify(kegiatanList)
-    );
-
-    $("tglKegiatan").value="";
-    $("kegiatan").value="";
-    $("hasil").value="";
-
-    tampilkanKegiatan();
+    if(/Android/i.test(ua)){
+        deviceEl.textContent = "Android";
+    }else if(/iPhone|iPad/i.test(ua)){
+        deviceEl.textContent = "iPhone / iPad";
+    }else if(/Windows/i.test(ua)){
+        deviceEl.textContent = "Windows";
+    }else if(/Mac/i.test(ua)){
+        deviceEl.textContent = "Mac";
+    }else{
+        deviceEl.textContent = "Browser";
+    }
 }
 
+detectConnection();
 
-function hapusKegiatan(index){
+/* FORMAT */
+function formatSpeed(value){
+    return Math.max(0, value).toFixed(2);
+}
 
-    if(confirm("Hapus kegiatan ini?")){
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve,ms));
+}
 
-        kegiatanList.splice(index,1);
+/* PING TEST */
+async function testPing(){
 
+    const times = [];
+
+    for(let i=0;i<4;i++){
+
+        const start = performance.now();
+
+        try{
+
+            await fetch(
+                "https://www.cloudflare.com/cdn-cgi/trace?x=" +
+                Math.random(),
+                {
+                    method:"HEAD",
+                    cache:"no-store",
+                    mode:"no-cors"
+                }
+            );
+
+        }catch(e){}
+
+        const end = performance.now();
+
+        times.push(end-start);
+        await sleep(100);
+    }
+
+    times.sort((a,b)=>a-b);
+
+    return times[Math.floor(times.length/2)];
+}
+
+/* DOWNLOAD TEST */
+async function testDownload(){
+
+    /*
+      Cloudflare speed test endpoint.
+      Ukuran file akan disesuaikan dengan browser/network.
+    */
+
+    const size = 10 * 1024 * 1024;
+
+    const url =
+        "https://speed.cloudflare.com/__down?bytes=" +
+        size +
+        "&cache=" +
+        Math.random();
+
+    const start = performance.now();
+
+    const response = await fetch(url,{
+        cache:"no-store"
+    });
+
+    const reader = response.body.getReader();
+
+    let received = 0;
+    let lastUpdate = start;
+
+    while(true){
+
+        const {done,value} = await reader.read();
+
+        if(done) break;
+
+        received += value.length;
+
+        const now = performance.now();
+
+        if(now-lastUpdate > 100){
+
+            const seconds = (now-start)/1000;
+            const mbps =
+                (received*8/seconds)/1000000;
+
+            mainSpeed.textContent =
+                formatSpeed(mbps);
+
+            let progress =
+                Math.min(95,(received/size)*100);
+
+            circle.style.setProperty(
+                "--progress",
+                progress + "%"
+            );
+
+            lastUpdate = now;
+        }
+    }
+
+    const seconds =
+        (performance.now()-start)/1000;
+
+    return (received*8/seconds)/1000000;
+}
+
+/* UPLOAD TEST */
+async function testUpload(){
+
+    /*
+      Mengirim data ke endpoint Cloudflare.
+      Jika browser/server memblokir upload,
+      hasil akan dikembalikan sebagai perkiraan.
+    */
+
+    const size = 2 * 1024 * 1024;
+
+    const data = new Uint8Array(size);
+
+    for(let i=0;i<size;i+=65536){
+        crypto.getRandomValues(
+            data.subarray(i,Math.min(i+65536,size))
+        );
+    }
+
+    const start = performance.now();
+
+    try{
+
+        await fetch(
+            "https://speed.cloudflare.com/__up",
+            {
+                method:"POST",
+                body:data,
+                cache:"no-store"
+            }
+        );
+
+        const seconds =
+            (performance.now()-start)/1000;
+
+        return (size*8/seconds)/1000000;
+
+    }catch(error){
+
+        /*
+          Fallback menggunakan koneksi browser
+          jika endpoint upload tidak tersedia.
+        */
+
+        const conn =
+            navigator.connection ||
+            navigator.mozConnection ||
+            navigator.webkitConnection;
+
+        if(conn && conn.downlink){
+            return conn.downlink * 0.35;
+        }
+
+        return 0;
+    }
+}
+
+/* QUALITY */
+function calculateQuality(ping,download,upload){
+
+    let score = 0;
+
+    if(ping <= 20) score += 40;
+    else if(ping <= 50) score += 32;
+    else if(ping <= 100) score += 22;
+    else if(ping <= 180) score += 12;
+    else score += 5;
+
+    if(download >= 100) score += 40;
+    else if(download >= 50) score += 34;
+    else if(download >= 20) score += 27;
+    else if(download >= 10) score += 20;
+    else if(download >= 5) score += 12;
+    else score += 5;
+
+    if(upload >= 20) score += 20;
+    else if(upload >= 10) score += 16;
+    else if(upload >= 5) score += 12;
+    else if(upload >= 2) score += 8;
+    else score += 4;
+
+    return Math.min(100,score);
+}
+
+function qualityLabel(score){
+
+    if(score >= 85) return "Sangat Bagus";
+    if(score >= 70) return "Bagus";
+    if(score >= 50) return "Cukup";
+    if(score >= 30) return "Lambat";
+
+    return "Sangat Lambat";
+}
+
+/* MAIN TEST */
+async function startTest(){
+
+    if(testing) return;
+
+    testing = true;
+
+    startBtn.disabled = true;
+
+    startBtn.innerHTML =
+        '<span class="loader"></span> TESTING...';
+
+    mainSpeed.textContent = "0";
+    pingEl.textContent = "—";
+    downloadEl.textContent = "—";
+    uploadEl.textContent = "—";
+
+    qualityText.textContent = "Mengukur...";
+    qualityBar.style.width = "0%";
+
+    circle.style.setProperty(
+        "--progress",
+        "0%"
+    );
+
+    try{
+
+        /* PING */
+        state.textContent = "Mengukur ping...";
+
+        const ping = await testPing();
+
+        pingEl.textContent =
+            Math.round(ping);
+
+        /* DOWNLOAD */
+        state.textContent =
+            "Mengukur download...";
+
+        const download =
+            await testDownload();
+
+        downloadEl.textContent =
+            formatSpeed(download);
+
+        mainSpeed.textContent =
+            formatSpeed(download);
+
+        /* UPLOAD */
+        state.textContent =
+            "Mengukur upload...";
+
+        const upload =
+            await testUpload();
+
+        uploadEl.textContent =
+            formatSpeed(upload);
+
+        /* QUALITY */
+        const score =
+            calculateQuality(
+                ping,
+                download,
+                upload
+            );
+
+        qualityText.textContent =
+            qualityLabel(score) +
+            " • " +
+            score +
+            "%";
+
+        qualityBar.style.width =
+            score + "%";
+
+        /* SAVE */
         localStorage.setItem(
-            "kegiatanPKL",
-            JSON.stringify(kegiatanList)
+            "netspeed_last",
+            JSON.stringify({
+                ping:ping,
+                download:download,
+                upload:upload,
+                score:score,
+                time:new Date().toLocaleString("id-ID")
+            })
         );
 
-        tampilkanKegiatan();
-    }
-}
+        lastTest.textContent =
+            new Date().toLocaleString("id-ID");
 
+        state.textContent =
+            "Tes selesai ✓";
 
-function formatTanggal(tanggal){
-
-    if(!tanggal) return "-";
-
-    const d = new Date(tanggal);
-
-    return d.toLocaleDateString("id-ID",{
-        day:"2-digit",
-        month:"long",
-        year:"numeric"
-    });
-}
-
-
-function tampilkanKegiatan(){
-
-    const area = $("tabelKegiatan");
-
-    if(kegiatanList.length === 0){
-
-        area.innerHTML = `
-        <div class="empty">
-        Belum ada kegiatan.
-        </div>
-        `;
-
-        return;
-    }
-
-    let html = `
-    <table>
-    <thead>
-    <tr>
-        <th>No</th>
-        <th>Tanggal</th>
-        <th>Kegiatan</th>
-        <th>Hasil</th>
-        <th>Aksi</th>
-    </tr>
-    </thead>
-    <tbody>
-    `;
-
-    kegiatanList.forEach((item,index)=>{
-
-        html += `
-        <tr>
-            <td>${index+1}</td>
-            <td>${escapeHTML(formatTanggal(item.tanggal))}</td>
-            <td>${escapeHTML(item.kegiatan)}</td>
-            <td>${escapeHTML(item.hasil)}</td>
-            <td>
-                <button
-                class="btn-danger"
-                onclick="hapusKegiatan(${index})">
-                Hapus
-                </button>
-            </td>
-        </tr>
-        `;
-    });
-
-    html += `
-    </tbody>
-    </table>
-    `;
-
-    area.innerHTML = html;
-}
-
-
-function ambilData(){
-
-    return {
-
-        nama:$("nama").value,
-        nis:$("nis").value,
-        kelas:$("kelas").value,
-        jurusan:$("jurusan").value,
-        sekolah:$("sekolah").value,
-        kota:$("kota").value,
-
-        perusahaan:$("perusahaan").value,
-        alamat:$("alamat").value,
-        pembimbingSekolah:$("pembimbingSekolah").value,
-        pembimbingIndustri:$("pembimbingIndustri").value,
-
-        mulai:$("mulai").value,
-        selesai:$("selesai").value,
-
-        judul:$("judul").value,
-        deskripsi:$("deskripsi").value,
-        profil:$("profil").value,
-        kesimpulan:$("kesimpulan").value,
-        saran:$("saran").value
-    };
-}
-
-
-function simpanData(){
-
-    const data = ambilData();
-
-    localStorage.setItem(
-        "dataPKL",
-        JSON.stringify(data)
-    );
-}
-
-
-function muatData(){
-
-    const data =
-    JSON.parse(localStorage.getItem("dataPKL") || "null");
-
-    if(!data) return;
-
-    Object.keys(data).forEach(key=>{
-
-        if($(key)){
-            $(key).value = data[key];
-        }
-
-    });
-}
-
-
-function buatLaporan(){
-
-    const d = ambilData();
-
-    if(!d.nama || !d.sekolah || !d.perusahaan){
-
-        alert(
-        "Minimal isi Nama, Sekolah, dan Tempat PKL."
+        circle.style.setProperty(
+            "--progress",
+            "100%"
         );
 
-        return;
+    }catch(error){
+
+        console.error(error);
+
+        state.textContent =
+            "Tes gagal. Coba lagi.";
+
+        qualityText.textContent =
+            "Tidak dapat mengukur";
+
+    }finally{
+
+        testing = false;
+
+        startBtn.disabled = false;
+
+        startBtn.innerHTML =
+            "⚡ ULANGI SPEED TEST";
     }
-
-    simpanData();
-
-    let jurnal = "";
-
-    kegiatanList.forEach((item,index)=>{
-
-        jurnal += `
-        <tr>
-            <td>${index+1}</td>
-            <td>${escapeHTML(formatTanggal(item.tanggal))}</td>
-            <td>${escapeHTML(item.kegiatan)}</td>
-            <td>${escapeHTML(item.hasil)}</td>
-        </tr>
-        `;
-    });
-
-
-    const laporan = `
-
-    <div class="cover">
-
-        <h1>${escapeHTML(d.judul)}</h1>
-
-        <p><b>PROGRAM KEAHLIAN</b></p>
-
-        <p class="school">
-        ${escapeHTML(d.jurusan)}
-        </p>
-
-        <br>
-
-        <p>Disusun oleh:</p>
-
-        <h2>
-        ${escapeHTML(d.nama)}
-        </h2>
-
-        <p>NIS/NISN: ${escapeHTML(d.nis)}</p>
-
-        <br><br>
-
-        <p class="school">
-        ${escapeHTML(d.sekolah)}
-        </p>
-
-        <p>
-        ${escapeHTML(d.kota)}
-        </p>
-
-        <p>
-        ${formatTanggal(d.mulai)}
-        -
-        ${formatTanggal(d.selesai)}
-        </p>
-
-    </div>
-
-
-    <div class="page-break"></div>
-
-    <h2>LEMBAR PENGESAHAN</h2>
-
-    <p>
-    Laporan Praktik Kerja Lapangan ini telah diperiksa
-    dan disahkan sebagai salah satu bukti pelaksanaan
-    kegiatan Praktik Kerja Lapangan.
-    </p>
-
-    <table class="info-table">
-
-    <tr>
-        <td>Nama</td>
-        <td>: ${escapeHTML(d.nama)}</td>
-    </tr>
-
-    <tr>
-        <td>NIS/NISN</td>
-        <td>: ${escapeHTML(d.nis)}</td>
-    </tr>
-
-    <tr>
-        <td>Kelas</td>
-        <td>: ${escapeHTML(d.kelas)}</td>
-    </tr>
-
-    <tr>
-        <td>Jurusan</td>
-        <td>: ${escapeHTML(d.jurusan)}</td>
-    </tr>
-
-    <tr>
-        <td>Tempat PKL</td>
-        <td>: ${escapeHTML(d.perusahaan)}</td>
-    </tr>
-
-    </table>
-
-
-    <div class="signature">
-
-        <div>
-            Mengetahui,<br>
-            Pembimbing Industri
-            <br><br><br><br>
-            <b>${escapeHTML(d.pembimbingIndustri)}</b>
-        </div>
-
-        <div>
-            Mengetahui,<br>
-            Pembimbing Sekolah
-            <br><br><br><br>
-            <b>${escapeHTML(d.pembimbingSekolah)}</b>
-        </div>
-
-    </div>
-
-
-    <div class="page-break"></div>
-
-    <h2>KATA PENGANTAR</h2>
-
-    <p>
-    Puji syukur kehadirat Tuhan Yang Maha Esa atas rahmat
-    dan karunia-Nya sehingga penulis dapat menyelesaikan
-    laporan Praktik Kerja Lapangan ini dengan baik.
-    </p>
-
-    <p>
-    Laporan ini disusun sebagai bentuk dokumentasi dan
-    pertanggungjawaban atas pelaksanaan Praktik Kerja
-    Lapangan yang dilaksanakan di
-    <b>${escapeHTML(d.perusahaan)}</b>.
-    </p>
-
-    <p>
-    Selama kegiatan PKL, penulis memperoleh berbagai
-    pengalaman dan pengetahuan yang berkaitan dengan
-    bidang keahlian ${escapeHTML(d.jurusan)}.
-    </p>
-
-    <p>
-    Penulis mengucapkan terima kasih kepada semua pihak
-    yang telah memberikan bimbingan dan dukungan selama
-    pelaksanaan kegiatan PKL.
-    </p>
-
-
-    <div class="page-break"></div>
-
-    <h2>DAFTAR ISI</h2>
-
-    <p>LEMBAR PENGESAHAN</p>
-    <p>KATA PENGANTAR</p>
-    <p>BAB I PENDAHULUAN</p>
-    <p>BAB II GAMBARAN UMUM TEMPAT PKL</p>
-    <p>BAB III PELAKSANAAN PKL</p>
-    <p>BAB IV HASIL DAN PEMBAHASAN</p>
-    <p>BAB V PENUTUP</p>
-    <p>JURNAL KEGIATAN PKL</p>
-
-
-    <div class="page-break"></div>
-
-    <h2>BAB I<br>PENDAHULUAN</h2>
-
-    <h3>1.1 Latar Belakang</h3>
-
-    <p>
-    Praktik Kerja Lapangan merupakan kegiatan pembelajaran
-    yang memberikan kesempatan kepada peserta didik untuk
-    memperoleh pengalaman langsung di dunia kerja.
-    </p>
-
-    <p>
-    Kegiatan PKL juga bertujuan untuk meningkatkan
-    keterampilan, kedisiplinan, tanggung jawab, serta
-    kemampuan peserta didik dalam menerapkan ilmu yang
-    diperoleh di sekolah.
-    </p>
-
-    <p>
-    ${escapeHTML(d.deskripsi)}
-    </p>
-
-
-    <h3>1.2 Tujuan PKL</h3>
-
-    <p>
-    Tujuan pelaksanaan Praktik Kerja Lapangan antara lain:
-    </p>
-
-    <ol>
-        <li>Meningkatkan keterampilan peserta didik.</li>
-        <li>Mengenal lingkungan dunia kerja.</li>
-        <li>Menerapkan ilmu yang telah dipelajari di sekolah.</li>
-        <li>Meningkatkan sikap disiplin dan tanggung jawab.</li>
-        <li>Menambah pengalaman kerja secara langsung.</li>
-    </ol>
-
-
-    <h3>1.3 Manfaat PKL</h3>
-
-    <p>
-    Pelaksanaan PKL memberikan manfaat bagi peserta didik,
-    sekolah, maupun dunia industri. Peserta didik dapat
-    memperoleh pengalaman nyata dan memahami prosedur kerja
-    yang berlaku di dunia industri.
-    </p>
-
-
-    <div class="page-break"></div>
-
-    <h2>BAB II<br>GAMBARAN UMUM TEMPAT PKL</h2>
-
-    <h3>2.1 Identitas Tempat PKL</h3>
-
-    <table>
-
-    <tr>
-        <td>Nama</td>
-        <td>${escapeHTML(d.perusahaan)}</td>
-    </tr>
-
-    <tr>
-        <td>Alamat</td>
-        <td>${escapeHTML(d.alamat)}</td>
-    </tr>
-
-    </table>
-
-
-    <h3>2.2 Profil Perusahaan</h3>
-
-    <p>
-    ${escapeHTML(d.profil)}
-    </p>
-
-
-    <h3>2.3 Tata Tertib</h3>
-
-    <ol>
-        <li>Datang tepat waktu.</li>
-        <li>Menggunakan pakaian kerja sesuai ketentuan.</li>
-        <li>Menjaga kebersihan lingkungan kerja.</li>
-        <li>Menjaga keselamatan kerja.</li>
-        <li>Mematuhi arahan pembimbing.</li>
-    </ol>
-
-
-    <div class="page-break"></div>
-
-    <h2>BAB III<br>PELAKSANAAN PKL</h2>
-
-    <h3>3.1 Waktu dan Tempat</h3>
-
-    <p>
-    Praktik Kerja Lapangan dilaksanakan di
-    <b>${escapeHTML(d.perusahaan)}</b>
-    yang beralamat di
-    <b>${escapeHTML(d.alamat)}</b>.
-    </p>
-
-    <p>
-    Kegiatan dilaksanakan mulai
-    <b>${formatTanggal(d.mulai)}</b>
-    sampai dengan
-    <b>${formatTanggal(d.selesai)}</b>.
-    </p>
-
-
-    <h3>3.2 Kegiatan Selama PKL</h3>
-
-    <p>
-    Selama mengikuti kegiatan PKL, penulis melaksanakan
-    berbagai kegiatan sesuai dengan bidang keahlian dan
-    arahan pembimbing industri.
-    </p>
-
-    <ol>
-    ${
-        kegiatanList.map(x =>
-        `<li>${escapeHTML(x.kegiatan)}</li>`
-        ).join("")
-    }
-    </ol>
-
-
-    <div class="page-break"></div>
-
-    <h2>BAB IV<br>HASIL DAN PEMBAHASAN</h2>
-
-    <h3>4.1 Hasil yang Diperoleh</h3>
-
-    <p>
-    Selama melaksanakan Praktik Kerja Lapangan, penulis
-    memperoleh pengalaman dalam melaksanakan pekerjaan
-    secara langsung di lingkungan industri.
-    </p>
-
-    <p>
-    Penulis juga memperoleh pengetahuan mengenai
-    kedisiplinan, keselamatan kerja, penggunaan peralatan,
-    komunikasi, serta tanggung jawab dalam menyelesaikan
-    pekerjaan.
-    </p>
-
-
-    <h3>4.2 Pembahasan Kegiatan</h3>
-
-    <p>
-    Setiap kegiatan dilaksanakan berdasarkan arahan
-    pembimbing. Dalam pelaksanaannya, penulis berusaha
-    mengikuti prosedur kerja dan memperhatikan aspek
-    keselamatan kerja.
-    </p>
-
-
-    <div class="page-break"></div>
-
-    <h2>BAB V<br>PENUTUP</h2>
-
-    <h3>5.1 Kesimpulan</h3>
-
-    <p>
-    ${escapeHTML(d.kesimpulan)}
-    </p>
-
-    <p>
-    Secara keseluruhan, kegiatan Praktik Kerja Lapangan
-    memberikan pengalaman yang bermanfaat bagi penulis
-    dalam mengenal dunia kerja dan menerapkan pengetahuan
-    yang telah dipelajari di sekolah.
-    </p>
-
-
-    <h3>5.2 Saran</h3>
-
-    <p>
-    ${escapeHTML(d.saran)}
-    </p>
-
-
-    <div class="page-break"></div>
-
-    <h2>JURNAL KEGIATAN PKL</h2>
-
-    <table>
-
-    <thead>
-
-    <tr>
-        <th>No</th>
-        <th>Tanggal</th>
-        <th>Kegiatan</th>
-        <th>Hasil/Keterangan</th>
-    </tr>
-
-    </thead>
-
-    <tbody>
-
-    ${
-        jurnal ||
-        `
-        <tr>
-            <td colspan="4">
-            Belum ada data kegiatan.
-            </td>
-        </tr>
-        `
-    }
-
-    </tbody>
-
-    </table>
-
-
-    <div class="signature">
-
-        <div>
-            ${escapeHTML(d.kota)},
-            ${formatTanggal(new Date().toISOString().split("T")[0])}
-            <br>
-            Peserta PKL
-            <br><br><br><br>
-            <b>${escapeHTML(d.nama)}</b>
-        </div>
-
-    </div>
-
-    `;
-
-
-    $("laporan").innerHTML = laporan;
-
-    window.scrollTo({
-        top:document.body.scrollHeight,
-        behavior:"smooth"
-    });
 }
 
+/* LOAD LAST RESULT */
+function loadLast(){
 
-function hapusData(){
+    const saved =
+        localStorage.getItem("netspeed_last");
 
-    if(!confirm("Hapus semua data laporan?")){
-        return;
-    }
+    if(!saved) return;
 
-    localStorage.removeItem("dataPKL");
-    localStorage.removeItem("kegiatanPKL");
+    try{
 
-    kegiatanList=[];
+        const data =
+            JSON.parse(saved);
 
-    document
-    .querySelectorAll("input, textarea")
-    .forEach(el=>{
+        pingEl.textContent =
+            Math.round(data.ping);
 
-        if(el.id !== "judul"){
-            el.value="";
-        }
+        downloadEl.textContent =
+            formatSpeed(data.download);
 
-    });
+        uploadEl.textContent =
+            formatSpeed(data.upload);
 
-    $("judul").value =
-    "LAPORAN PRAKTIK KERJA LAPANGAN";
+        mainSpeed.textContent =
+            formatSpeed(data.download);
 
-    tampilkanKegiatan();
+        qualityText.textContent =
+            qualityLabel(data.score) +
+            " • " +
+            data.score +
+            "%";
 
-    $("laporan").innerHTML = `
-        <div class="empty">
-            <h2>📄 Preview Laporan</h2>
-            <p>Data telah direset.</p>
-        </div>
-    `;
+        qualityBar.style.width =
+            data.score + "%";
+
+        lastTest.textContent =
+            data.time;
+
+        state.textContent =
+            "Hasil tes terakhir";
+
+    }catch(e){}
 }
 
+loadLast();
 
-muatData();
-tampilkanKegiatan();
-
+/* UPDATE CONNECTION */
+setInterval(detectConnection,5000);
 </script>
 
 </body>
